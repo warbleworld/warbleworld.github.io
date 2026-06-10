@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick reference for the Turn of Fortune's Wheel D&D campaign">
+  <title>Turn of Fortune's Wheel</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-title">Turn of Fortune's Wheel</div>
+      <div class="header-sub">Quick Reference</div>
+    </div>
+  </header>
+
+  <nav class="player-bar" role="tablist" aria-label="Player selection">
+    <div class="player-bar-inner">
+      <button class="player-btn" data-player="p1" role="tab" aria-selected="true" aria-controls="p1">
+        <span class="player-btn-num">P1</span>
+        <span class="player-btn-name">Vespera / Lucia</span>
+      </button>
+      <button class="player-btn" data-player="p2" role="tab" aria-selected="false" aria-controls="p2">
+        <span class="player-btn-num">P2</span>
+        <span class="player-btn-name">Karmine / Rubic</span>
+      </button>
+      <button class="player-btn" data-player="p3" role="tab" aria-selected="false" aria-controls="p3">
+        <span class="player-btn-num">P3</span>
+        <span class="player-btn-name">Lucien / Seabastion / Christian</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Player 1 -->
+    <div class="player-page" id="p1" role="tabpanel">
+      <div class="inc-bar" role="tablist" aria-label="Incarnation selection">
+        <button class="inc-btn active" data-inc="vespera" role="tab" aria-selected="true"><img src="" alt="Vespera"
+            class="inc-avatar" data-char="vespera"><span>Vespera</span></button>
+        <button class="inc-btn" data-inc="lucia" role="tab" aria-selected="false"><img src="" alt="Lucia"
+            class="inc-avatar" data-char="lucia"><span>Lucia</span></button>
+      </div>
+      <div class="inc-content active" id="vespera" role="tabpanel"></div>
+      <div class="inc-content" id="lucia" role="tabpanel"></div>
+    </div>
+
+    <!-- Player 2 -->
+    <div class="player-page" id="p2" role="tabpanel">
+      <div class="inc-bar" role="tablist" aria-label="Incarnation selection">
+        <button class="inc-btn active" data-inc="karmine" role="tab" aria-selected="true"><img src="" alt="Karmine"
+            class="inc-avatar" data-char="karmine"><span>Karmine</span></button>
+        <button class="inc-btn" data-inc="rubic" role="tab" aria-selected="false"><img src="" alt="Rubic"
+            class="inc-avatar" data-char="rubic"><span>Rubic</span></button>
+      </div>
+      <div class="inc-content active" id="karmine" role="tabpanel"></div>
+      <div class="inc-content" id="rubic" role="tabpanel"></div>
+    </div>
+
+    <!-- Player 3 -->
+    <div class="player-page" id="p3" role="tabpanel">
+      <div class="inc-bar" role="tablist" aria-label="Incarnation selection">
+        <button class="inc-btn active" data-inc="lucien" role="tab" aria-selected="true"><img src="" alt="Lucien"
+            class="inc-avatar" data-char="lucien"><span>Lucien</span></button>
+        <button class="inc-btn" data-inc="seabastion" role="tab" aria-selected="false"><img src="" alt="Seabastion"
+            class="inc-avatar" data-char="seabastion"><span>Seabastion</span></button>
+        <button class="inc-btn" data-inc="christian" role="tab" aria-selected="false"><img src="" alt="Christian"
+            class="inc-avatar" data-char="christian"><span>Christian</span></button>
+      </div>
+      <div class="inc-content active" id="lucien" role="tabpanel"></div>
+      <div class="inc-content" id="seabastion" role="tabpanel"></div>
+      <div class="inc-content" id="christian" role="tabpanel"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>Turn of Fortune's Wheel</span> · <span>Quick Reference</span>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
