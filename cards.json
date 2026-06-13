@@ -6,6 +6,37 @@
     "footer": "",
     "tag": "Weapon"
   },
+  "rapier": {
+    "title": "Rapier",
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Rapier.webp",
+    "desc": "*Martial Weapon, Melee Weapon*\n**__1d8__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.",
+    "footer": "",
+    "tag": "Weapon"
+  },
+  "scalpel": {
+    "title": "Scalpel",
+    "img": "images/knife-chef-steel-black.webp",
+    "desc": "*Simple Weapon, Melee Weapon*\n**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
+    "footer": "",
+    "tag": "Weapon"
+  },
+  "shortbow": {
+    "title": "Shortbow",
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shortbow.webp",
+    "desc": "*Simple Weapon, Ranged Weapon*\n**__1d6__** Piercing (80/320 ft.)\n\n**Range**. A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.\n\n**Ammunition**. You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nIf you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
+    "footer": "",
+    "tag": "Weapon"
+  },
+  "shortsword": {
+    "title": "Shortsword",
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shortsword.webp",
+    "desc": "*Martial Weapon, Melee Weapon*\n**__1d6__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.",
+    "footer": "",
+    "tag": "Weapon"
+  },
+
+
+
   "common_clothes": {
     "title": "Common Clothes",
     "img": "images/pants-brown-leather-pants.webp",
@@ -20,10 +51,31 @@
     "footer": "",
     "tag": "Equipment"
   },
+  "fine_clothes": {
+    "title": "Fine Clothes",
+    "img": "images/glove-frayed-cloth-white.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Equipment"
+  },
   "golden_talisman": {
     "title": "Golden Talisman",
     "img": "https://cdn.5e.tools/2024/img/items/DMG/Talisman%20of%20the%20Sphere.webp",
     "desc": "A strange-looking, golden talisman with emerald eyes on a chain from Renesnuprah the time dragon.\n\nYou were told to \"give it to the one who sees silver.\"",
+    "footer": "",
+    "tag": "Equipment"
+  },
+  "hat_of_disguise": {
+    "title": "Hat of Disguise",
+    "img": "https://cdn.5e.tools/2024/img/items/XDMG/Hat%20of%20Disguise.webp",
+    "desc": "While wearing this hat, you can use an action to cast the [disguise self](https://5e.tools/spells.html#disguise%20self_phb) spell from it at will. The spell ends if the hat is removed.",
+    "footer": "",
+    "tag": "Equipment"
+  },
+  "leather_armor": {
+    "title": "Leather Armor",
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Leather%20Armor.webp",
+    "desc": "*Light Armor*\nAC 11 + Dex\n\nThe breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials.",
     "footer": "",
     "tag": "Equipment"
   },
@@ -34,6 +86,20 @@
     "footer": "",
     "tag": "Equipment"
   },
+  "necklace_of_prayer_beads": {
+    "title": "Necklace of Prayer Beads",
+    "img": "https://cdn.5e.tools/2024/img/items/XDMG/Necklace%20of%20Prayer%20Beads.webp",
+    "desc": "This necklace has **__1d4 + 2__** magic beads made from aquamarine, black pearl, or topaz. It also has many nonmagical beads made from stones such as amber, bloodstone, citrine, coral, jade, pearl, or quartz. If a magic bead is removed from the necklace, that bead loses its magic.\n        \nSix types of magic beads exist. A necklace can have more than one bead of the same type. To use one, you must be wearing the necklace. Each bead contains a spell that you can cast from it as a **__Bonus Action__** (using your spell save DC if a save is necessary). Once a magic bead's spell is cast, that bead can't be used again until the next dawn.\n\n**Branding Smite**\n*Level 2 Evocation*\n**Range**: Self \n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nThe next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra **__2d6__** radiant damage to the target, which becomes visible if it's [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb), and the target sheds dim light in a 5-foot radius and can't become [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb) until the spell ends.",
+    "footer": "",
+    "tag": "Equipment"
+  },
+  "portal_compass": {
+    "title": "Portal Compass",
+    "img": "https://cdn.5e.tools/2024/img/items/SatO/Portal%20Compass.webp",
+    "desc": "This portable arcane instrument points in the direction of the last portal it passed through while it and the portal are on the same plane of existence. If that portal no longer exists, the needle becomes static until the compass passes through a new portal.",
+    "footer": "",
+    "tag": "Equipment"
+  },
   "sensory_stone": {
     "title": "Sensory Stone",
     "img": "images/gem-rough-faceted-green.webp",
@@ -41,9 +107,82 @@
     "footer": "",
     "tag": "Equipment"
   },
+  "studded_leather_armor": {
+    "title": "Studded Leather Armor",
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Studded%20Leather%20Armor.webp",
+    "desc": "*Light Armor*\nAC 12 + Dex\n\nMade from tough but flexible leather, studded leather is reinforced with close-set rivets or spikes.",
+    "footer": "",
+    "tag": "Equipment"
+  },
+
+
+
+  "arrow": {
+    "title": "Arrow",
+    "img": "images/arrow-broadhead.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "ball_bearings": {
+    "title": "Ball Bearings (bag of 1,000)",
+    "img": "images/coinpouch-cloth-purple.webp",
+    "desc": "As an action, you can spill these tiny metal balls from their pouch to cover a level area 10 feet square. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall [prone](https://5e.tools/conditionsdiseases.html#prone_phb). A creature moving through the area at half speed doesn't need to make the saving throw.",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "blood_charm": {
+    "title": "Blood Charm",
+    "img": "images/heart-cross-strong-purple-orange.webp",
+    "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nLike its younger cousin, the clot charm, the blood charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__4d4 + 4__** hit points. However, while the blood charm's initial healing effect is more powerful than the clot charm, it has no other lasting effects.",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "candle": {
+    "title": "Candle",
+    "img": "images/candle-unlit-white.webp",
+    "desc": "For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet.",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "clot_charm": {
+    "title": "Clot Charm",
+    "img": "images/heart-cross-purple-orange.webp",
+    "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nThe charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__2d4 + 2__** hit points. Furthermore, as long as the charm is in effect, the user's blood becomes more \"aware\" of new wounds that occur, especially any attacks that draw blood. The charmed individual becomes more resistant to slashing and piercing attacks, as their blood clots and scabs over the wound as soon as the flesh is torn.",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "hempen_rope": {
+    "title": "Hempen Rope (50 feet)",
+    "img": "images/rope-coiled-wrapped-brown.webp",
+    "desc": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "hooded_lantern": {
+    "title": "Hooded Lantern",
+    "img": "images/lantern-steel.webp",
+    "desc": "A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius.",
+    "footer": "",
+    "tag": "Consumables"
+  },
   "ink": {
     "title": "Ink (1-ounce bottle)",
     "img": "images/ink-quill-red.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "oil": {
+    "title": "Oil (flask)",
+    "img": "images/waterskin-leather-brown.webp",
+    "desc": "Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon. On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil. You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level. If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn.",
+    "footer": "",
+    "tag": "Consumables"
+  },
+  "piton": {
+    "title": "Piton",
+    "img": "images/pin-spiked.webp",
     "desc": "",
     "footer": "",
     "tag": "Consumables"
@@ -62,6 +201,13 @@
     "footer": "",
     "tag": "Consumables"
   },
+  "string": {
+    "title": "String (10 feet)",
+    "img": "images/reel-simple-string-white.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Consumables"
+  },
   "warming_waterskin": {
     "title": "Warming Waterskin",
     "img": "images/wetskin-leather-purple.webp",
@@ -76,45 +222,13 @@
     "footer": "",
     "tag": "Consumables"
   },
-  "shortbow": {
-    "title": "Shortbow",
-    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shortbow.webp",
-    "desc": "*Simple Weapon, Ranged Weapon*\n**__1d6__** Piercing (80/320 ft.)\n\n**Range**. A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.\n\n**Ammunition**. You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nIf you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
-    "footer": "",
-    "tag": "Weapon"
-  },
-  "shortsword": {
-    "title": "Shortsword",
-    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shortsword.webp",
-    "desc": "*Martial Weapon, Melee Weapon*\n**__1d6__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.",
-    "footer": "",
-    "tag": "Weapon"
-  },
-  "scalpel": {
-    "title": "Scalpel",
-    "img": "images/knife-chef-steel-black.webp",
-    "desc": "*Simple Weapon, Melee Weapon*\n**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
-    "footer": "",
-    "tag": "Weapon"
-  },
-  "rapier": {
-    "title": "Rapier",
-    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Rapier.webp",
-    "desc": "*Martial Weapon, Melee Weapon*\n**__1d8__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.",
-    "footer": "",
-    "tag": "Weapon"
-  },
-  "scroll_case": {
-    "title": "Scroll Case",
-    "img": "images/case-scroll-leather-tan.webp",
-    "desc": "This cylindrical leather case can hold up to ten rolled-up [sheets of paper](https://5e.tools/items.html#paper%20(one%20sheet)_phb) or five rolled-up [sheets of parchment](https://5e.tools/items.html#parchment%20(one%20sheet)_phb).",
-    "footer": "",
-    "tag": "Tools and Containers"
-  },
-  "purse": {
-    "title": "Purse",
-    "img": "images/coinpouch-gold-red.webp",
-    "desc": "",
+
+
+
+  "backpack": {
+    "title": "Backpack",
+    "img": "images/pack-rounded-leather-brown.webp",
+    "desc": "A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack.",
     "footer": "",
     "tag": "Tools and Containers"
   },
@@ -125,6 +239,20 @@
     "footer": "",
     "tag": "Tools and Containers"
   },
+  "purse": {
+    "title": "Purse",
+    "img": "images/coinpouch-gold-red.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Tools and Containers"
+  },
+  "scroll_case": {
+    "title": "Scroll Case",
+    "img": "images/case-scroll-leather-tan.webp",
+    "desc": "This cylindrical leather case can hold up to ten rolled-up [sheets of paper](https://5e.tools/items.html#paper%20(one%20sheet)_phb) or five rolled-up [sheets of parchment](https://5e.tools/items.html#parchment%20(one%20sheet)_phb).",
+    "footer": "",
+    "tag": "Tools and Containers"
+  },
   "thieves_tools": {
     "title": "Thieves' Tools",
     "img": "images/lockpicks-steel-grey.webp",
@@ -132,104 +260,9 @@
     "footer": "",
     "tag": "Tools and Containers"
   },
-  "backpack": {
-    "title": "Backpack",
-    "img": "images/pack-rounded-leather-brown.webp",
-    "desc": "A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack.",
-    "footer": "",
-    "tag": "Tools and Containers"
-  },
-  "blood_charm": {
-    "title": "Blood Charm",
-    "img": "images/heart-cross-strong-purple-orange.webp",
-    "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nLike its younger cousin, the clot charm, the blood charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__4d4 + 4__** hit points. However, while the blood charm's initial healing effect is more powerful than the clot charm, it has no other lasting effects.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "oil": {
-    "title": "Oil (flask)",
-    "img": "images/waterskin-leather-brown.webp",
-    "desc": "Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon. On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil. You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level. If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "arrow": {
-    "title": "Arrow",
-    "img": "images/arrow-broadhead.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "string": {
-    "title": "String (10 feet)",
-    "img": "images/reel-simple-string-white.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "candle": {
-    "title": "Candle",
-    "img": "images/candle-unlit-white.webp",
-    "desc": "For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "hooded_lantern": {
-    "title": "Hooded Lantern",
-    "img": "images/lantern-steel.webp",
-    "desc": "A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "clot_charm": {
-    "title": "Clot Charm",
-    "img": "images/heart-cross-purple-orange.webp",
-    "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nThe charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__2d4 + 2__** hit points. Furthermore, as long as the charm is in effect, the user's blood becomes more \"aware\" of new wounds that occur, especially any attacks that draw blood. The charmed individual becomes more resistant to slashing and piercing attacks, as their blood clots and scabs over the wound as soon as the flesh is torn.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "piton": {
-    "title": "Piton",
-    "img": "images/pin-spiked.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "hempen_rope": {
-    "title": "Hempen Rope (50 feet)",
-    "img": "images/rope-coiled-wrapped-brown.webp",
-    "desc": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "ball_bearings": {
-    "title": "Ball Bearings (bag of 1,000)",
-    "img": "images/coinpouch-cloth-purple.webp",
-    "desc": "As an action, you can spill these tiny metal balls from their pouch to cover a level area 10 feet square. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall [prone](https://5e.tools/conditionsdiseases.html#prone_phb). A creature moving through the area at half speed doesn't need to make the saving throw.",
-    "footer": "",
-    "tag": "Consumables"
-  },
-  "mysterious_letter": {
-    "title": "Mysterious Letter",
-    "img": "images/diplomacy-writing-letter.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "signet_ring": {
-    "title": "Signet Ring",
-    "img": "images/ring-crown-crystal.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "crowbar": {
-    "title": "Crowbar",
-    "img": "images/candle-unlit-bone-white.webp",
-    "desc": "Using a crowbar grants advantage to Strength checks where the crowbar's leverage can be applied.",
-    "footer": "",
-    "tag": "Loot"
-  },
+
+
+
   "bag_of_sand": {
     "title": "Bag of Sand",
     "img": "images/coinpouch-simple-leather-brown.webp",
@@ -237,30 +270,9 @@
     "footer": "",
     "tag": "Loot"
   },
-  "scroll_of_pedigree": {
-    "title": "Scroll of Pedigree",
-    "img": "images/scroll-runed-tan-white.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "small_knife": {
-    "title": "Small Knife",
-    "img": "images/knife-green.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "tinderbox": {
-    "title": "Tinderbox",
-    "img": "images/crate-worn-brown.webp",
-    "desc": "This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch—or anything else with abundant, exposed fuel—takes an action. Lighting any other fire takes 1 minute.",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "portal_key": {
-    "title": "Portal Key",
-    "img": "images/gem-faceted-tapered-blue.webp",
+  "bell": {
+    "title": "Bell",
+    "img": "images/bell-brass-brown.webp",
     "desc": "",
     "footer": "",
     "tag": "Loot"
@@ -272,30 +284,16 @@
     "footer": "",
     "tag": "Loot"
   },
+  "crowbar": {
+    "title": "Crowbar",
+    "img": "images/candle-unlit-bone-white.webp",
+    "desc": "Using a crowbar grants advantage to Strength checks where the crowbar's leverage can be applied.",
+    "footer": "",
+    "tag": "Loot"
+  },
   "embalming_fluid": {
     "title": "Embalming Fluid",
     "img": "images/potion-flask-corked-capped-green.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "spellbook": {
-    "title": "Spellbook",
-    "img": "images/book-embossed-jewel-gold-purple.webp",
-    "desc": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "parchment": {
-    "title": "Parchment (one sheet)",
-    "img": "images/document-symbol-circle-gold-red.webp",
-    "desc": "",
-    "footer": "",
-    "tag": "Loot"
-  },
-  "writing_quill": {
-    "title": "Writing Quill",
-    "img": "images/ink-quill-red.webp",
     "desc": "",
     "footer": "",
     "tag": "Loot"
@@ -307,6 +305,62 @@
     "footer": "",
     "tag": "Loot"
   },
+  "mysterious_letter": {
+    "title": "Mysterious Letter",
+    "img": "images/diplomacy-writing-letter.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "parchment": {
+    "title": "Parchment (one sheet)",
+    "img": "images/document-symbol-circle-gold-red.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "portal_key": {
+    "title": "Portal Key",
+    "img": "images/gem-faceted-tapered-blue.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "scroll_of_pedigree": {
+    "title": "Scroll of Pedigree",
+    "img": "images/scroll-runed-tan-white.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "signet_ring": {
+    "title": "Signet Ring",
+    "img": "images/ring-crown-crystal.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "small_knife": {
+    "title": "Small Knife",
+    "img": "images/knife-green.webp",
+    "desc": "",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "spellbook": {
+    "title": "Spellbook",
+    "img": "images/book-embossed-jewel-gold-purple.webp",
+    "desc": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.",
+    "footer": "",
+    "tag": "Loot"
+  },
+  "tinderbox": {
+    "title": "Tinderbox",
+    "img": "images/crate-worn-brown.webp",
+    "desc": "This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch—or anything else with abundant, exposed fuel—takes an action. Lighting any other fire takes 1 minute.",
+    "footer": "",
+    "tag": "Loot"
+  },
   "trinket_beads": {
     "title": "Trinket Beads",
     "img": "images/necklace-simple-bead-dice.webp",
@@ -314,279 +368,330 @@
     "footer": "",
     "tag": "Loot"
   },
-  "bell": {
-    "title": "Bell",
-    "img": "images/bell-brass-brown.webp",
+  "writing_quill": {
+    "title": "Writing Quill",
+    "img": "images/ink-quill-red.webp",
     "desc": "",
     "footer": "",
     "tag": "Loot"
   },
-  "leather_armor": {
-    "title": "Leather Armor",
-    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Leather%20Armor.webp",
-    "desc": "*Light Armor*\nAC 11 + Dex\n\nThe breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials.",
+
+
+
+  "arcane_recovery": {
+    "title": "Arcane Recovery",
+    "img": "images/explosion-lava-stone-green.webp",
+    "desc": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\n\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
     "footer": "",
-    "tag": "Equipment"
+    "tag": "Class"
   },
-  "studded_leather_armor": {
-    "title": "Studded Leather Armor",
-    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Studded%20Leather%20Armor.webp",
-    "desc": "*Light Armor*\nAC 12 + Dex\n\nMade from tough but flexible leather, studded leather is reinforced with close-set rivets or spikes.",
+  "bladesinger_styles": {
+    "title": "Bladesinger Styles",
+    "img": "https://cdn.5e.tools/2024/img/classes/TCE/Bladesinging%20Wizard.webp",
+    "desc": "From its inception as a martial and magical art, Bladesinging has been tied to the sword, more specifically the longsword. Yet many generations of study gave rise to various styles of Bladesinging based on the melee weapon employed. The techniques of these styles are passed from master to students in small schools, some of which have a building dedicated to instruction. Even the newest styles are hundreds of years old, but are still taught by their original creators due to the long lives of elves. Most schools of Bladesinging are in Evermeet or Evereska. One was started in Myth Drannor, but the city's destruction has scattered those students who survived.\n\nStyles of Bladesinging are broadly categorized based on the type of weapon employed, and each is associated with a category of animal. Within that style are specializations named after specific animal types, based on the types of spells employed, the techniques of the master, and the particular weapon used. Bladesingers who apprentice to a master typically get a tattoo of their chosen style's animal. Some bladesingers learn multiple styles and bear many tattoos, wearing a warning on their skin of their deadly skills.\n\n**Cat**. Styles that employ a sword belong to this family. The lion style, the eldest, trains practitioners in the use of the longsword and doesn't favor any particular type of spells. Leopard style focuses on the shortsword and spells of illusion and stealth. Red tiger, a style just three centuries old, has its bladesingers using the scimitar in a whirling dance of defense from which they launch into sudden leaps and attacks.\n\n**Bird**. Styles that focus on the use of a hafted weapon, such as an axe or hammer, have been grouped together as bird styles, yet they vary wildly. All relatively new styles, they use weapons not typically favored by elves. Eagle-style bladesingers use small handaxes, and many maneuvers in the style focus on fluid ways to throw the weapon and draw a new one. Raven style uses a war pick, and spells associated with it grant the bladesinger more agility in combat.\n\n**Snake**. Practitioners of these styles use a flail, chain, or whip. Viper style uses a whip, despite its inelegance as a weapon, and has almost as long a history as the lion style. Its masters punctuate their bladesong with a stunningly rapid rhythm of whip cracks, which can keep many foes at bay and allow the bladesinger space to cast the cruel spells of poison and disease favored by the style.",
     "footer": "",
-    "tag": "Equipment"
+    "tag": "Class"
   },
-  "fine_clothes": {
-    "title": "Fine Clothes",
-    "img": "images/glove-frayed-cloth-white.webp",
-    "desc": "",
+  "bladesong": {
+    "title": "Bladesong",
+    "img": "images/sword-twirl-orange.webp",
+    "desc": "Starting at 2nd level, you can invoke a secret elven magic called the Bladesong, provided you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus.\n\nYou can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are [incapacitated](https://5e.tools/conditionsdiseases.html#incapacitated_phb), if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss Bladesong at any time you choose (no action required).\n\nWhile your bladesong is active, you gain the following benefits:\n* You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).\n* Your walking speed increases by 10 feet.\n* You have advantage on Dexterity (**__Acrobatics__**) checks.\n* You gain a bonus to any Constitution saving throws you make to maintain [concentration](https://5e.tools/conditionsdiseases.html#concentration_phb) on a spell. The bonus equals your Intelligence modifier (minimum of +1).\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses of it when you finish a long rest.",
     "footer": "",
-    "tag": "Equipment"
+    "tag": "Class"
   },
-  "portal_compass": {
-    "title": "Portal Compass",
-    "img": "https://cdn.5e.tools/2024/img/items/SatO/Portal%20Compass.webp",
-    "desc": "This portable arcane instrument points in the direction of the last portal it passed through while it and the portal are on the same plane of existence. If that portal no longer exists, the needle becomes static until the compass passes through a new portal.",
+  "cantrip_formulas": {
+    "title": "Cantrip Formulas",
+    "img": "images/blueprint-recipe-magic.webp",
+    "desc": "You have scribed a set of arcane formulas in your spellbook that you can use to formulate a cantrip in your mind. Whenever you finish a long rest and consult those formulas in your spellbook, you can replace one wizard cantrip you know with another cantrip from the wizard spell list.",
     "footer": "",
-    "tag": "Equipment"
+    "tag": "Class"
   },
-  "hat_of_disguise": {
-    "title": "Hat of Disguise",
-    "img": "https://cdn.5e.tools/2024/img/items/XDMG/Hat%20of%20Disguise.webp",
-    "desc": "While wearing this hat, you can use an action to cast the [disguise self](https://5e.tools/spells.html#disguise%20self_phb) spell from it at will. The spell ends if the hat is removed.",
+  "cunning_action": {
+    "title": "Cunning Action",
+    "img": "images/hypnosis-mesmerism-watch.webp",
+    "desc": "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action.",
     "footer": "",
-    "tag": "Equipment"
+    "tag": "Class"
   },
-  "necklace_of_prayer_beads": {
-    "title": "Necklace of Prayer Beads",
-    "img": "https://cdn.5e.tools/2024/img/items/XDMG/Necklace%20of%20Prayer%20Beads.webp",
-    "desc": "This necklace has **__1d4 + 2__** magic beads made from aquamarine, black pearl, or topaz. It also has many nonmagical beads made from stones such as amber, bloodstone, citrine, coral, jade, pearl, or quartz. If a magic bead is removed from the necklace, that bead loses its magic.\n        \nSix types of magic beads exist. A necklace can have more than one bead of the same type. To use one, you must be wearing the necklace. Each bead contains a spell that you can cast from it as a **__Bonus Action__** (using your spell save DC if a save is necessary). Once a magic bead's spell is cast, that bead can't be used again until the next dawn.\n\n**Branding Smite**\n*Level 2 Evocation*\n**Range**: Self \n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nThe next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra **__2d6__** radiant damage to the target, which becomes visible if it's [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb), and the target sheds dim light in a 5-foot radius and can't become [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb) until the spell ends.",
+  "ear_for_deceit": {
+    "title": "Ear for Deceit",
+    "img": "images/runes-triangle-orange-purple.webp",
+    "desc": "When you choose this archetype at 3rd level, you develop a talent for picking out lies. Whenever you make a Wisdom (Insight) check to determine whether a creature is lying, treat a roll of 7 or lower on the d20 as an 8.",
     "footer": "",
-    "tag": "Equipment"
+    "tag": "Class"
   },
-  "green_flame_blade": {
-    "title": "Green-Flame Blade",
-    "img": "images/greatsword-evil-green.webp",
-    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: Self (5-foot radius)\n**Components**: S, M (a melee weapon worth at least 1 sp)\n**Duration**: Instantaneous\n**Description**\nYou brandish the weapon used in the spell's casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack's normal effects, and you can cause green fire to leap from the target to a different creature of your choice that you can see within 5 feet of it. The second creature takes fire damage equal to your spellcasting ability modifier.\n\nThis spell's damage increases when you reach certain levels. At 5th level, the melee attack deals an extra **__1d8__** fire damage to the target on a hit, and the fire damage to the second creature increases to **__1d8__** + your spellcasting ability modifier. Both damage rolls increase by 1d8 at 11th level (**__2d8__** and **__2d8__**) and 17th level (**__3d8__** and **__3d8__**).",
+  "expertise": {
+    "title": "Expertise",
+    "img": "images/book-red-exclamation.webp",
+    "desc": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "mage_hand": {
-    "title": "Mage Hand",
-    "img": "images/orbs-hand-gray.webp",
-    "desc": "*Conjuration Cantrip*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V, S\n**Duration**: 1 minute\n**Description**\nA spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nYou can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
+  "extra_attack": {
+    "title": "Extra Attack",
+    "img": "images/spear-tips-triple-orange.webp",
+    "desc": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. Moreover, you can cast one of your cantrips in place of one of those attacks.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "chill_touch": {
-    "title": "Chill Touch",
-    "img": "images/claws-unarmed-strike-teal.webp",
-    "desc": "*Necromancy Cantrip*\n**Casting Time**: Action\n**Range**: 120 feet\n**Components**: V, S\n**Duration**: 1 round\n**Description**\nYou create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes **__1d8__** necrotic damage, and it can't regain hit points until the start of your next turn. Until then, the hand clings to the target.\n\nIf you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn.\n\nThis spell's damage increases by **__1d8__** when you reach 5th level (**__2d8__**), 11th level (**__3d8__**), and 17th level (**__4d8__**).",
+  "eye_for_detail": {
+    "title": "Eye for Detail",
+    "img": "images/eye-ringed-glow-angry-small-teal.webp",
+    "desc": "Starting at 3rd level, you can use a bonus action to make a Wisdom (Perception) check to spot a hidden creature or object or to make an Intelligence (Investigation) check to uncover or decipher clues.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "light": {
-    "title": "Light",
-    "img": "images/explosion-star-small-blue-yellow.webp",
-    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: Touch\n**Components**: V, M (a firefly or phosphorescent moss)\n**Duration**: 1 hour\n**Description**\nYou touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.\n\nIf you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.",
+  "eyes_of_the_dark": {
+    "title": "Eyes of the Dark",
+    "img": "images/eye-ringed-glow-angry-small-teal.webp",
+    "desc": "Starting at 1st level, you have darkvision with a range of 120 feet.\n\nWhen you reach 3rd level in this class, you learn the [darkness](https://5e.tools/spells.html#darkness_phb) spell, which doesn't count against your number of sorcerer spells known. In addition, you can cast it by spending 2 sorcery points or by expending a spell slot. If you cast it with sorcery points, you can see through the [darkness](https://5e.tools/spells.html#darkness_phb) created by the spell.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "mind_sliver": {
-    "title": "Mind Sliver",
-    "img": "images/strike-arrow-spear-red.webp",
-    "desc": "*Enchantment Cantrip*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V\n**Duration**: 1 round\n**Description**\nYou drive a disorienting spike of psychic energy into the mind of one creature you can see within range. The target must succeed on an Intelligence saving throw or take **__1d6__** psychic damage and subtract **__1d4__** from the next saving throw it makes before the end of your next turn.\n\nThis spell's damage increases by **__1d6__** when you reach certain levels: 5th level (**__2d6__**), 11th level (**__3d6__**), and 17th level (**__4d6__**).",
+  "flexible_casting": {
+    "title": "Flexible Casting",
+    "img": "images/phb-sorcerer.webp",
+    "desc": "You can use your sorcery points to gain additional spell slots, or sacrifice spell slots to gain additional sorcery points. You learn other ways to use your sorcery points as you reach higher levels.\n\n**Creating Spell Slots**. You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. The created spell slots vanish at the end of a long rest. The following shows the cost of creating a spell slot of a given level. You can create spell slots no higher in level than 5th.\n* 1st level: 2 points\n* 2nd level: 3 points\n* 3rd level: 5 points\n* 4th level: 6 points\n* 5th level: 7 points\n\n**Converting a Spell Slot to Sorcery Points**. As a bonus action on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "prestidigitation": {
-    "title": "Prestidigitation",
-    "img": "images/hand-sparks-smoke-green.webp",
-    "desc": "*Transmutation Cantrip*\n**Casting Time**: Action\n**Range**: 10 feet\n**Components**: V, S\n**Duration**: Up to 1 hour\n**Description**\nThis spell is a minor magical trick that novice spellcasters use for practice. You create one of the following magical effects within range:\n* You create an instantaneous, harmless sensory effect, such as a shower of sparks, a puff of wind, faint musical notes, or an odd odor.\n* You instantaneously light or snuff out a candle, a torch, or a small campfire.\n* You instantaneously clean or soil an object no larger than 1 cubic foot.\n* You chill, warm, or flavor up to 1 cubic foot of nonliving material for 1 hour.\n* You make a color, a small mark, or a symbol appear on an object or a surface for 1 hour.\n* You create a nonmagical trinket or an illusory image that can fit in your hand and that lasts until the end of your next turn.\nIf you cast this spell multiple times, you can have up to three of its non-instantaneous effects active at a time, and you can dismiss such an effect as an action.",
+  "font_of_magic": {
+    "title": "Font of Magic",
+    "img": "images/projectile-meteor-salvo-heavy-pink.webp",
+    "desc": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "minor_illusion": {
-    "title": "Minor Illusion",
-    "img": "images/eye-winged-pink.webp",
-    "desc": "*Illusion Cantrip*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: S, M (a bit of fleece)\n**Duration**: 1 minute\n**Description**\nYou create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again.\n\nIf you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nIf you create an image of an object—such as a chair, muddy footprints, or a small chest—it must be no larger than a 5-foot cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, because things can pass through it.\n\nIf a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (**__Investigation__**) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+  "hound_of_ill_omen": {
+    "title": "Hound of Ill Omen",
+    "img": "images/wolf-howl-moon-forest-blue.webp",
+    "desc": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend 3 sorcery points to magically summon a [hound of ill omen](https://5e.tools/bestiary.html#hound%20of%20ill%20omen_xge) to target one creature you can see within 120 feet of you. The hound uses the [dire wolf](https://5e.tools/bestiary.html#dire%20wolf_mm)'s statistics (see the Monster Manual or appendix C in the Player's Handbook), with the following changes:\n* The hound is size Medium, not Large, and it counts as a monstrosity, not a beast.\n* It appears with a number of temporary hit points equal to half your sorcerer level.\n* It can move through other creatures and objects as if they were [difficult terrain](https://5e.tools/quickreference.html#bookref-quick,3,difficult%20terrain). The hound takes 5 force damage if it ends its turn inside an object.\n* At the start of its turn, the hound automatically knows its target's location. If the target was hidden, it is no longer hidden from the hound.\n\nThe hound appears in an unoccupied space of your choice within 30 feet of the target. Roll initiative for the hound. On its turn, it can move only toward its target by the most direct route, and it can use its action only to attack its target. The hound can make opportunity attacks, but only against its target. Additionally, while the hound is within 5 feet of the target, the target has disadvantage on saving throws against any spell you cast. The hound disappears if it is reduced to 0 hit points, if its target is reduced to 0 hit points, or after 5 minutes.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "booming_blade": {
-    "title": "Booming Blade",
-    "img": "images/strike-sword-slashing-red.webp",
-    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: Self (5-foot radius)\n**Components**: S, M (a melee weapon worth at least 1 sp)\n**Duration**: 1 round\n**Description**\nYou brandish the weapon used in the spell's casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack's normal effects and then becomes sheathed in booming energy until the start of your next turn. If the target willingly moves 5 feet or more before then, the target takes **__1d8__** thunder damage, and the spell ends.\n\nThis spell's damage increases when you reach certain levels. At 5th level, the melee attack deals an extra **__1d8__** thunder damage to the target on a hit, and the damage the target takes for moving increases to **__2d8__**. Both damage rolls increase by 1d8 at 11th level (**__2d8__** and **__3d8__**) and again at 17th level (**__3d8__** and **__4d8__**).",
+  "insightful_fighting": {
+    "title": "Insightful Fighting",
+    "img": "images/weapons-crossed-swords-teal.webp",
+    "desc": "At 3rd level, you gain the ability to decipher an opponent's tactics and develop a counter to them. As a bonus action, you can make a Wisdom (Insight) check against a creature you can see that isn't incapacitated, contested by the target's Charisma (Deception) check. If you succeed, you can use your Sneak Attack against that target even if you don't have advantage on the attack roll, but not if you have disadvantage on it.\n\nThis benefit lasts for 1 minute or until you successfully use this feature against a different target.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "fire_bolt": {
-    "title": "Fire Bolt",
-    "img": "images/projectile-bolt-zigzag-orange.webp",
-    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: 120 feet\n**Components**: V, S\n**Duration**: Instantaneous\n**Description**\nYou hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes **__1d10__** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.\n\nThis spell's damage increases by **__1d10__** when you reach 5th level (**__2d10__**), 11th level (**__3d10__**), and 17th level (**__4d10__**).",
+  "magical_guidance": {
+    "title": "Magical Guidance",
+    "img": "images/star-solid-gold.webp",
+    "desc": "You can tap into your inner wellspring of magic to try to conjure success from failure. When you make an ability check that fails, you can spend 1 sorcery point to reroll the **__d20__**, and you must use the new roll, potentially turning the failure into a success.",
     "footer": "",
-    "tag": "Cantrip"
+    "tag": "Class"
   },
-  "tashas_mind_whip": {
-    "title": "Tasha's Mind Whip",
-    "img": "images/whip-red-yellow.webp",
-    "desc": "*Level 2 Enchantment*\n**Casting Time**: Action\n**Range**: 90 feet\n**Components**: V\n**Duration**: 1 round\n**Description**\nYou psychically lash out at one creature you can see within range. The target must make an Intelligence saving throw. On a failed save, the target takes **__3d6__** psychic damage, and it can't take a reaction until the end of its next turn. Moreover, on its next turn, it must choose whether it gets a move, an action, or a bonus action; it gets only one of the three. On a successful save, the target takes half as much damage and suffers none of the spell's other effects.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd. The creatures must be within 30 feet of each other when you target them.",
+  "metamagic": {
+    "title": "Metamagic",
+    "img": "images/runes-star-blue.webp",
+    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.\n\nYou can use only one Metamagic option on a spell when you cast it, unless otherwise noted.",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "shadow_blade": {
-    "title": "Shadow Blade",
-    "img": "images/sword-stuck-glowing-pink.webp",
-    "desc": "*Level 2 Illusion*\n**Casting Time**: Bonus Action\n**Range**: Self\n**Components**: V, S\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nYou weave together threads of shadow to create a sword of solidified gloom in your hand. This magic sword lasts until the spell ends. It counts as a simple melee weapon with which you are proficient. It deals **__2d8__** psychic damage on a hit and has the finesse, light, and thrown properties (range 20/60). In addition, when you use the sword to attack a target that is in dim light or darkness, you make the attack roll with advantage.\n\nIf you drop the weapon or throw it, it dissipates at the end of the turn. Thereafter, while the spell persists, you can use a bonus action to cause the sword to reappear in your hand.\n\n**At Higher Levels**. When you cast this spell using a 3rd- or 4th-level spell slot, the damage increases to **__3d8__**. When you cast it using a 5th- or 6th-level spell slot, the damage increases to **__4d8__**. When you cast it using a spell slot of 7th level or higher, the damage increases to **__5d8__**.",
+  "metamagic_quickened_spell": {
+    "title": "Metamagic Quickened Spell",
+    "img": "images/clock-stopwatch-white-blue.webp",
+    "desc": "*Cost: 2 Sorcery Points*\nWhen you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action for this casting.",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "mirror_image": {
-    "title": "Mirror Image",
-    "img": "images/chess-pawn-white-glass.webp",
-    "desc": "*Level 2 Illusion*\n**Casting Time**: Action\n**Range**: Self\n**Components**: V, S\n**Duration**: 1 minute\n**Description**\nThree illusory duplicates of yourself appear in your space. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it's impossible to track which image is real. You can use your action to dismiss the illusory duplicates.\n\nEach time a creature targets you with an attack during the spell's duration, roll a **__d20__** to determine whether the attack instead targets one of your duplicates.\n\nIf you have three duplicates, you must roll a 6 or higher to change the attack's target to a duplicate. With two duplicates, you must roll an 8 or higher. With one duplicate, you must roll an 11 or higher.\n\nA duplicate's AC equals 10 + your Dexterity modifier. If an attack hits a duplicate, the duplicate is destroyed. A duplicate can be destroyed only by an attack that hits it. It ignores all other damage and effects. The spell ends when all three duplicates are destroyed.\n\nA creature is unaffected by this spell if it can't see, if it relies on senses other than sight, such as blindsight, or if it can perceive illusions as false, as with [truesight](https://5e.tools/book.html#phb,8,truesight,0).",
+  "metamagic_twinned_spell": {
+    "title": "Metamagic Twinned Spell",
+    "img": "images/bolt-strike-blue.webp",
+    "desc": "*Cost: 1–9 Sorcery Points*\nWhen you cast a spell that targets only one creature and doesn't have a range of self, you can spend a number of sorcery points equal to the spell's level to target a second creature in range with the same spell (1 sorcery point if the spell is a cantrip).\n\nTo be eligible, a spell must be incapable of targeting more than one creature at the spell's current level. For example, [magic missile](https://5e.tools/spells.html#magic%20missile_phb) and [scorching ray](https://5e.tools/spells.html#scorching%20ray_phb) aren't eligible, but [ray of frost](https://5e.tools/spells.html#ray%20of%20frost_phb) and [chromatic orb](https://5e.tools/spells.html#chromatic%20orb_phb) are.",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "blindness_deafness": {
-    "title": "Blindness/Deafness",
-    "img": "images/injury-eyes-blood-red-pink.webp",
-    "desc": "*Level 2 Necromancy*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V\n**Duration**: 1 minute\n**Description**\nYou can blind or deafen a foe. Choose one creature that you can see within range to make a Constitution saving throw. If it fails, the target is either [blinded](https://5e.tools/conditionsdiseases.html#blinded_phb) or [deafened](https://5e.tools/conditionsdiseases.html#deafened_phb) (your choice) for the duration. At the end of each of its turns, the target can make a Constitution saving throw. On a success, the spell ends.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+  "sneak_attack": {
+    "title": "Sneak Attack",
+    "img": "images/strike-dagger-arcane-pink.webp",
+    "desc": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra **__1d6__** damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.\n\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't [incapacitated](https://5e.tools/conditionsdiseases.html#incapacitated_phb), and you don't have disadvantage on the attack roll.\n\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "spider_climb": {
-    "title": "Spider Climb",
-    "img": "images/spider-web-red.webp",
-    "desc": "*Level 2 Transmutation*\n**Casting Time**: Action\n**Range**: Touch\n**Components**: V, S, M (a drop of bitumen and a spider)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 hour\n**Description**\nUntil the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed.",
+  "sorcerous_versatility": {
+    "title": "Sorcerous Versatility",
+    "img": "images/triangle-glowing-green.webp",
+    "desc": "Whenever you reach a level in this class that grants the Ability Score Improvement feature, you can do one of the following, representing the magic within you flowing in new ways:\n* Replace one of the options you chose for the Metamagic feature with a different [Metamagic option](https://5e.tools/optionalfeatures.html#blankhash,flstfeature%20type:mm=1) available to you.\n* Replace one cantrip you learned from this class's Spellcasting feature with another cantrip from the [sorcerer spell list](https://5e.tools/spells.html#blankhash,flstlevel:0=1,flstclass:sorcerer=1).",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "darkness": {
-    "title": "Darkness",
-    "img": "images/orb-glowing-purple.webp",
-    "desc": "*Level 2 Evocation*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V, M (bat fur and a drop of pitch or piece of coal)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 10 minutes\n**Description**\nMagical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it.\n\nIf the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. Completely covering the source of the darkness with an opaque object, such as a bowl or a helm, blocks the darkness.\n\nIf any of this spell's area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled.",
+  "sorcery_points": {
+    "title": "Sorcery Points",
+    "img": "images/silhouette-hold-change-blue.webp",
+    "desc": "You have 2 sorcery points, and you gain one additional point every time you level up, to a maximum of 20 at level 20. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest.",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "misty_step": {
-    "title": "Misty Step",
-    "img": "images/projectile-ice-impact-stone.webp",
-    "desc": "*Level 2 Conjuration*\n**Casting Time**: Bonus Action\n**Range**: Self\n**Components**: V\n**Duration**: Instantaneous\n**Description**\nBriefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.",
+  "spellcasting_sorcerer": {
+    "title": "Spellcasting",
+    "img": "images/beam-rays-magenta-large.webp",
+    "desc": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells. See [chapter 10](https://5e.tools/book.html#phb,10) for the general rules of spellcasting and [chapter 11](https://5e.tools/book.html#phb,11) for the [sorcerer spell list](https://5e.tools/spells.html#blankhash,flstclass:sorcerer=1).\n\n**Cantrips**\nAt 1st level, you know four cantrips of your choice from the sorcerer spell list. You learn an additional sorcerer cantrip of your choice at 4th level and another at 10th level.\n\n**Spell Slots**\nThe Sorcerer table shows how many spell slots you have to cast your [sorcerer spells](https://5e.tools/spells.html#blankhash,flstclass:sorcerer=1) of 1st level and higher. To cast one of these sorcerer spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nFor example, if you know the 1st-level spell [burning hands](https://5e.tools/spells.html#burning%20hands_phb) and have a 1st-level and a 2nd-level spell slot available, you can cast [burning hands](https://5e.tools/spells.html#burning%20hands_phb) using either slot.\n\n**Spells Known of 1st Level and Higher**\nYou know two 1st-level spells of your choice from the sorcerer spell list.\n\nYou learn an additional sorcerer spell of your choice at each level except 12th, 14th, 16th, 18th, 19th, and 20th. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.\n\nAdditionally, when you gain a level in this class, you can choose one of the sorcerer spells you know and replace it with another spell from the sorcerer spell list, which also must be of a level for which you have spell slots.\n\n**Spellcasting Ability**\nCharisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one.\n\n**Spell save DC** = 8 + Charisma modifier + Proficiency Bonus\n\n**Spell attack modifier** = Charisma modifier + Proficiency Bonus\n\n**Spellcasting Focus**\nYou can use an arcane focus as a spellcasting focus for your sorcerer spells.",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "hold_person": {
-    "title": "Hold Person",
-    "img": "images/debuff-chains-shackle-movement-red.webp",
-    "desc": "*Level 2 Enchantment*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V, S, M (a small, straight piece of iron)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nChoose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be [paralyzed](https://5e.tools/conditionsdiseases.html#paralyzed_phb) for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
+  "spellcasting_wizard": {
+    "title": "Spellcasting",
+    "img": "images/beam-rays-magenta-large.webp",
+    "desc": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power. See [chapter 10](https://5e.tools/book.html#phb,10) for the general rules of spellcasting and [chapter 11](https://5e.tools/book.html#phb,11) for the [wizard spell list](https://5e.tools/spells.html#blankhash,flstclass:wizard=1).\n\n**Cantrips**\nAt 1st level, you know three cantrips of your choice from the wizard spell list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table.\n\n**Spellbook**\nAt 1st level, you have a spellbook containing six 1st-level [wizard spells](https://5e.tools/spells.html#blankhash,flstclass:wizard=1) of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.\n\n**Preparing and Casting Spells**\nThe Wizard table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nYou prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.\n\nFor example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell [magic missile](https://5e.tools/spells.html#magic%20missile_phb), you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.\n\nYou can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list.\n\n**Spellcasting Ability**\nIntelligence is your spellcasting ability for your wizard spells, since you learn your wizard spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.\n\n**Spell save DC** = 8 + Intelligence modifier + Proficiency Bonus\n\n**Spell attack modifier** = Intelligence modifier + Proficiency Bonus\n\n**Ritual Casting**\nYou can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared.\n\n**Spellcasting Focus**\nYou can use an [arcane focus](https://5e.tools/items.html#arcane%20focus_phb) as a spellcasting focus for your wizard spells.\n\n**Learning Spells of 1st Level and Higher**\nEach time you gain a wizard level, you can add two wizard spells of your choice to your spellbook. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook (see \"Your Spellbook\").",
     "footer": "",
-    "tag": "2nd Level"
+    "tag": "Class"
   },
-  "comprehend_languages": {
-    "title": "Comprehend Languages",
-    "img": "images/academics-book-study-runes.webp",
-    "desc": "*Level 1 Divination*\n**Casting Time**: Action or Ritual\n**Range**: Self\n**Components**: V, S, M (a pinch of soot and salt)\n**Duration**: 1 hour\n**Description**\nFor the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text.\n\nThis spell doesn't decode secret messages in a text or a glyph, such as an arcane sigil, that isn't part of a written language.",
+  "steady_aim": {
+    "title": "Steady Aim",
+    "img": "images/crosshair-bars-yellow.webp",
+    "desc": "As a bonus action, you give yourself advantage on your next attack roll on the current turn. You can use this bonus action only if you haven't moved during this turn, and after you use the bonus action, your speed is 0 until the end of the current turn.",
     "footer": "",
-    "tag": "1st Level"
+    "tag": "Class"
   },
-  "burning_hands": {
-    "title": "Burning Hands",
-    "img": "images/flame-burning-fist-strike.webp",
-    "desc": "*Level 1 Evocation*\n**Casting Time**: Action\n**Range**: Self (15-foot cone)\n**Components**: V, S\n**Duration**: Instantaneous\n**Description**\nAs you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes **__3d6__** fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren't being worn or carried.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by **__1d6__** for each slot level above 1st.",
+  "strength_of_the_grave": {
+    "title": "Strength of the Grave",
+    "img": "images/undead-zombie-grave-green.webp",
+    "desc": "Starting at 1st level, your existence in a twilight state between life and death makes you difficult to defeat. When damage reduces you to 0 hit points, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you instead drop to 1 hit point. You can't use this feature if you are reduced to 0 hit points by radiant damage or by a critical hit.\n\nAfter the saving throw succeeds, you can't use this feature again until you finish a long rest.",
     "footer": "",
-    "tag": "1st Level"
+    "tag": "Class"
   },
-  "find_familiar": {
-    "title": "Find Familiar",
-    "img": "images/corvid-call-sound-glowing.webp",
-    "desc": "*Level 1 Conjuration*\n**Casting Time**: 1 hour or Ritual \n**Range**: 10 feet\n**Components**: V, S, M (10 gp worth of charcoal, incense, and herbs that must be consumed by fire in a brass brazier)\n**Duration**: Instantaneous\n**Description**\nYou gain the service of a familiar, a spirit that takes an animal form you choose: [bat](https://5e.tools/bestiary.html#bat_mm), [cat](https://5e.tools/bestiary.html#cat_mm), [crab](https://5e.tools/bestiary.html#crab_mm), [frog (toad)](https://5e.tools/bestiary.html#frog_mm), [hawk](https://5e.tools/bestiary.html#hawk_mm), [lizard](https://5e.tools/bestiary.html#lizard_mm), [octopus](https://5e.tools/bestiary.html#octopus_mm), [owl](https://5e.tools/bestiary.html#owl_mm), [poisonous snake](https://5e.tools/bestiary.html#poisonous%20snake_mm), fish ([quipper](https://5e.tools/bestiary.html#quipper_mm)), [rat](https://5e.tools/bestiary.html#rat_mm), [raven](https://5e.tools/bestiary.html#raven_mm), [sea horse](https://5e.tools/bestiary.html#sea%20horse_mm), [spider](https://5e.tools/bestiary.html#spider_mm), or [weasel](https://5e.tools/bestiary.html#weasel_mm). Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey, or fiend (your choice) instead of a beast.\n\n*Additional [animal form choices](https://5e.tools/bestiary.html#blankhash,flstmiscellaneous:familiar=1) may be available at the DM's discretion*.\n\nYour familiar acts independently of you, but it always obeys your commands. In combat, it rolls its own initiative and acts on its own turn. A familiar can't attack, but it can take other actions as normal.\n\nWhen the familiar drops to 0 hit points, it disappears, leaving behind no physical form. It reappears after you cast this spell again. As an action, you can temporarily dismiss the familiar to a pocket dimension. Alternatively, you can dismiss it forever. As an action while it is temporarily dismissed, you can cause it to reappear in any unoccupied space within 30 feet of you. Whenever the familiar drops to 0 hit points or disappears into the pocket dimension, it leaves behind in its space anything it was wearing or carrying.\n\nWhile your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the familiar has. During this time, you are [deaf](https://5e.tools/conditionsdiseases.html#deafened_phb) and [blind](https://5e.tools/conditionsdiseases.html#blinded_phb) with regard to your own senses.\n\nYou can't have more than one familiar at a time. If you cast this spell while you already have a familiar, you instead cause it to adopt a new form. Choose one of the forms from the above list. Your familiar transforms into the chosen creature.\n\nFinally, when you cast a spell with a range of touch, your familiar can deliver the spell as if it had cast the spell. Your familiar must be within 100 feet of you, and it must use its reaction to deliver the spell when you cast it. If the spell requires an attack roll, you use your attack modifier for the roll.",
+  "thieves_cant": {
+    "title": "Thieves' Cant",
+    "img": "images/token-runed-sigel-brown.webp",
+    "desc": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.\n\nIn addition, you understand a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run.",
     "footer": "",
-    "tag": "1st Level"
+    "tag": "Class"
   },
-  "absorb_elements": {
-    "title": "Absorb Elements",
-    "img": "images/elements-air-earth-fire-water.webp",
-    "desc": "*Level 1 Abjuration*\n**Casting Time**: Reaction, which you take when you take acid, cold, fire, lightning, or thunder damage\n**Range**: Self\n**Components**: S\n**Duration**: 1 round\n**Description**\nThe spell captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra **__1d6__** damage of the triggering type, and the spell ends.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, the extra damage increases by **__1d6__** for each slot level above 1st.",
+  "training_in_war_and_song": {
+    "title": "Training in War and Song (Bladesinging)",
+    "img": "images/weapons-crossed-swords-white-blue.webp",
+    "desc": "When you adopt this tradition at 2nd level, you gain proficiency with light armor, and you gain proficiency with one type of one-handed melee weapon of your choice.\n\nYou also gain proficiency in the **__Performance__** skill if you don't already have it.",
     "footer": "",
-    "tag": "1st Level"
+    "tag": "Class"
   },
-  "identify": {
-    "title": "Identify",
-    "img": "images/scroll-bound-blue-red.webp",
-    "desc": "*Level 1 Divination*\n**Casting Time**: 1 minute or Ritual\n**Range**: Touch\n**Components**: V, S, M (a pearl worth at least 100 gp and an owl feather)\n**Duration**: Instantaneous\n**Description**\nYou choose one object that you must touch throughout the casting of the spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it.\n\nIf you instead touch a creature throughout the casting, you learn what spells, if any, are currently affecting it.",
-    "footer": "",
-    "tag": "1st Level"
-  },
-  "detect_magic": {
-    "title": "Detect Magic",
-    "img": "images/hands-cloud-light-pink.webp",
-    "desc": "*Level 1 Divination*\n**Casting Time**: Action or Ritual\n**Range**: Self\n**Components**: V, S\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 10 minutes\n**Description**\nFor the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its [school of magic](https://5e.tools/book.html#phb,10,the%20schools%20of%20magic,0), if any.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
-    "footer": "",
-    "tag": "1st Level"
-  },
-  "shield": {
-    "title": "Shield",
-    "img": "images/shield-barrier-deflect-teal.webp",
-    "desc": "*Level 1 Abjuration*\n**Casting Time**: Reaction, which you take when you are hit by an attack or targeted by the [magic missile](https://5e.tools/spells.html#magic%20missile_phb) spell\n**Range**: Self\n**Components**: V, S\n**Duration**: 1 round\n**Description**\nAn invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from [magic missile](https://5e.tools/spells.html#magic%20missile_phb).",
-    "footer": "",
-    "tag": "1st Level"
-  },
-  "ray_of_sickness": {
-    "title": "Ray of Sickness",
-    "img": "images/beam-rays-green.webp",
-    "desc": "*Level 1 Necromancy*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V, S\n**Duration**: Instantaneous\n**Description**\nA ray of sickening greenish energy lashes out toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes **__2d8__** poison damage and must make a Constitution saving throw. On a failed save, it is also [poisoned](https://5e.tools/conditionsdiseases.html#poisoned_phb) until the end of your next turn.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by **__1d8__** for each slot level above 1st.",
-    "footer": "",
-    "tag": "1st Level"
-  },
-  "false_life": {
-    "title": "False Life",
-    "img": "images/heart-cross-purple-orange.webp",
-    "desc": "*Level 1 Necromancy*\n**Casting Time**: Action\n**Range**: Self\n**Components**: V, S, M (a small amount of alcohol or distilled spirits)\n**Duration**: 1 hour\n**Description**\nBolstering yourself with a necromantic facsimile of life, you gain **__1d4 + 4__** temporary hit points for the duration.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
-    "footer": "",
-    "tag": "1st Level"
-  },
-  "sleep": {
-    "title": "Sleep",
-    "img": "images/sleep-bubble-purple.webp",
-    "desc": "*Level 1 Enchantment*\n**Casting Time**: Action\n**Range**: 90 feet\n**Components**: V, S, M (a pinch of fine sand, rose petals, or a cricket)\n**Duration**: 1 minute\n**Description**\nThis spell sends creatures into a magical slumber. Roll **__5d8__**; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring [unconscious](https://5e.tools/conditionsdiseases.html#unconscious_phb) creatures).\n\nStarting with the creature that has the lowest current hit points, each creature affected by this spell falls [unconscious](https://5e.tools/conditionsdiseases.html#unconscious_phb) until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected.\n\nUndead and creatures immune to being [charmed](https://5e.tools/conditionsdiseases.html#charmed_phb) aren't affected by this spell.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, roll an additional **__2d8__** for each slot level above 1st.",
-    "footer": "",
-    "tag": "1st Level"
-  },
-  "haste": {
-    "title": "Haste",
+  "uncanny_dodge": {
+    "title": "Uncanny Dodge",
     "img": "images/feet-winged-boots-brown.webp",
-    "desc": "*Level 3 Transmutation*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V, S, M (a shaving of licorice root)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nChoose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on Dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the [Attack](https://5e.tools/actions.html#attack_phb) (one weapon attack only), [Dash](https://5e.tools/actions.html#dash_phb), [Disengage](https://5e.tools/actions.html#disengage_phb), [Hide](https://5e.tools/actions.html#hide_phb), or [Use an Object](https://5e.tools/actions.html#use%20an%20object_phb) action.\n\nWhen the spell ends, the target can't move or take actions until after its next turn, as a wave of lethargy sweeps over it.",
+    "desc": "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you.",
     "footer": "",
-    "tag": "3rd Level"
+    "tag": "Class"
   },
-  "enemies_abound": {
-    "title": "Enemies Abound",
-    "img": "images/energy-stream-link-spiral-white.webp",
-    "desc": "*Level 3 Enchantment*\n**Casting Time**: Action\n**Range**: 120 feet\n**Components**: V, S\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nYou reach into the mind of one creature you can see and force it to make an Intelligence saving throw. A creature automatically succeeds if it is immune to being [frightened](https://5e.tools/conditionsdiseases.html#frightened_phb). On a failed save, the target loses the ability to distinguish friend from foe, regarding all creatures it can see as enemies until the spell ends. Each time the target takes damage, it can repeat the saving throw, ending the effect on itself on a success.\n\nWhenever the affected creature chooses another creature as a target, it must choose the target at random from among the creatures it can see within range of the attack, spell, or other ability it's using. If an enemy provokes an opportunity attack from the affected creature, the creature must make that attack if it is able to.",
+
+
+
+  "age_aasimar": {
+    "title": "Age",
+    "img": "https://cdn.5e.tools/2024/img/races/VGM/Aasimar.webp",
+    "desc": "Aasimar mature at the same rate as humans, but they can live up to 160 years.",
     "footer": "",
-    "tag": "3rd Level"
+    "tag": "Species"
   },
-  "summon_fey": {
-    "title": "Summon Fey",
-    "img": "images/spirit-mischief-fire-blue.webp",
-    "desc": "*Level 3 Conjuration*\n**Casting Time**: Action\n**Range**: 90 feet\n**Components**: V, S, M (a gilded flower worth at least 300 gp)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 hour\n**Description**\nYou call forth a fey spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the [Fey Spirit](https://5e.tools/bestiary.html#fey%20spirit_tce) stat block. When you cast the spell, choose a mood: Fuming, Mirthful, or Tricksy. The creature resembles a fey creature of your choice marked by the chosen mood, which determines one of the traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\n\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the [Dodge](https://5e.tools/actions.html#dodge_phb) action and uses its move to avoid danger.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, use the higher level wherever the spell's level appears in the stat block.",
+  "age_elf": {
+    "title": "Age",
+    "img": "images/statue-gold-laurel-wreath.webp",
+    "desc": "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.",
     "footer": "",
-    "tag": "3rd Level"
+    "tag": "Species"
   },
-  "fireball": {
-    "title": "Fireball",
-    "img": "images/projectile-fireball-smoke-strong-orange.webp",
-    "desc": "*Level 3 Evocation*\n**Casting Time**: Action\n**Range**: 150 feet\n**Components**: V, S, M (a tiny ball of bat guano and sulfur)\n**Duration**: Instantaneous\n**Description**\nA bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes **__8d6__** fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, the damage increases by **__1d6__** for each slot level above 3rd.",
+  "cantrip": {
+    "title": "Cantrip",
+    "img": "images/document-symbol-eye.webp",
+    "desc": "You know one [cantrip of your choice from the wizard spell list](https://5e.tools/spells.html#blankhash,flstlevel:0=1,flstclass:wizard=1). Intelligence is your spellcasting ability for it.",
     "footer": "",
-    "tag": "3rd Level"
+    "tag": "Species"
   },
-  "counterspell": {
-    "title": "Counterspell",
-    "img": "images/wolf-heads-swirl-purple.webp",
-    "desc": "*Level 3 Abjuration*\n**Casting Time**: Reaction, which you take when you see a creature within 60 feet of you casting a spell\n**Range**: 60 feet\n**Components**: S\n**Duration**: Instantaneous\n**Description**\nYou attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used.",
+  "celestial_resistance": {
+    "title": "Celestial Resistance",
+    "img": "images/projectile-ice-chunk-blue.webp",
+    "desc": "You have resistance to necrotic damage and radiant damage.",
     "footer": "",
-    "tag": "3rd Level"
+    "tag": "Species"
   },
+  "darkvision_aasimar": {
+    "title": "Darkvision",
+    "img": "images/eye-ringed-glow-angry-small-red.webp",
+    "desc": "Blessed with a radiant soul, your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "darkvision_elf": {
+    "title": "Darkvision",
+    "img": "images/eye-ringed-glow-angry-small-red.webp",
+    "desc": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "elf_weapon_training": {
+    "title": "Elf Weapon Training",
+    "img": "images/bow-ornamental-gold-blue.webp",
+    "desc": "You have proficiency with the [longsword](https://5e.tools/items.html#longsword_phb), [shortsword](https://5e.tools/items.html#shortsword_phb), [shortbow](https://5e.tools/items.html#shortbow_phb), and [longbow](https://5e.tools/items.html#longbow_phb).",
+    "footer": "",
+    "tag": "Species"
+  },
+  "extra_language": {
+    "title": "Extra Language",
+    "img": "images/book-open-brown.webp",
+    "desc": "You can speak, read, and write one extra language of your choosing.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "fey_ancestry": {
+    "title": "Fey Ancestry",
+    "img": "images/vines-thorned-curled-glow-teal.webp",
+    "desc": "You have advantage on saving throws against being [charmed](https://5e.tools/conditionsdiseases.html#charmed_phb), and magic can't put you to sleep.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "fleet_of_foot": {
+    "title": "Fleet of Foot",
+    "img": "images/shoes-simple-leaf-green.webp",
+    "desc": "Your base walking speed increases to 35 feet.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "healing_hands": {
+    "title": "Healing Hands",
+    "img": "images/water-hand.webp",
+    "desc": "As an action, you can touch a creature and cause it to regain a number of hit points equal to your level. Once you use this trait, you can't use it again until you finish a long rest.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "keen_senses": {
+    "title": "Keen Senses",
+    "img": "images/eye-blue.webp",
+    "desc": "You have proficiency in the **__Perception__** skill.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "light_bearer": {
+    "title": "Light Bearer",
+    "img": "images/explosion-star-small-blue-yellow.webp",
+    "desc": "You know the [light](https://5e.tools/spells.html#light_phb) cantrip. Charisma is your spellcasting ability for it.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "mask_of_the_wild": {
+    "title": "Mask of the Wild",
+    "img": "images/cloak-hooded-jewels-green.webp",
+    "desc": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "necrotic_shroud": {
+    "title": "Necrotic Shroud",
+    "img": "images/fear-fright-monster-purple-blue.webp",
+    "desc": "Starting at 3rd level, you can use your action to unleash the divine energy within yourself, causing your eyes to turn into pools of darkness and two skeletal, ghostly, flightless wings to sprout from your back. The instant you transform, other creatures within 10 feet of you that can see you must succeed on a Charisma saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or become [frightened](https://5e.tools/conditionsdiseases.html#frightened_phb) of you until the end of your next turn.\n\nYour transformation lasts for 1 minute or until you end it as a bonus action. During it, once on each of your turns, you can deal extra necrotic damage to one target when you deal damage to it with an attack or a spell. The extra necrotic damage equals your level.\n\nOnce you use this trait, you can't use it again until you finish a long rest.",
+    "footer": "",
+    "tag": "Species"
+  },
+  "trance": {
+    "title": "Trance",
+    "img": "images/orb-ice-web.webp",
+    "desc": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.\n\nIf you meditate during a long rest, you finish the rest after only 4 hours. You otherwise obey all the rules for a long rest; only the duration is changed.",
+    "footer": "",
+    "tag": "Species"
+  },
+
+
+
   "heart_of_darkness": {
     "title": "Heart of Darkness",
     "img": "images/farmer.svg",
@@ -608,69 +713,9 @@
     "footer": "",
     "tag": "Background"
   },
-  "sneak_attack": {
-    "title": "Sneak Attack",
-    "img": "images/strike-dagger-arcane-pink.webp",
-    "desc": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra **__1d6__** damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.\n\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't [incapacitated](https://5e.tools/conditionsdiseases.html#incapacitated_phb), and you don't have disadvantage on the attack roll.\n\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "uncanny_dodge": {
-    "title": "Uncanny Dodge",
-    "img": "images/feet-winged-boots-brown.webp",
-    "desc": "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "steady_aim": {
-    "title": "Steady Aim",
-    "img": "images/crosshair-bars-yellow.webp",
-    "desc": "As a bonus action, you give yourself advantage on your next attack roll on the current turn. You can use this bonus action only if you haven't moved during this turn, and after you use the bonus action, your speed is 0 until the end of the current turn.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "thieves_cant": {
-    "title": "Thieves' Cant",
-    "img": "images/token-runed-sigel-brown.webp",
-    "desc": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.\n\nIn addition, you understand a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "expertise": {
-    "title": "Expertise",
-    "img": "images/book-red-exclamation.webp",
-    "desc": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "cunning_action": {
-    "title": "Cunning Action",
-    "img": "images/hypnosis-mesmerism-watch.webp",
-    "desc": "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "ear_for_deceit": {
-    "title": "Ear for Deceit",
-    "img": "images/runes-triangle-orange-purple.webp",
-    "desc": "When you choose this archetype at 3rd level, you develop a talent for picking out lies. Whenever you make a Wisdom (Insight) check to determine whether a creature is lying, treat a roll of 7 or lower on the d20 as an 8.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "insightful_fighting": {
-    "title": "Insightful Fighting",
-    "img": "images/weapons-crossed-swords-teal.webp",
-    "desc": "At 3rd level, you gain the ability to decipher an opponent's tactics and develop a counter to them. As a bonus action, you can make a Wisdom (Insight) check against a creature you can see that isn't incapacitated, contested by the target's Charisma (Deception) check. If you succeed, you can use your Sneak Attack against that target even if you don't have advantage on the attack roll, but not if you have disadvantage on it.\n\nThis benefit lasts for 1 minute or until you successfully use this feature against a different target.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "eye_for_detail": {
-    "title": "Eye for Detail",
-    "img": "images/eye-ringed-glow-angry-small-teal.webp",
-    "desc": "Starting at 3rd level, you can use a bonus action to make a Wisdom (Perception) check to spot a hidden creature or object or to make an Intelligence (Investigation) check to uncover or decipher clues.",
-    "footer": "",
-    "tag": "Class"
-  },
+
+
+
   "elven_accuracy": {
     "title": "Elven Accuracy",
     "img": "images/xge-elven-accuracy.webp",
@@ -678,249 +723,240 @@
     "footer": "",
     "tag": "Other"
   },
-  "celestial_resistance": {
-    "title": "Celestial Resistance",
-    "img": "images/projectile-ice-chunk-blue.webp",
-    "desc": "You have resistance to necrotic damage and radiant damage.",
+
+
+
+  "booming_blade": {
+    "title": "Booming Blade",
+    "img": "images/strike-sword-slashing-red.webp",
+    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: Self (5-foot radius)\n**Components**: S, M (a melee weapon worth at least 1 sp)\n**Duration**: 1 round\n**Description**\nYou brandish the weapon used in the spell's casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack's normal effects and then becomes sheathed in booming energy until the start of your next turn. If the target willingly moves 5 feet or more before then, the target takes **__1d8__** thunder damage, and the spell ends.\n\nThis spell's damage increases when you reach certain levels. At 5th level, the melee attack deals an extra **__1d8__** thunder damage to the target on a hit, and the damage the target takes for moving increases to **__2d8__**. Both damage rolls increase by 1d8 at 11th level (**__2d8__** and **__3d8__**) and again at 17th level (**__3d8__** and **__4d8__**).",
     "footer": "",
-    "tag": "Species"
+    "tag": "Cantrip"
   },
-  "light_bearer": {
-    "title": "Light Bearer",
+  "chill_touch": {
+    "title": "Chill Touch",
+    "img": "images/claws-unarmed-strike-teal.webp",
+    "desc": "*Necromancy Cantrip*\n**Casting Time**: Action\n**Range**: 120 feet\n**Components**: V, S\n**Duration**: 1 round\n**Description**\nYou create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes **__1d8__** necrotic damage, and it can't regain hit points until the start of your next turn. Until then, the hand clings to the target.\n\nIf you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn.\n\nThis spell's damage increases by **__1d8__** when you reach 5th level (**__2d8__**), 11th level (**__3d8__**), and 17th level (**__4d8__**).",
+    "footer": "",
+    "tag": "Cantrip"
+  },
+  "fire_bolt": {
+    "title": "Fire Bolt",
+    "img": "images/projectile-bolt-zigzag-orange.webp",
+    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: 120 feet\n**Components**: V, S\n**Duration**: Instantaneous\n**Description**\nYou hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes **__1d10__** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.\n\nThis spell's damage increases by **__1d10__** when you reach 5th level (**__2d10__**), 11th level (**__3d10__**), and 17th level (**__4d10__**).",
+    "footer": "",
+    "tag": "Cantrip"
+  },
+  "green_flame_blade": {
+    "title": "Green-Flame Blade",
+    "img": "images/greatsword-evil-green.webp",
+    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: Self (5-foot radius)\n**Components**: S, M (a melee weapon worth at least 1 sp)\n**Duration**: Instantaneous\n**Description**\nYou brandish the weapon used in the spell's casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack's normal effects, and you can cause green fire to leap from the target to a different creature of your choice that you can see within 5 feet of it. The second creature takes fire damage equal to your spellcasting ability modifier.\n\nThis spell's damage increases when you reach certain levels. At 5th level, the melee attack deals an extra **__1d8__** fire damage to the target on a hit, and the fire damage to the second creature increases to **__1d8__** + your spellcasting ability modifier. Both damage rolls increase by 1d8 at 11th level (**__2d8__** and **__2d8__**) and 17th level (**__3d8__** and **__3d8__**).",
+    "footer": "",
+    "tag": "Cantrip"
+  },
+  "light": {
+    "title": "Light",
     "img": "images/explosion-star-small-blue-yellow.webp",
-    "desc": "You know the [light](https://5e.tools/spells.html#light_phb) cantrip. Charisma is your spellcasting ability for it.",
+    "desc": "*Evocation Cantrip*\n**Casting Time**: Action\n**Range**: Touch\n**Components**: V, M (a firefly or phosphorescent moss)\n**Duration**: 1 hour\n**Description**\nYou touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.\n\nIf you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.",
     "footer": "",
-    "tag": "Species"
+    "tag": "Cantrip"
   },
-  "age_aasimar": {
-    "title": "Age",
-    "img": "https://cdn.5e.tools/2024/img/races/VGM/Aasimar.webp",
-    "desc": "Aasimar mature at the same rate as humans, but they can live up to 160 years.",
+  "mage_hand": {
+    "title": "Mage Hand",
+    "img": "images/orbs-hand-gray.webp",
+    "desc": "*Conjuration Cantrip*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V, S\n**Duration**: 1 minute\n**Description**\nA spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nYou can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
     "footer": "",
-    "tag": "Species"
+    "tag": "Cantrip"
   },
-  "healing_hands": {
-    "title": "Healing Hands",
-    "img": "images/water-hand.webp",
-    "desc": "As an action, you can touch a creature and cause it to regain a number of hit points equal to your level. Once you use this trait, you can't use it again until you finish a long rest.",
+  "mind_sliver": {
+    "title": "Mind Sliver",
+    "img": "images/strike-arrow-spear-red.webp",
+    "desc": "*Enchantment Cantrip*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V\n**Duration**: 1 round\n**Description**\nYou drive a disorienting spike of psychic energy into the mind of one creature you can see within range. The target must succeed on an Intelligence saving throw or take **__1d6__** psychic damage and subtract **__1d4__** from the next saving throw it makes before the end of your next turn.\n\nThis spell's damage increases by **__1d6__** when you reach certain levels: 5th level (**__2d6__**), 11th level (**__3d6__**), and 17th level (**__4d6__**).",
     "footer": "",
-    "tag": "Species"
+    "tag": "Cantrip"
   },
-  "darkvision_elf": {
-    "title": "Darkvision",
-    "img": "images/eye-ringed-glow-angry-small-red.webp",
-    "desc": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+  "minor_illusion": {
+    "title": "Minor Illusion",
+    "img": "images/eye-winged-pink.webp",
+    "desc": "*Illusion Cantrip*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: S, M (a bit of fleece)\n**Duration**: 1 minute\n**Description**\nYou create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again.\n\nIf you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nIf you create an image of an object—such as a chair, muddy footprints, or a small chest—it must be no larger than a 5-foot cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, because things can pass through it.\n\nIf a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (**__Investigation__**) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
     "footer": "",
-    "tag": "Species"
+    "tag": "Cantrip"
   },
-  "darkvision_aasimar": {
-    "title": "Darkvision",
-    "img": "images/eye-ringed-glow-angry-small-red.webp",
-    "desc": "Blessed with a radiant soul, your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+  "prestidigitation": {
+    "title": "Prestidigitation",
+    "img": "images/hand-sparks-smoke-green.webp",
+    "desc": "*Transmutation Cantrip*\n**Casting Time**: Action\n**Range**: 10 feet\n**Components**: V, S\n**Duration**: Up to 1 hour\n**Description**\nThis spell is a minor magical trick that novice spellcasters use for practice. You create one of the following magical effects within range:\n* You create an instantaneous, harmless sensory effect, such as a shower of sparks, a puff of wind, faint musical notes, or an odd odor.\n* You instantaneously light or snuff out a candle, a torch, or a small campfire.\n* You instantaneously clean or soil an object no larger than 1 cubic foot.\n* You chill, warm, or flavor up to 1 cubic foot of nonliving material for 1 hour.\n* You make a color, a small mark, or a symbol appear on an object or a surface for 1 hour.\n* You create a nonmagical trinket or an illusory image that can fit in your hand and that lasts until the end of your next turn.\nIf you cast this spell multiple times, you can have up to three of its non-instantaneous effects active at a time, and you can dismiss such an effect as an action.",
     "footer": "",
-    "tag": "Species"
+    "tag": "Cantrip"
   },
-  "elf_weapon_training": {
-    "title": "Elf Weapon Training",
-    "img": "images/bow-ornamental-gold-blue.webp",
-    "desc": "You have proficiency with the [longsword](https://5e.tools/items.html#longsword_phb), [shortsword](https://5e.tools/items.html#shortsword_phb), [shortbow](https://5e.tools/items.html#shortbow_phb), and [longbow](https://5e.tools/items.html#longbow_phb).",
+
+
+
+  "absorb_elements": {
+    "title": "Absorb Elements",
+    "img": "images/elements-air-earth-fire-water.webp",
+    "desc": "*Level 1 Abjuration*\n**Casting Time**: Reaction, which you take when you take acid, cold, fire, lightning, or thunder damage\n**Range**: Self\n**Components**: S\n**Duration**: 1 round\n**Description**\nThe spell captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra **__1d6__** damage of the triggering type, and the spell ends.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, the extra damage increases by **__1d6__** for each slot level above 1st.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "keen_senses": {
-    "title": "Keen Senses",
-    "img": "images/eye-blue.webp",
-    "desc": "You have proficiency in the **__Perception__** skill.",
+  "burning_hands": {
+    "title": "Burning Hands",
+    "img": "images/flame-burning-fist-strike.webp",
+    "desc": "*Level 1 Evocation*\n**Casting Time**: Action\n**Range**: Self (15-foot cone)\n**Components**: V, S\n**Duration**: Instantaneous\n**Description**\nAs you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes **__3d6__** fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren't being worn or carried.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by **__1d6__** for each slot level above 1st.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "fey_ancestry": {
-    "title": "Fey Ancestry",
-    "img": "images/vines-thorned-curled-glow-teal.webp",
-    "desc": "You have advantage on saving throws against being [charmed](https://5e.tools/conditionsdiseases.html#charmed_phb), and magic can't put you to sleep.",
+  "comprehend_languages": {
+    "title": "Comprehend Languages",
+    "img": "images/academics-book-study-runes.webp",
+    "desc": "*Level 1 Divination*\n**Casting Time**: Action or Ritual\n**Range**: Self\n**Components**: V, S, M (a pinch of soot and salt)\n**Duration**: 1 hour\n**Description**\nFor the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text.\n\nThis spell doesn't decode secret messages in a text or a glyph, such as an arcane sigil, that isn't part of a written language.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "age_elf": {
-    "title": "Age",
-    "img": "images/statue-gold-laurel-wreath.webp",
-    "desc": "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.",
+  "detect_magic": {
+    "title": "Detect Magic",
+    "img": "images/hands-cloud-light-pink.webp",
+    "desc": "*Level 1 Divination*\n**Casting Time**: Action or Ritual\n**Range**: Self\n**Components**: V, S\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 10 minutes\n**Description**\nFor the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its [school of magic](https://5e.tools/book.html#phb,10,the%20schools%20of%20magic,0), if any.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "mask_of_the_wild": {
-    "title": "Mask of the Wild",
-    "img": "images/cloak-hooded-jewels-green.webp",
-    "desc": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.",
+  "false_life": {
+    "title": "False Life",
+    "img": "images/heart-cross-purple-orange.webp",
+    "desc": "*Level 1 Necromancy*\n**Casting Time**: Action\n**Range**: Self\n**Components**: V, S, M (a small amount of alcohol or distilled spirits)\n**Duration**: 1 hour\n**Description**\nBolstering yourself with a necromantic facsimile of life, you gain **__1d4 + 4__** temporary hit points for the duration.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "trance": {
-    "title": "Trance",
-    "img": "images/orb-ice-web.webp",
-    "desc": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.\n\nIf you meditate during a long rest, you finish the rest after only 4 hours. You otherwise obey all the rules for a long rest; only the duration is changed.",
+  "find_familiar": {
+    "title": "Find Familiar",
+    "img": "images/corvid-call-sound-glowing.webp",
+    "desc": "*Level 1 Conjuration*\n**Casting Time**: 1 hour or Ritual \n**Range**: 10 feet\n**Components**: V, S, M (10 gp worth of charcoal, incense, and herbs that must be consumed by fire in a brass brazier)\n**Duration**: Instantaneous\n**Description**\nYou gain the service of a familiar, a spirit that takes an animal form you choose: [bat](https://5e.tools/bestiary.html#bat_mm), [cat](https://5e.tools/bestiary.html#cat_mm), [crab](https://5e.tools/bestiary.html#crab_mm), [frog (toad)](https://5e.tools/bestiary.html#frog_mm), [hawk](https://5e.tools/bestiary.html#hawk_mm), [lizard](https://5e.tools/bestiary.html#lizard_mm), [octopus](https://5e.tools/bestiary.html#octopus_mm), [owl](https://5e.tools/bestiary.html#owl_mm), [poisonous snake](https://5e.tools/bestiary.html#poisonous%20snake_mm), fish ([quipper](https://5e.tools/bestiary.html#quipper_mm)), [rat](https://5e.tools/bestiary.html#rat_mm), [raven](https://5e.tools/bestiary.html#raven_mm), [sea horse](https://5e.tools/bestiary.html#sea%20horse_mm), [spider](https://5e.tools/bestiary.html#spider_mm), or [weasel](https://5e.tools/bestiary.html#weasel_mm). Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey, or fiend (your choice) instead of a beast.\n\n*Additional [animal form choices](https://5e.tools/bestiary.html#blankhash,flstmiscellaneous:familiar=1) may be available at the DM's discretion*.\n\nYour familiar acts independently of you, but it always obeys your commands. In combat, it rolls its own initiative and acts on its own turn. A familiar can't attack, but it can take other actions as normal.\n\nWhen the familiar drops to 0 hit points, it disappears, leaving behind no physical form. It reappears after you cast this spell again. As an action, you can temporarily dismiss the familiar to a pocket dimension. Alternatively, you can dismiss it forever. As an action while it is temporarily dismissed, you can cause it to reappear in any unoccupied space within 30 feet of you. Whenever the familiar drops to 0 hit points or disappears into the pocket dimension, it leaves behind in its space anything it was wearing or carrying.\n\nWhile your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the familiar has. During this time, you are [deaf](https://5e.tools/conditionsdiseases.html#deafened_phb) and [blind](https://5e.tools/conditionsdiseases.html#blinded_phb) with regard to your own senses.\n\nYou can't have more than one familiar at a time. If you cast this spell while you already have a familiar, you instead cause it to adopt a new form. Choose one of the forms from the above list. Your familiar transforms into the chosen creature.\n\nFinally, when you cast a spell with a range of touch, your familiar can deliver the spell as if it had cast the spell. Your familiar must be within 100 feet of you, and it must use its reaction to deliver the spell when you cast it. If the spell requires an attack roll, you use your attack modifier for the roll.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "fleet_of_foot": {
-    "title": "Fleet of Foot",
-    "img": "images/shoes-simple-leaf-green.webp",
-    "desc": "Your base walking speed increases to 35 feet.",
+  "identify": {
+    "title": "Identify",
+    "img": "images/scroll-bound-blue-red.webp",
+    "desc": "*Level 1 Divination*\n**Casting Time**: 1 minute or Ritual\n**Range**: Touch\n**Components**: V, S, M (a pearl worth at least 100 gp and an owl feather)\n**Duration**: Instantaneous\n**Description**\nYou choose one object that you must touch throughout the casting of the spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it.\n\nIf you instead touch a creature throughout the casting, you learn what spells, if any, are currently affecting it.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "necrotic_shroud": {
-    "title": "Necrotic Shroud",
-    "img": "images/fear-fright-monster-purple-blue.webp",
-    "desc": "Starting at 3rd level, you can use your action to unleash the divine energy within yourself, causing your eyes to turn into pools of darkness and two skeletal, ghostly, flightless wings to sprout from your back. The instant you transform, other creatures within 10 feet of you that can see you must succeed on a Charisma saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or become [frightened](https://5e.tools/conditionsdiseases.html#frightened_phb) of you until the end of your next turn.\n\nYour transformation lasts for 1 minute or until you end it as a bonus action. During it, once on each of your turns, you can deal extra necrotic damage to one target when you deal damage to it with an attack or a spell. The extra necrotic damage equals your level.\n\nOnce you use this trait, you can't use it again until you finish a long rest.",
+  "ray_of_sickness": {
+    "title": "Ray of Sickness",
+    "img": "images/beam-rays-green.webp",
+    "desc": "*Level 1 Necromancy*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V, S\n**Duration**: Instantaneous\n**Description**\nA ray of sickening greenish energy lashes out toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes **__2d8__** poison damage and must make a Constitution saving throw. On a failed save, it is also [poisoned](https://5e.tools/conditionsdiseases.html#poisoned_phb) until the end of your next turn.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by **__1d8__** for each slot level above 1st.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "cantrip": {
-    "title": "Cantrip",
-    "img": "images/document-symbol-eye.webp",
-    "desc": "You know one [cantrip of your choice from the wizard spell list](https://5e.tools/spells.html#blankhash,flstlevel:0=1,flstclass:wizard=1). Intelligence is your spellcasting ability for it.",
+  "shield": {
+    "title": "Shield",
+    "img": "images/shield-barrier-deflect-teal.webp",
+    "desc": "*Level 1 Abjuration*\n**Casting Time**: Reaction, which you take when you are hit by an attack or targeted by the [magic missile](https://5e.tools/spells.html#magic%20missile_phb) spell\n**Range**: Self\n**Components**: V, S\n**Duration**: 1 round\n**Description**\nAn invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from [magic missile](https://5e.tools/spells.html#magic%20missile_phb).",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "extra_language": {
-    "title": "Extra Language",
-    "img": "images/book-open-brown.webp",
-    "desc": "You can speak, read, and write one extra language of your choosing.",
+  "sleep": {
+    "title": "Sleep",
+    "img": "images/sleep-bubble-purple.webp",
+    "desc": "*Level 1 Enchantment*\n**Casting Time**: Action\n**Range**: 90 feet\n**Components**: V, S, M (a pinch of fine sand, rose petals, or a cricket)\n**Duration**: 1 minute\n**Description**\nThis spell sends creatures into a magical slumber. Roll **__5d8__**; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring [unconscious](https://5e.tools/conditionsdiseases.html#unconscious_phb) creatures).\n\nStarting with the creature that has the lowest current hit points, each creature affected by this spell falls [unconscious](https://5e.tools/conditionsdiseases.html#unconscious_phb) until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected.\n\nUndead and creatures immune to being [charmed](https://5e.tools/conditionsdiseases.html#charmed_phb) aren't affected by this spell.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 2nd level or higher, roll an additional **__2d8__** for each slot level above 1st.",
     "footer": "",
-    "tag": "Species"
+    "tag": "1st Level"
   },
-  "sorcery_points": {
-    "title": "Sorcery Points",
-    "img": "images/silhouette-hold-change-blue.webp",
-    "desc": "You have 2 sorcery points, and you gain one additional point every time you level up, to a maximum of 20 at level 20. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest.",
+
+
+
+  "blindness_deafness": {
+    "title": "Blindness/Deafness",
+    "img": "images/injury-eyes-blood-red-pink.webp",
+    "desc": "*Level 2 Necromancy*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V\n**Duration**: 1 minute\n**Description**\nYou can blind or deafen a foe. Choose one creature that you can see within range to make a Constitution saving throw. If it fails, the target is either [blinded](https://5e.tools/conditionsdiseases.html#blinded_phb) or [deafened](https://5e.tools/conditionsdiseases.html#deafened_phb) (your choice) for the duration. At the end of each of its turns, the target can make a Constitution saving throw. On a success, the spell ends.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "metamagic_quickened_spell": {
-    "title": "Metamagic Quickened Spell",
-    "img": "images/clock-stopwatch-white-blue.webp",
-    "desc": "*Cost: 2 Sorcery Points*\nWhen you cast a spell that has a casting time of 1 action, you can spend 2 sorcery points to change the casting time to 1 bonus action for this casting.",
+  "darkness": {
+    "title": "Darkness",
+    "img": "images/orb-glowing-purple.webp",
+    "desc": "*Level 2 Evocation*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V, M (bat fur and a drop of pitch or piece of coal)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 10 minutes\n**Description**\nMagical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it.\n\nIf the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. Completely covering the source of the darkness with an opaque object, such as a bowl or a helm, blocks the darkness.\n\nIf any of this spell's area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "spellcasting_wizard": {
-    "title": "Spellcasting",
-    "img": "images/beam-rays-magenta-large.webp",
-    "desc": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power. See [chapter 10](https://5e.tools/book.html#phb,10) for the general rules of spellcasting and [chapter 11](https://5e.tools/book.html#phb,11) for the [wizard spell list](https://5e.tools/spells.html#blankhash,flstclass:wizard=1).\n\n**Cantrips**\nAt 1st level, you know three cantrips of your choice from the wizard spell list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table.\n\n**Spellbook**\nAt 1st level, you have a spellbook containing six 1st-level [wizard spells](https://5e.tools/spells.html#blankhash,flstclass:wizard=1) of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.\n\n**Preparing and Casting Spells**\nThe Wizard table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nYou prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.\n\nFor example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell [magic missile](https://5e.tools/spells.html#magic%20missile_phb), you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.\n\nYou can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list.\n\n**Spellcasting Ability**\nIntelligence is your spellcasting ability for your wizard spells, since you learn your wizard spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.\n\n**Spell save DC** = 8 + Intelligence modifier + Proficiency Bonus\n\n**Spell attack modifier** = Intelligence modifier + Proficiency Bonus\n\n**Ritual Casting**\nYou can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared.\n\n**Spellcasting Focus**\nYou can use an [arcane focus](https://5e.tools/items.html#arcane%20focus_phb) as a spellcasting focus for your wizard spells.\n\n**Learning Spells of 1st Level and Higher**\nEach time you gain a wizard level, you can add two wizard spells of your choice to your spellbook. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook (see \"Your Spellbook\").",
+  "hold_person": {
+    "title": "Hold Person",
+    "img": "images/debuff-chains-shackle-movement-red.webp",
+    "desc": "*Level 2 Enchantment*\n**Casting Time**: Action\n**Range**: 60 feet\n**Components**: V, S, M (a small, straight piece of iron)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nChoose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be [paralyzed](https://5e.tools/conditionsdiseases.html#paralyzed_phb) for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "spellcasting_sorcerer": {
-    "title": "Spellcasting",
-    "img": "images/beam-rays-magenta-large.webp",
-    "desc": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells. See [chapter 10](https://5e.tools/book.html#phb,10) for the general rules of spellcasting and [chapter 11](https://5e.tools/book.html#phb,11) for the [sorcerer spell list](https://5e.tools/spells.html#blankhash,flstclass:sorcerer=1).\n\n**Cantrips**\nAt 1st level, you know four cantrips of your choice from the sorcerer spell list. You learn an additional sorcerer cantrip of your choice at 4th level and another at 10th level.\n\n**Spell Slots**\nThe Sorcerer table shows how many spell slots you have to cast your [sorcerer spells](https://5e.tools/spells.html#blankhash,flstclass:sorcerer=1) of 1st level and higher. To cast one of these sorcerer spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nFor example, if you know the 1st-level spell [burning hands](https://5e.tools/spells.html#burning%20hands_phb) and have a 1st-level and a 2nd-level spell slot available, you can cast [burning hands](https://5e.tools/spells.html#burning%20hands_phb) using either slot.\n\n**Spells Known of 1st Level and Higher**\nYou know two 1st-level spells of your choice from the sorcerer spell list.\n\nYou learn an additional sorcerer spell of your choice at each level except 12th, 14th, 16th, 18th, 19th, and 20th. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.\n\nAdditionally, when you gain a level in this class, you can choose one of the sorcerer spells you know and replace it with another spell from the sorcerer spell list, which also must be of a level for which you have spell slots.\n\n**Spellcasting Ability**\nCharisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one.\n\n**Spell save DC** = 8 + Charisma modifier + Proficiency Bonus\n\n**Spell attack modifier** = Charisma modifier + Proficiency Bonus\n\n**Spellcasting Focus**\nYou can use an arcane focus as a spellcasting focus for your sorcerer spells.",
+  "mirror_image": {
+    "title": "Mirror Image",
+    "img": "images/chess-pawn-white-glass.webp",
+    "desc": "*Level 2 Illusion*\n**Casting Time**: Action\n**Range**: Self\n**Components**: V, S\n**Duration**: 1 minute\n**Description**\nThree illusory duplicates of yourself appear in your space. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it's impossible to track which image is real. You can use your action to dismiss the illusory duplicates.\n\nEach time a creature targets you with an attack during the spell's duration, roll a **__d20__** to determine whether the attack instead targets one of your duplicates.\n\nIf you have three duplicates, you must roll a 6 or higher to change the attack's target to a duplicate. With two duplicates, you must roll an 8 or higher. With one duplicate, you must roll an 11 or higher.\n\nA duplicate's AC equals 10 + your Dexterity modifier. If an attack hits a duplicate, the duplicate is destroyed. A duplicate can be destroyed only by an attack that hits it. It ignores all other damage and effects. The spell ends when all three duplicates are destroyed.\n\nA creature is unaffected by this spell if it can't see, if it relies on senses other than sight, such as blindsight, or if it can perceive illusions as false, as with [truesight](https://5e.tools/book.html#phb,8,truesight,0).",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "sorcerous_versatility": {
-    "title": "Sorcerous Versatility",
-    "img": "images/triangle-glowing-green.webp",
-    "desc": "Whenever you reach a level in this class that grants the Ability Score Improvement feature, you can do one of the following, representing the magic within you flowing in new ways:\n* Replace one of the options you chose for the Metamagic feature with a different [Metamagic option](https://5e.tools/optionalfeatures.html#blankhash,flstfeature%20type:mm=1) available to you.\n* Replace one cantrip you learned from this class's Spellcasting feature with another cantrip from the [sorcerer spell list](https://5e.tools/spells.html#blankhash,flstlevel:0=1,flstclass:sorcerer=1).",
+  "misty_step": {
+    "title": "Misty Step",
+    "img": "images/projectile-ice-impact-stone.webp",
+    "desc": "*Level 2 Conjuration*\n**Casting Time**: Bonus Action\n**Range**: Self\n**Components**: V\n**Duration**: Instantaneous\n**Description**\nBriefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "magical_guidance": {
-    "title": "Magical Guidance",
-    "img": "images/star-solid-gold.webp",
-    "desc": "You can tap into your inner wellspring of magic to try to conjure success from failure. When you make an ability check that fails, you can spend 1 sorcery point to reroll the **__d20__**, and you must use the new roll, potentially turning the failure into a success.",
+  "shadow_blade": {
+    "title": "Shadow Blade",
+    "img": "images/sword-stuck-glowing-pink.webp",
+    "desc": "*Level 2 Illusion*\n**Casting Time**: Bonus Action\n**Range**: Self\n**Components**: V, S\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nYou weave together threads of shadow to create a sword of solidified gloom in your hand. This magic sword lasts until the spell ends. It counts as a simple melee weapon with which you are proficient. It deals **__2d8__** psychic damage on a hit and has the finesse, light, and thrown properties (range 20/60). In addition, when you use the sword to attack a target that is in dim light or darkness, you make the attack roll with advantage.\n\nIf you drop the weapon or throw it, it dissipates at the end of the turn. Thereafter, while the spell persists, you can use a bonus action to cause the sword to reappear in your hand.\n\n**At Higher Levels**. When you cast this spell using a 3rd- or 4th-level spell slot, the damage increases to **__3d8__**. When you cast it using a 5th- or 6th-level spell slot, the damage increases to **__4d8__**. When you cast it using a spell slot of 7th level or higher, the damage increases to **__5d8__**.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "font_of_magic": {
-    "title": "Font of Magic",
-    "img": "images/projectile-meteor-salvo-heavy-pink.webp",
-    "desc": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.",
+  "spider_climb": {
+    "title": "Spider Climb",
+    "img": "images/spider-web-red.webp",
+    "desc": "*Level 2 Transmutation*\n**Casting Time**: Action\n**Range**: Touch\n**Components**: V, S, M (a drop of bitumen and a spider)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 hour\n**Description**\nUntil the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "flexible_casting": {
-    "title": "Flexible Casting",
-    "img": "images/phb-sorcerer.webp",
-    "desc": "You can use your sorcery points to gain additional spell slots, or sacrifice spell slots to gain additional sorcery points. You learn other ways to use your sorcery points as you reach higher levels.\n\n**Creating Spell Slots**. You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. The created spell slots vanish at the end of a long rest. The following shows the cost of creating a spell slot of a given level. You can create spell slots no higher in level than 5th.\n* 1st level: 2 points\n* 2nd level: 3 points\n* 3rd level: 5 points\n* 4th level: 6 points\n* 5th level: 7 points\n\n**Converting a Spell Slot to Sorcery Points**. As a bonus action on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level.",
+  "tashas_mind_whip": {
+    "title": "Tasha's Mind Whip",
+    "img": "images/whip-red-yellow.webp",
+    "desc": "*Level 2 Enchantment*\n**Casting Time**: Action\n**Range**: 90 feet\n**Components**: V\n**Duration**: 1 round\n**Description**\nYou psychically lash out at one creature you can see within range. The target must make an Intelligence saving throw. On a failed save, the target takes **__3d6__** psychic damage, and it can't take a reaction until the end of its next turn. Moreover, on its next turn, it must choose whether it gets a move, an action, or a bonus action; it gets only one of the three. On a successful save, the target takes half as much damage and suffers none of the spell's other effects.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd. The creatures must be within 30 feet of each other when you target them.",
     "footer": "",
-    "tag": "Class"
+    "tag": "2nd Level"
   },
-  "metamagic": {
-    "title": "Metamagic",
-    "img": "images/runes-star-blue.webp",
-    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level.\n\nYou can use only one Metamagic option on a spell when you cast it, unless otherwise noted.",
+
+
+
+  "counterspell": {
+    "title": "Counterspell",
+    "img": "images/wolf-heads-swirl-purple.webp",
+    "desc": "*Level 3 Abjuration*\n**Casting Time**: Reaction, which you take when you see a creature within 60 feet of you casting a spell\n**Range**: 60 feet\n**Components**: S\n**Duration**: Instantaneous\n**Description**\nYou attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used.",
     "footer": "",
-    "tag": "Class"
+    "tag": "3rd Level"
   },
-  "hound_of_ill_omen": {
-    "title": "Hound of Ill Omen",
-    "img": "images/wolf-howl-moon-forest-blue.webp",
-    "desc": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend 3 sorcery points to magically summon a [hound of ill omen](https://5e.tools/bestiary.html#hound%20of%20ill%20omen_xge) to target one creature you can see within 120 feet of you. The hound uses the [dire wolf](https://5e.tools/bestiary.html#dire%20wolf_mm)'s statistics (see the Monster Manual or appendix C in the Player's Handbook), with the following changes:\n* The hound is size Medium, not Large, and it counts as a monstrosity, not a beast.\n* It appears with a number of temporary hit points equal to half your sorcerer level.\n* It can move through other creatures and objects as if they were [difficult terrain](https://5e.tools/quickreference.html#bookref-quick,3,difficult%20terrain). The hound takes 5 force damage if it ends its turn inside an object.\n* At the start of its turn, the hound automatically knows its target's location. If the target was hidden, it is no longer hidden from the hound.\n\nThe hound appears in an unoccupied space of your choice within 30 feet of the target. Roll initiative for the hound. On its turn, it can move only toward its target by the most direct route, and it can use its action only to attack its target. The hound can make opportunity attacks, but only against its target. Additionally, while the hound is within 5 feet of the target, the target has disadvantage on saving throws against any spell you cast. The hound disappears if it is reduced to 0 hit points, if its target is reduced to 0 hit points, or after 5 minutes.",
+  "enemies_abound": {
+    "title": "Enemies Abound",
+    "img": "images/energy-stream-link-spiral-white.webp",
+    "desc": "*Level 3 Enchantment*\n**Casting Time**: Action\n**Range**: 120 feet\n**Components**: V, S\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nYou reach into the mind of one creature you can see and force it to make an Intelligence saving throw. A creature automatically succeeds if it is immune to being [frightened](https://5e.tools/conditionsdiseases.html#frightened_phb). On a failed save, the target loses the ability to distinguish friend from foe, regarding all creatures it can see as enemies until the spell ends. Each time the target takes damage, it can repeat the saving throw, ending the effect on itself on a success.\n\nWhenever the affected creature chooses another creature as a target, it must choose the target at random from among the creatures it can see within range of the attack, spell, or other ability it's using. If an enemy provokes an opportunity attack from the affected creature, the creature must make that attack if it is able to.",
     "footer": "",
-    "tag": "Class"
+    "tag": "3rd Level"
   },
-  "eyes_of_the_dark": {
-    "title": "Eyes of the Dark",
-    "img": "images/eye-ringed-glow-angry-small-teal.webp",
-    "desc": "Starting at 1st level, you have darkvision with a range of 120 feet.\n\nWhen you reach 3rd level in this class, you learn the [darkness](https://5e.tools/spells.html#darkness_phb) spell, which doesn't count against your number of sorcerer spells known. In addition, you can cast it by spending 2 sorcery points or by expending a spell slot. If you cast it with sorcery points, you can see through the [darkness](https://5e.tools/spells.html#darkness_phb) created by the spell.",
+  "fireball": {
+    "title": "Fireball",
+    "img": "images/projectile-fireball-smoke-strong-orange.webp",
+    "desc": "*Level 3 Evocation*\n**Casting Time**: Action\n**Range**: 150 feet\n**Components**: V, S, M (a tiny ball of bat guano and sulfur)\n**Duration**: Instantaneous\n**Description**\nA bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes **__8d6__** fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, the damage increases by **__1d6__** for each slot level above 3rd.",
     "footer": "",
-    "tag": "Class"
+    "tag": "3rd Level"
   },
-  "strength_of_the_grave": {
-    "title": "Strength of the Grave",
-    "img": "images/undead-zombie-grave-green.webp",
-    "desc": "Starting at 1st level, your existence in a twilight state between life and death makes you difficult to defeat. When damage reduces you to 0 hit points, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you instead drop to 1 hit point. You can't use this feature if you are reduced to 0 hit points by radiant damage or by a critical hit.\n\nAfter the saving throw succeeds, you can't use this feature again until you finish a long rest.",
+  "haste": {
+    "title": "Haste",
+    "img": "images/feet-winged-boots-brown.webp",
+    "desc": "*Level 3 Transmutation*\n**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V, S, M (a shaving of licorice root)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nChoose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on Dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the [Attack](https://5e.tools/actions.html#attack_phb) (one weapon attack only), [Dash](https://5e.tools/actions.html#dash_phb), [Disengage](https://5e.tools/actions.html#disengage_phb), [Hide](https://5e.tools/actions.html#hide_phb), or [Use an Object](https://5e.tools/actions.html#use%20an%20object_phb) action.\n\nWhen the spell ends, the target can't move or take actions until after its next turn, as a wave of lethargy sweeps over it.",
     "footer": "",
-    "tag": "Class"
+    "tag": "3rd Level"
   },
-  "metamagic_twinned_spell": {
-    "title": "Metamagic Twinned Spell",
-    "img": "images/bolt-strike-blue.webp",
-    "desc": "*Cost: 1–9 Sorcery Points*\nWhen you cast a spell that targets only one creature and doesn't have a range of self, you can spend a number of sorcery points equal to the spell's level to target a second creature in range with the same spell (1 sorcery point if the spell is a cantrip).\n\nTo be eligible, a spell must be incapable of targeting more than one creature at the spell's current level. For example, [magic missile](https://5e.tools/spells.html#magic%20missile_phb) and [scorching ray](https://5e.tools/spells.html#scorching%20ray_phb) aren't eligible, but [ray of frost](https://5e.tools/spells.html#ray%20of%20frost_phb) and [chromatic orb](https://5e.tools/spells.html#chromatic%20orb_phb) are.",
+  "summon_fey": {
+    "title": "Summon Fey",
+    "img": "images/spirit-mischief-fire-blue.webp",
+    "desc": "*Level 3 Conjuration*\n**Casting Time**: Action\n**Range**: 90 feet\n**Components**: V, S, M (a gilded flower worth at least 300 gp)\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 hour\n**Description**\nYou call forth a fey spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the [Fey Spirit](https://5e.tools/bestiary.html#fey%20spirit_tce) stat block. When you cast the spell, choose a mood: Fuming, Mirthful, or Tricksy. The creature resembles a fey creature of your choice marked by the chosen mood, which determines one of the traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\n\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the [Dodge](https://5e.tools/actions.html#dodge_phb) action and uses its move to avoid danger.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 4th level or higher, use the higher level wherever the spell's level appears in the stat block.",
     "footer": "",
-    "tag": "Class"
-  },
-  "cantrip_formulas": {
-    "title": "Cantrip Formulas",
-    "img": "images/blueprint-recipe-magic.webp",
-    "desc": "You have scribed a set of arcane formulas in your spellbook that you can use to formulate a cantrip in your mind. Whenever you finish a long rest and consult those formulas in your spellbook, you can replace one wizard cantrip you know with another cantrip from the wizard spell list.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "arcane_recovery": {
-    "title": "Arcane Recovery",
-    "img": "images/explosion-lava-stone-green.webp",
-    "desc": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\n\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "bladesong": {
-    "title": "Bladesong",
-    "img": "images/sword-twirl-orange.webp",
-    "desc": "Starting at 2nd level, you can invoke a secret elven magic called the Bladesong, provided you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus.\n\nYou can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are [incapacitated](https://5e.tools/conditionsdiseases.html#incapacitated_phb), if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss Bladesong at any time you choose (no action required).\n\nWhile your bladesong is active, you gain the following benefits:\n* You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).\n* Your walking speed increases by 10 feet.\n* You have advantage on Dexterity (**__Acrobatics__**) checks.\n* You gain a bonus to any Constitution saving throws you make to maintain [concentration](https://5e.tools/conditionsdiseases.html#concentration_phb) on a spell. The bonus equals your Intelligence modifier (minimum of +1).\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses of it when you finish a long rest.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "extra_attack": {
-    "title": "Extra Attack",
-    "img": "images/spear-tips-triple-orange.webp",
-    "desc": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. Moreover, you can cast one of your cantrips in place of one of those attacks.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "training_in_war_and_song": {
-    "title": "Training in War and Song (Bladesinging)",
-    "img": "images/weapons-crossed-swords-white-blue.webp",
-    "desc": "When you adopt this tradition at 2nd level, you gain proficiency with light armor, and you gain proficiency with one type of one-handed melee weapon of your choice.\n\nYou also gain proficiency in the **__Performance__** skill if you don't already have it.",
-    "footer": "",
-    "tag": "Class"
-  },
-  "bladesinger_styles": {
-    "title": "Bladesinger Styles",
-    "img": "https://cdn.5e.tools/2024/img/classes/TCE/Bladesinging%20Wizard.webp",
-    "desc": "From its inception as a martial and magical art, Bladesinging has been tied to the sword, more specifically the longsword. Yet many generations of study gave rise to various styles of Bladesinging based on the melee weapon employed. The techniques of these styles are passed from master to students in small schools, some of which have a building dedicated to instruction. Even the newest styles are hundreds of years old, but are still taught by their original creators due to the long lives of elves. Most schools of Bladesinging are in Evermeet or Evereska. One was started in Myth Drannor, but the city's destruction has scattered those students who survived.\n\nStyles of Bladesinging are broadly categorized based on the type of weapon employed, and each is associated with a category of animal. Within that style are specializations named after specific animal types, based on the types of spells employed, the techniques of the master, and the particular weapon used. Bladesingers who apprentice to a master typically get a tattoo of their chosen style's animal. Some bladesingers learn multiple styles and bear many tattoos, wearing a warning on their skin of their deadly skills.\n\n**Cat**. Styles that employ a sword belong to this family. The lion style, the eldest, trains practitioners in the use of the longsword and doesn't favor any particular type of spells. Leopard style focuses on the shortsword and spells of illusion and stealth. Red tiger, a style just three centuries old, has its bladesingers using the scimitar in a whirling dance of defense from which they launch into sudden leaps and attacks.\n\n**Bird**. Styles that focus on the use of a hafted weapon, such as an axe or hammer, have been grouped together as bird styles, yet they vary wildly. All relatively new styles, they use weapons not typically favored by elves. Eagle-style bladesingers use small handaxes, and many maneuvers in the style focus on fluid ways to throw the weapon and draw a new one. Raven style uses a war pick, and spells associated with it grant the bladesinger more agility in combat.\n\n**Snake**. Practitioners of these styles use a flail, chain, or whip. Viper style uses a whip, despite its inelegance as a weapon, and has almost as long a history as the lion style. Its masters punctuate their bladesong with a stunningly rapid rhythm of whip cracks, which can keep many foes at bay and allow the bladesinger space to cast the cruel spells of poison and disease favored by the style.",
-    "footer": "",
-    "tag": "Class"
+    "tag": "3rd Level"
   }
 }
