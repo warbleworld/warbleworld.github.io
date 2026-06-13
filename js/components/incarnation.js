@@ -4,7 +4,7 @@
 // ─────────────────────────────────────────────────────────
 
 import { DISABLED_INCARNATIONS } from "../config.js";
-import { CHARACTERS } from "../data/characters.js";
+import { CHARACTERS, LEVEL } from "../data/characters.js";
 import { buildTabBar, buildTabPanel } from "./tabs.js";
 import { renderSheet } from "./sheet.js";
 import { buildCardSection } from "./cards.js";
@@ -41,7 +41,7 @@ export function buildIncarnation(id) {
 
   el.innerHTML =
     buildTabBar(tabs, "Character tabs") +
-    buildTabPanel(`${id}-sheet`, renderSheet(data), true) +
+    buildTabPanel(`${id}-sheet`, renderSheet(data, LEVEL), true) +
     buildTabPanel(`${id}-inv`, buildCardSection(data.inv, `${id}-inv-g`, starred), false) +
     buildTabPanel(`${id}-feat`, buildCardSection(data.feat, `${id}-feat-g`, starred), false) +
     buildTabPanel(

@@ -34,6 +34,40 @@
   filter: saturate(0.85) contrast(1.05);
 }
 
+.cs-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(10, 10, 15, 0.85);
+  border: 2px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.cs-level-num {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--text-bright);
+  line-height: 1;
+}
+
+.cs-level-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.35rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 1px;
+}
+
 .cs-portrait-overlay {
   position: absolute;
   bottom: 0;
@@ -41,6 +75,14 @@
   right: 0;
   padding: 14px 14px 12px;
   background: linear-gradient(0deg, rgba(5, 5, 10, 0.95) 0%, rgba(5, 5, 10, 0.7) 60%, transparent 100%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-portrait-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .cs-portrait-name {

@@ -127,3 +127,5 @@ export const CHARACTERS = {
     starred: ["dagger", "rapier", "shortbow", "fine_clothes", "leather_armor", "arrow", "ball_bearings", "candle", "hempen_rope", "hooded_lantern", "oil", "piton", "rations", "string", "waterskin", "backpack", "purse", "thieves_tools", "bell", "crowbar", "hammer", "signet_ring", "scroll_of_pedigree", "tinderbox"],
   },
 };
+
+export const LEVEL = 6;

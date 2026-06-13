@@ -78,7 +78,7 @@ function computeSkills(data) {
  * @param {object} data - Character definition.
  * @returns {string} HTML string
  */
-export function renderSheet(data) {
+export function renderSheet(data, level) {
   const abilityBoxes = ABILITIES.map(
     (label) =>
       `<div class="cs-ab-box">` +
@@ -88,30 +88,31 @@ export function renderSheet(data) {
       `</div>`,
   ).join("");
 
-  return (
-    `<div class="cs">` +
+  return `<div class="cs">` +
     `<div class="cs-left">` +
-    `<div class="cs-portrait">` +
-    imageHtml(data.img, data.name, "cs-portrait-img") +
-    `<div class="cs-portrait-overlay">` +
-    `<div class="cs-portrait-name">${data.name}</div>` +
-    `<div class="cs-portrait-meta">${data.race} · ${data.class}</div>` +
-    `</div>` +
-    `</div>` +
-    `<div class="cs-radar">${renderRadar(data.ab)}</div>` +
-    `<div class="cs-ab-grid">${abilityBoxes}</div>` +
+      `<div class="cs-portrait">` +
+        imageHtml(data.img, data.name, "cs-portrait-img") +
+        `<div class="cs-portrait-overlay">` +
+          `<div class="cs-portrait-info">` +
+            `<div class="cs-portrait-name">${data.name}</div>` +
+            `<div class="cs-portrait-meta">${data.race} · ${data.class}</div>` +
+          `</div>` +
+          (level ? `<div class="cs-level" aria-label="Level ${level}"><span class="cs-level-num">${level}</span><span class="cs-level-label">LVL</span></div>` : "") +
+        `</div>` +
+      `</div>` +
+      `<div class="cs-radar">${renderRadar(data.ab)}</div>` +
+      `<div class="cs-ab-grid">${abilityBoxes}</div>` +
     `</div>` +
     `<div class="cs-right">` +
-    `<div class="cs-stats">` +
-    `<div class="cs-stat"><div class="cs-stat-val">${data.ac}</div><div class="cs-stat-label">Armor Class</div></div>` +
-    `<div class="cs-stat"><div class="cs-stat-val">${data.hp}</div><div class="cs-stat-label">Hit Points</div></div>` +
-    `<div class="cs-stat"><div class="cs-stat-val">${data.init}</div><div class="cs-stat-label">Initiative</div></div>` +
-    `<div class="cs-stat"><div class="cs-stat-val">+${data.prof}</div><div class="cs-stat-label">Proficiency</div></div>` +
+      `<div class="cs-stats">` +
+        `<div class="cs-stat"><div class="cs-stat-val">${data.ac}</div><div class="cs-stat-label">Armor Class</div></div>` +
+        `<div class="cs-stat"><div class="cs-stat-val">${data.hp}</div><div class="cs-stat-label">Hit Points</div></div>` +
+        `<div class="cs-stat"><div class="cs-stat-val">${data.init}</div><div class="cs-stat-label">Initiative</div></div>` +
+        `<div class="cs-stat"><div class="cs-stat-val">+${data.prof}</div><div class="cs-stat-label">Proficiency</div></div>` +
+      `</div>` +
+      `<div class="cs-section"><div class="cs-section-title">Saving Throws</div>${renderProfList(computeSaves(data))}</div>` +
+      `<div class="cs-section"><div class="cs-section-title">Skills</div>${renderProfList(computeSkills(data))}</div>` +
+      `<div class="cs-section"><div class="cs-section-title">Counters &amp; Resources</div>${renderCounters(data.counters)}</div>` +
     `</div>` +
-    `<div class="cs-section"><div class="cs-section-title">Saving Throws</div>${renderProfList(computeSaves(data))}</div>` +
-    `<div class="cs-section"><div class="cs-section-title">Skills</div>${renderProfList(computeSkills(data))}</div>` +
-    `<div class="cs-section"><div class="cs-section-title">Counters &amp; Resources</div>${renderCounters(data.counters)}</div>` +
-    `</div>` +
-    `</div>`
-  );
+  `</div>`;
 }
