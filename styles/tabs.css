@@ -5,6 +5,10 @@
   gap: 2px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 16px;
+  position: sticky;
+  top: calc(var(--player-bar-h, 48px) + var(--inc-bar-h, 82px));
+  z-index: 80;
+  background: var(--bg);
 }
 
 .tab-btn {

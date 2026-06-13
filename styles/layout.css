@@ -107,6 +107,10 @@
   gap: 6px;
   padding: 20px 0 16px;
   justify-content: center;
+  position: sticky;
+  top: var(--player-bar-h, 48px);
+  z-index: 90;
+  background: var(--bg);
 }
 
 .inc-btn {

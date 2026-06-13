@@ -4,7 +4,11 @@
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
-  padding: 0 0 12px;
+  padding: 8px 0 12px;
+  position: sticky;
+  top: calc(var(--player-bar-h, 48px) + var(--inc-bar-h, 82px) + var(--tab-bar-h, 38px));
+  z-index: 70;
+  background: var(--bg);
 }
 
 .filter-pill {

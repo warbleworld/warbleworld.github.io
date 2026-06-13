@@ -95,6 +95,22 @@ function selectRandomPlayer() {
   if (activeInc) buildIncarnation(activeInc.id);
 }
 
+/**
+ * Measure the stacked sticky bars and expose their heights as CSS
+ * variables so each bar can stick directly beneath the previous one.
+ */
+function updateStickyOffsets() {
+  const root = document.documentElement;
+  const playerBar = document.querySelector(".player-bar");
+  const activePage = document.querySelector(".player-page.active");
+  const incBar = activePage?.querySelector(".inc-bar");
+  const tabBar = activePage?.querySelector(".inc-content.active .tab-bar");
+
+  if (playerBar) root.style.setProperty("--player-bar-h", `${playerBar.offsetHeight}px`);
+  if (incBar) root.style.setProperty("--inc-bar-h", `${incBar.offsetHeight}px`);
+  if (tabBar) root.style.setProperty("--tab-bar-h", `${tabBar.offsetHeight}px`);
+}
+
 /** Prepare static markup and wire up the UI (runs after cards load). */
 function initApp() {
   populateAvatars();
@@ -103,6 +119,9 @@ function initApp() {
   ensureAvailableDefaults();
   installEventHandlers();
   selectRandomPlayer();
+  updateStickyOffsets();
+  window.addEventListener("resize", updateStickyOffsets);
+  document.addEventListener("click", () => requestAnimationFrame(updateStickyOffsets));
 }
 
 // Boot: graceful image fallback first, then load cards and init.
