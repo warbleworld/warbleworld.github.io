@@ -14,7 +14,7 @@ import { PORTRAITS } from "../config.js";
 
 export const CHARACTERS = {
   vespera: {
-    name: "Vespera", race: "Tiefling", class: "Bard (Divine Soul)", img: PORTRAITS.vespera,
+    name: "Vespera", race: "Tiefling", class: "Divine Soul Sorcerer", img: PORTRAITS.vespera,
     ab: { STR: 8, DEX: 14, CON: 12, INT: 10, WIS: 13, CHA: 18 }, prof: 2, ac: 13, hp: 22, init: "+2",
     saves: ["CHA", "DEX"],
     skills: ["Deception", "Intimidation", "Performance", "Persuasion", "Religion"],
@@ -29,7 +29,7 @@ export const CHARACTERS = {
     spells: ["thaumaturgy", "vicious_mock", "mage_hand", "heal_word", "aid_sp", "diss_whisper", "u_charm", "u_det_magic", "u_faerie"],
   },
   lucia: {
-    name: "Lucia", race: "Aasimar", class: "Shadow Sorcerer", img: PORTRAITS.lucia,
+    name: "Lucia", race: "Fallen Aasimar", class: "Shadow Sorcerer", img: PORTRAITS.lucia,
     ab: { STR: 9, DEX: 12, CON: 15, INT: 10, WIS: 10, CHA: 20 }, prof: 3, ac: 11, hp: 38, init: "+1",
     saves: ["CON", "CHA"],
     skills: ["Arcana", "Intimidation", "Persuasion", "Religion"],
@@ -46,7 +46,7 @@ export const CHARACTERS = {
     starred: ["dagger", "common_clothes", "crystal", "locket", "ink", "rations", "waterskin", "backpack", "scroll_case", "bag_of_sand", "parchment", "small_knife", "writing_quill"],
   },
   karmine: {
-    name: "Karmine", race: "Elf", class: "Wizard / Arcane Scholar", img: PORTRAITS.karmine,
+    name: "Karmine", race: "High Elf", class: "Bladesinger Wizard", img: PORTRAITS.karmine,
     ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, prof: 3, ac: 15, hp: 38, init: "+3",
     saves: ["INT", "WIS"],
     skills: ["History", "Arcana", "Perception", "Insight", "Performance", "Investigation"],
@@ -65,7 +65,7 @@ export const CHARACTERS = {
     starred: ["shortsword", "common_clothes", "crystal", "studded_leather_armor", "ink", "pouch", "mysterious_letter", "small_knife", "spellbook", "writing_quill"],
   },
   rubic: {
-    name: "Rubic", race: "Harengon", class: "Fighter / Rune Knight", img: PORTRAITS.rubic,
+    name: "Rubic", race: "Harengon", class: "Rune Knight Fighter", img: PORTRAITS.rubic,
     ab: { STR: 16, DEX: 14, CON: 16, INT: 10, WIS: 12, CHA: 8 }, prof: 3, ac: 18, hp: 44, init: "+5",
     saves: ["STR", "CON"],
     skills: ["Athletics", "Intimidation", "Perception", "Survival"],
@@ -81,7 +81,7 @@ export const CHARACTERS = {
     spells: [],
   },
   lucien: {
-    name: "Lucien", race: "Elf", class: "Cleric of Sune", img: PORTRAITS.lucien,
+    name: "Lucien", race: "Wood Elf", class: "Light Cleric", img: PORTRAITS.lucien,
     ab: { STR: 10, DEX: 10, CON: 14, INT: 12, WIS: 17, CHA: 16 }, prof: 3, ac: 16, hp: 38, init: "+0",
     saves: ["WIS", "CHA"],
     skills: ["Insight", "Medicine", "Persuasion", "Religion"],
@@ -97,7 +97,7 @@ export const CHARACTERS = {
     spells: ["sacred_flame", "light_sp", "thaumaturgy", "heal_word", "guiding_bolt", "hold_person", "scorch_ray", "fireball", "u_bless", "u_cure", "u_lesser_rest"],
   },
   seabastion: {
-    name: "Seabastion", race: "Sea Elf", class: "Cleric of Deep Sashelas", img: PORTRAITS.seabastion,
+    name: "Seabastion", race: "Sea Elf", class: "Tempest Cleric", img: PORTRAITS.seabastion,
     ab: { STR: 14, DEX: 10, CON: 14, INT: 10, WIS: 16, CHA: 12 }, prof: 2, ac: 18, hp: 28, init: "+0",
     saves: ["WIS", "CHA"],
     skills: ["Athletics", "Medicine", "Nature", "Perception"],
