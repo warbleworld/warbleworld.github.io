@@ -65,7 +65,15 @@ body {
   color: var(--text);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

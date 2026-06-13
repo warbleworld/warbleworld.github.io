@@ -93,19 +93,22 @@
 .player-page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 12px 60px;
+  padding: 0 12px;
   display: none;
   width: 100%;
 }
 
 .player-page.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .inc-bar {
   display: flex;
   gap: 6px;
-  padding: 20px 0 16px;
+  padding: 18px 0;
   justify-content: center;
   position: sticky;
   top: var(--player-bar-h, 48px);
@@ -179,5 +182,8 @@
 }
 
 .inc-content.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }

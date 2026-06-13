@@ -4,7 +4,6 @@
   display: flex;
   gap: 2px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 16px;
   position: sticky;
   top: calc(var(--player-bar-h, 48px) + var(--inc-bar-h, 82px));
   z-index: 80;
@@ -50,5 +49,8 @@
 }
 
 .tab-content.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }

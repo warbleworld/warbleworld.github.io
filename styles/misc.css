@@ -1,6 +1,10 @@
 /* ── EMPTY STATE ── */
 
 .empty-msg {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 30px;
   text-align: center;
   color: var(--text-dim);
