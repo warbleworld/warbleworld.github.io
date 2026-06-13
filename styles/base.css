@@ -1,0 +1,73 @@
+/* ═══════════════════════════════════════
+   TURN OF FORTUNE'S WHEEL — STYLES
+   ═══════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --gold: #c9a84c;
+  --gold-dim: #8a6d2b;
+  --bg: #0a0a0f;
+  --bg-card: #111118;
+  --bg-raised: #16161f;
+  --text: #d4d0c8;
+  --text-dim: #7a7668;
+  --text-bright: #f0ece0;
+  --border: #222230;
+  --radius: 8px;
+
+  /* Category color tokens */
+  --cat-weapon: #cc0000;
+  --cat-weapon-bg: rgba(168, 50, 50, 0.15);
+  --cat-equipment: #e69138;
+  --cat-equipment-bg: rgba(50, 104, 168, 0.15);
+  --cat-consumables: #6aa84f;
+  --cat-consumables-bg: rgba(50, 168, 72, 0.15);
+  --cat-tools-and-containers: #3c78d8;
+  --cat-tools-and-containers-bg: rgba(168, 120, 50, 0.15);
+  --cat-loot: #674ea7;
+  --cat-loot-bg: rgba(153, 50, 168, 0.15);
+
+  --cat-cantrip: #c9daf8;
+  --cat-cantrip-bg: rgba(150, 180, 230, 0.15);
+  --cat-1st: #b6c9eb;
+  --cat-1st-bg: rgba(135, 170, 225, 0.15);
+  --cat-2nd: #a3b9df;
+  --cat-2nd-bg: rgba(120, 160, 220, 0.15);
+  --cat-3rd: #8fa8d2;
+  --cat-3rd-bg: rgba(105, 150, 215, 0.15);
+  --cat-4th: #7c98c6;
+  --cat-4th-bg: rgba(90, 140, 210, 0.15);
+  --cat-5th: #6987b9;
+  --cat-5th-bg: rgba(75, 130, 205, 0.15);
+  --cat-6th: #5676ad;
+  --cat-6th-bg: rgba(65, 120, 195, 0.15);
+  --cat-7th: #4266a0;
+  --cat-7th-bg: rgba(55, 110, 185, 0.15);
+  --cat-8th: #2f5694;
+  --cat-8th-bg: rgba(50, 104, 175, 0.15);
+  --cat-9th: #1c4587;
+  --cat-9th-bg: rgba(50, 98, 168, 0.15);
+  --cat-unprepared: #666666;
+  --cat-unprepared-bg: rgba(102, 102, 102, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}

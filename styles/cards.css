@@ -1,0 +1,149 @@
+/* ── CARD GRID ── */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr));
+  gap: 12px;
+}
+
+.item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  /* Uniform card height */
+  height: 150px;
+}
+
+.item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-color: var(--gold-dim);
+}
+
+.item-card.filter-hidden {
+  display: none;
+}
+
+.card-stripe {
+  height: 3px;
+}
+
+.card-body {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px 8px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.card-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.card-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-thumb-fallback {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.card-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.card-star {
+  font-size: 0.55rem;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+.card-count {
+  margin-left: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.card-desc {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  /* Clamp to 4 lines on the card, with a fallback max-height for older browsers. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-desc p {
+  display: block;
+  margin: 0 0 0.25em 0;
+}
+
+.card-desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Rich text styles (shared by card and modal) */
+.rich-desc p {
+  margin: 0 0 6px;
+}
+
+.rich-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.rich-desc a {
+  color: #8ab4d6;
+  text-decoration: underline;
+}
+
+.rich-desc strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.rich-desc em {
+  font-style: italic;
+}
+
+.rich-desc .desc-li {
+  display: block;
+  padding-left: 4px;
+}

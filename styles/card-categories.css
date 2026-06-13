@@ -1,0 +1,159 @@
+/* ── Card category colors: Inventory ── */
+
+.cat-weapon .card-stripe {
+  background: var(--cat-weapon);
+}
+
+.cat-weapon .card-tag {
+  background: rgba(168, 50, 50, 0.2);
+  color: var(--cat-weapon);
+}
+
+.cat-equipment .card-stripe {
+  background: var(--cat-equipment);
+}
+
+.cat-equipment .card-tag {
+  background: rgba(50, 104, 168, 0.2);
+  color: var(--cat-equipment);
+}
+
+.cat-consumables .card-stripe {
+  background: var(--cat-consumables);
+}
+
+.cat-consumables .card-tag {
+  background: rgba(50, 168, 72, 0.2);
+  color: var(--cat-consumables);
+}
+
+.cat-tools-and-containers .card-stripe {
+  background: var(--cat-tools-and-containers);
+}
+
+.cat-tools-and-containers .card-tag {
+  background: rgba(168, 120, 50, 0.2);
+  color: var(--cat-tools-and-containers);
+}
+
+.cat-loot .card-stripe {
+  background: var(--cat-loot);
+}
+
+.cat-loot .card-tag {
+  background: rgba(153, 50, 168, 0.2);
+  color: var(--cat-loot);
+}
+
+/* ── Card category colors: Features ── */
+
+.cat-class .card-stripe {
+  background: var(--cat-equipment);
+}
+
+.cat-class .card-tag {
+  background: var(--cat-equipment-bg);
+  color: var(--cat-equipment);
+}
+
+.cat-species .card-stripe {
+  background: var(--cat-consumables);
+}
+
+.cat-species .card-tag {
+  background: var(--cat-consumables-bg);
+  color: var(--cat-consumables);
+}
+
+.cat-background .card-stripe {
+  background: var(--cat-tools-and-containers);
+}
+
+.cat-background .card-tag {
+  background: var(--cat-tools-and-containers-bg);
+  color: var(--cat-tools-and-containers);
+}
+
+.cat-other .card-stripe {
+  background: var(--cat-loot);
+}
+
+.cat-other .card-tag {
+  background: var(--cat-loot-bg);
+  color: var(--cat-loot);
+}
+
+/* ── Card category colors: Spell levels ── */
+
+.spell-0 .card-stripe {
+  background: #8ab4d6;
+}
+
+.spell-0 .card-tag {
+  background: rgba(138, 180, 214, 0.2);
+  color: #8ab4d6;
+}
+
+.spell-1 .card-stripe {
+  background: #6fa3cc;
+}
+
+.spell-1 .card-tag {
+  background: rgba(111, 163, 204, 0.2);
+  color: #6fa3cc;
+}
+
+.spell-2 .card-stripe {
+  background: #5592c2;
+}
+
+.spell-2 .card-tag {
+  background: rgba(85, 146, 194, 0.2);
+  color: #5592c2;
+}
+
+.spell-3 .card-stripe {
+  background: #3e80b5;
+}
+
+.spell-3 .card-tag {
+  background: rgba(62, 128, 181, 0.2);
+  color: #3e80b5;
+}
+
+.spell-4 .card-stripe {
+  background: #2e6ea5;
+}
+
+.spell-4 .card-tag {
+  background: rgba(46, 110, 165, 0.2);
+  color: #2e6ea5;
+}
+
+.spell-5 .card-stripe {
+  background: #245d94;
+}
+
+.spell-5 .card-tag {
+  background: rgba(36, 93, 148, 0.2);
+  color: #5b9acc;
+}
+
+/* ── Card category colors: Unprepared ── */
+
+.cat-unprepared .card-stripe {
+  background: #555;
+}
+
+.cat-unprepared .card-tag {
+  background: rgba(85, 85, 85, 0.2);
+  color: #888;
+}
+
+.cat-unprepared .card-title {
+  color: var(--text-dim);
+}
+
+.cat-unprepared .card-thumb {
+  opacity: 0.5;
+}

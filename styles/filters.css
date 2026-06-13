@@ -1,0 +1,135 @@
+/* ── FILTER PILLS ── */
+
+.filter-bar {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 0 0 12px;
+}
+
+.filter-pill {
+  padding: 4px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+}
+
+.filter-pill.active {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+/* Category-tinted filter states */
+.filter-pill[data-filter="Weapon"].active {
+  background: var(--cat-weapon-bg);
+  border-color: var(--cat-weapon);
+  color: var(--cat-weapon);
+}
+
+.filter-pill[data-filter="Class"].active,
+.filter-pill[data-filter="Equipment"].active {
+  background: var(--cat-equipment-bg);
+  border-color: var(--cat-equipment);
+  color: var(--cat-equipment);
+}
+
+.filter-pill[data-filter="Species"].active,
+.filter-pill[data-filter="Consumables"].active {
+  background: var(--cat-consumables-bg);
+  border-color: var(--cat-consumables);
+  color: var(--cat-consumables);
+}
+
+.filter-pill[data-filter="Background"].active,
+.filter-pill[data-filter="Tools and Containers"].active {
+  background: var(--cat-tools-and-containers-bg);
+  border-color: var(--cat-tools-and-containers);
+  color: var(--cat-tools-and-containers);
+}
+
+.filter-pill[data-filter="Other"].active,
+.filter-pill[data-filter="Loot"].active {
+  background: var(--cat-loot-bg);
+  border-color: var(--cat-loot);
+  color: var(--cat-loot);
+}
+
+.filter-pill[data-filter="Cantrip"].active {
+  background: var(--cat-cantrip-bg);
+  border-color: var(--cat-cantrip);
+  color: var(--cat-cantrip);
+}
+
+.filter-pill[data-filter="1st Level"].active {
+  background: var(--cat-1st-bg);
+  border-color: var(--cat-1st);
+  color: var(--cat-1st);
+}
+
+.filter-pill[data-filter="2nd Level"].active {
+  background: var(--cat-2nd-bg);
+  border-color: var(--cat-2nd);
+  color: var(--cat-2nd);
+}
+
+.filter-pill[data-filter="3rd Level"].active {
+  background: var(--cat-3rd-bg);
+  border-color: var(--cat-3rd);
+  color: var(--cat-3rd);
+}
+
+.filter-pill[data-filter="4th Level"].active {
+  background: var(--cat-4th-bg);
+  border-color: var(--cat-4th);
+  color: var(--cat-4th);
+}
+
+.filter-pill[data-filter="5th Level"].active {
+  background: var(--cat-5th-bg);
+  border-color: var(--cat-5th);
+  color: var(--cat-5th);
+}
+
+.filter-pill[data-filter="6th Level"].active {
+  background: var(--cat-6th-bg);
+  border-color: var(--cat-6th);
+  color: var(--cat-6th);
+}
+
+.filter-pill[data-filter="7th Level"].active {
+  background: var(--cat-7th-bg);
+  border-color: var(--cat-7th);
+  color: var(--cat-7th);
+}
+
+.filter-pill[data-filter="8th Level"].active {
+  background: var(--cat-8th-bg);
+  border-color: var(--cat-8th);
+  color: var(--cat-8th);
+}
+
+.filter-pill[data-filter="9th Level"].active {
+  background: var(--cat-9th-bg);
+  border-color: var(--cat-9th);
+  color: var(--cat-9th);
+}
+
+.filter-pill[data-filter="Unprepared"].active {
+  background: var(--cat-unprepared-bg);
+  border-color: var(--cat-unprepared);
+  color: var(--cat-unprepared);
+}

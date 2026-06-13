@@ -1,0 +1,259 @@
+/* ── CHARACTER SHEET ── */
+
+.cs {
+  display: grid;
+  grid-template-columns: min(250px, 100%) 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .cs {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left: portrait + abilities */
+
+.cs-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cs-portrait {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.cs-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.cs-portrait-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 14px 12px;
+  background: linear-gradient(0deg, rgba(5, 5, 10, 0.95) 0%, rgba(5, 5, 10, 0.7) 60%, transparent 100%);
+}
+
+.cs-portrait-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.cs-portrait-meta {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.cs-radar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.cs-radar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cs-ab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.cs-ab-box {
+  text-align: center;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 2px 5px;
+}
+
+.cs-ab-label {
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.cs-ab-score {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  line-height: 1;
+}
+
+.cs-ab-mod {
+  font-size: 0.65rem;
+  color: var(--gold);
+  margin-top: 1px;
+}
+
+/* Right: stats, saves, skills, counters */
+
+.cs-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 500px) {
+  .cs-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cs-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.cs-stat-val {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.cs-stat-label {
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+
+.cs-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  overflow: hidden;
+}
+
+.cs-section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  list-style: none;
+}
+
+.cs-pills li {
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  letter-spacing: 0.3px;
+}
+
+.cs-pills .prof-yes {
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  color: var(--gold);
+}
+
+.cs-pills .prof-no {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  opacity: 0.45;
+}
+
+/* ── Counters & Pips ── */
+
+.cs-counters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(170px, 100%), 1fr));
+  gap: 8px;
+}
+
+.cs-counter {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.cs-counter-label {
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+}
+
+.cs-counter-pool {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.cs-pips {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cs-pip-sep {
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+  margin: 0 2px;
+}
+
+.cs-pip {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cs-pip.filled {
+  background: var(--pip-color);
+  border-color: var(--pip-color);
+  box-shadow: 0 0 5px rgba(201, 168, 76, 0.2);
+}
+
+.cs-pip:hover {
+  border-color: var(--gold);
+}
