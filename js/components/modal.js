@@ -38,6 +38,7 @@ export function showCardModal(id) {
     `</div>`;
 
   document.body.appendChild(backdrop);
+  document.body.classList.add("modal-open");
 
   // Close when clicking the backdrop (but not the modal body).
   backdrop.addEventListener("click", (event) => {
@@ -51,6 +52,7 @@ export function showCardModal(id) {
 export function closeCardModal() {
   const existing = document.querySelector(".card-modal-backdrop");
   if (existing) existing.remove();
+  document.body.classList.remove("modal-open");
   document.removeEventListener("keydown", handleModalEscape);
 }
 

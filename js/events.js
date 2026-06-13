@@ -139,6 +139,9 @@ function handleTouchEnd(e) {
   // Ignore vertical scrolls and short swipes.
   if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dy) > SWIPE_MAX_Y) return;
 
+  // Don't swipe when a modal is open
+  if (document.querySelector(".card-modal-backdrop")) return;
+
   const activePage = document.querySelector(".player-page.active");
   const activeInc = activePage?.querySelector(".inc-content.active");
   const tabBar = activeInc?.querySelector(".tab-bar");
