@@ -17,6 +17,18 @@ export const PORTRAITS = {
 };
 
 /**
+ * Default incarnation to activate for each player page on load.
+ * Keys are player page IDs; values are incarnation IDs.
+ * If the specified incarnation is disabled, `ensureAvailableDefaults`
+ * will automatically fall back to the first available one.
+ */
+export const DEFAULT_INCARNATIONS = {
+  p1: "lucia",
+  p2: "karmine",
+  p3: "christian",
+};
+
+/**
  * Incarnations that are temporarily unavailable. Their buttons are disabled
  * and their content is never built.
  */

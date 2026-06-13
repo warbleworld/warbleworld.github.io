@@ -3,7 +3,7 @@
 // Loads card data, prepares the static markup, and boots the UI.
 // ─────────────────────────────────────────────────────────
 
-import { PORTRAITS, DISABLED_INCARNATIONS } from "./config.js";
+import { PORTRAITS, DEFAULT_INCARNATIONS, DISABLED_INCARNATIONS } from "./config.js";
 import { loadCards } from "./store.js";
 import { resolveImageUrl, installImageFallback } from "./core/images.js";
 import { buildIncarnation } from "./components/incarnation.js";
@@ -25,6 +25,34 @@ function populateAvatars() {
 function markDisabledIncarnations() {
   DISABLED_INCARNATIONS.forEach((id) => {
     document.querySelector(`.inc-btn[data-inc="${id}"]`)?.classList.add("inc-disabled");
+  });
+}
+
+/**
+ * Apply the configured default incarnation for each player page.
+ * Runs before the disabled check so disabled defaults are handled gracefully.
+ */
+function applyDefaultIncarnations() {
+  document.querySelectorAll(".player-page").forEach((page) => {
+    const defaultId = DEFAULT_INCARNATIONS[page.id];
+    if (!defaultId) return;
+
+    const targetBtn = page.querySelector(`.inc-btn[data-inc="${defaultId}"]`);
+    if (!targetBtn) return;
+
+    // Deactivate current active incarnation
+    const prevContent = page.querySelector(".inc-content.active");
+    const prevBtn = page.querySelector(".inc-btn.active");
+    if (prevContent) prevContent.classList.remove("active");
+    if (prevBtn) {
+      prevBtn.classList.remove("active");
+      prevBtn.setAttribute("aria-selected", "false");
+    }
+
+    // Activate the desired default
+    targetBtn.classList.add("active");
+    targetBtn.setAttribute("aria-selected", "true");
+    document.getElementById(defaultId)?.classList.add("active");
   });
 }
 
@@ -71,6 +99,7 @@ function selectRandomPlayer() {
 function initApp() {
   populateAvatars();
   markDisabledIncarnations();
+  applyDefaultIncarnations();
   ensureAvailableDefaults();
   installEventHandlers();
   selectRandomPlayer();
