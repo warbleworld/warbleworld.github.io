@@ -4,7 +4,7 @@
 // ─────────────────────────────────────────────────────────
 
 import { DISABLED_INCARNATIONS } from "../config.js";
-import { CHARACTERS, LEVEL } from "../data/characters.js";
+import { LEVEL, CHARACTERS } from "../data/characters.js";
 import { buildTabBar, buildTabPanel } from "./tabs.js";
 import { renderSheet } from "./sheet.js";
 import { buildCardSection } from "./cards.js";
