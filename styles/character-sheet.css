@@ -296,6 +296,8 @@
   box-shadow: 0 0 5px rgba(201, 168, 76, 0.2);
 }
 
-.cs-pip:hover {
-  border-color: var(--gold);
+@media (hover: hover) and (pointer: fine) {
+  .cs-pip:hover {
+    border-color: var(--gold);
+  }
 }

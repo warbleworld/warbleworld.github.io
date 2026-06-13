@@ -56,9 +56,11 @@
   gap: 8px;
 }
 
-.player-btn:hover {
-  color: var(--text);
-  background: var(--bg);
+@media (hover: hover) and (pointer: fine) {
+  .player-btn:hover {
+    color: var(--text);
+    background: var(--bg);
+  }
 }
 
 .player-btn.active {
@@ -148,9 +150,11 @@
   }
 }
 
-.inc-btn:hover {
-  border-color: var(--gold-dim);
-  color: var(--text);
+@media (hover: hover) and (pointer: fine) {
+  .inc-btn:hover {
+    border-color: var(--gold-dim);
+    color: var(--text);
+  }
 }
 
 .inc-btn.active {
@@ -172,9 +176,11 @@
   pointer-events: auto;
 }
 
-.inc-disabled:hover {
-  border-color: var(--border);
-  color: var(--text-dim);
+@media (hover: hover) and (pointer: fine) {
+  .inc-disabled:hover {
+    border-color: var(--border);
+    color: var(--text-dim);
+  }
 }
 
 .inc-content {

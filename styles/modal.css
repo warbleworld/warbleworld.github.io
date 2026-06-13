@@ -112,8 +112,10 @@ body.modal-open {
   transition: color 0.15s;
 }
 
-.card-modal-close:hover {
-  color: var(--text);
+@media (hover: hover) and (pointer: fine) {
+  .card-modal-close:hover {
+    color: var(--text);
+  }
 }
 
 .card-modal-body {

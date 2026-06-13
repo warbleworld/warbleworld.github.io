@@ -35,8 +35,10 @@
   }
 }
 
-.tab-btn:hover {
-  color: var(--text);
+@media (hover: hover) and (pointer: fine) {
+  .tab-btn:hover {
+    color: var(--text);
+  }
 }
 
 .tab-btn.active {
