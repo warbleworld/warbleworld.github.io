@@ -6,8 +6,6 @@
 import { buildIncarnation } from "./components/incarnation.js";
 import { showCardModal, closeCardModal } from "./components/modal.js";
 
-const SWIPE_THRESHOLD = 50;
-const SWIPE_MAX_Y = 80;
 const viewScrollPositions = new Map();
 
 function getDocumentScrollTop() {
@@ -239,39 +237,6 @@ function handleClick(e) {
     handleFilterClick(e);
 }
 
-// ── Swipe to switch tabs ────────────────────────────────
-
-let touchStartX = 0;
-let touchStartY = 0;
-
-function handleTouchStart(e) {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-}
-
-function handleTouchEnd(e) {
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  const dy = e.changedTouches[0].clientY - touchStartY;
-
-  // Ignore vertical scrolls and short swipes.
-  if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dy) > SWIPE_MAX_Y) return;
-
-  // Don't swipe when a modal is open
-  if (document.querySelector(".card-modal-backdrop")) return;
-
-  const activePage = document.querySelector(".player-page.active");
-  const activeInc = activePage?.querySelector(".inc-content.active");
-  const tabBar = activeInc?.querySelector(".tab-bar");
-  if (!tabBar) return;
-
-  const tabs = Array.from(tabBar.querySelectorAll(".tab-btn"));
-  const activeIdx = tabs.findIndex((t) => t.classList.contains("active"));
-  if (activeIdx === -1) return;
-
-  const newIdx = dx < 0 ? activeIdx + 1 : activeIdx - 1;
-  if (newIdx >= 0 && newIdx < tabs.length) tabs[newIdx].click();
-}
-
 // ── Player switcher ─────────────────────────────────────
 
 /** Activate a player page and build its visible incarnation. */
@@ -300,8 +265,6 @@ function activatePlayer(btn) {
  */
 export function installEventHandlers() {
   document.addEventListener("click", handleClick);
-  document.addEventListener("touchstart", handleTouchStart, { passive: true });
-  document.addEventListener("touchend", handleTouchEnd, { passive: true });
 
   document.querySelectorAll(".player-btn").forEach((btn) => {
     btn.addEventListener("click", () => activatePlayer(btn));
