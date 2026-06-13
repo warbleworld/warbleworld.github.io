@@ -79,10 +79,13 @@ export function buildFilterBar(items, gridId, defaultExclude, unprepared) {
   if (!items.length) return "";
 
   const categories = [];
+  let hasUnprepared = false;
   items.forEach((item) => {
-    const tag = effectiveTag(item.id, unprepared);
+    if (unprepared && unprepared.has(item.id)) hasUnprepared = true;
+    const tag = effectiveTag(item.id);
     if (!categories.includes(tag)) categories.push(tag);
   });
+  if (hasUnprepared && !categories.includes("Unprepared")) categories.push("Unprepared");
   if (categories.length <= 1) return "";
 
   const excluded = defaultExclude || [];
@@ -118,6 +121,7 @@ export function renderCard(id, starred, count = 1, titleOverride, hidden = false
 
   const tag = effectiveTag(id, unprepared);
   const cls = cardClass(tag);
+  const isUnprepared = !!(unprepared && unprepared.has(id));
   const displayTitle = titleOverride || card.title;
   const star = starred && starred.has(id)
     ? '<span class="card-star" title="Starting item">⭐</span>'
@@ -126,15 +130,15 @@ export function renderCard(id, starred, count = 1, titleOverride, hidden = false
   const hiddenCls = hidden ? " filter-hidden" : "";
 
   return (
-    `<div class="item-card ${cls}${hiddenCls}" data-cat="${escapeAttr(card.tag)}" data-card-id="${escapeAttr(id)}">` +
-    `<div class="card-stripe"></div>` +
-    `<div class="card-body">` +
-    thumbHtml(card, "card-thumb") +
-    `<div class="card-text">` +
-    `<div class="card-title">${star}${displayTitle}${qty}</div>` +
-    `<div class="card-desc rich-desc">${formatDesc(card.desc)}</div>` +
-    `</div>` +
-    `</div>` +
+    `<div class="item-card ${cls}${hiddenCls}" data-cat="${escapeAttr(card.tag)}"${isUnprepared ? ' data-unprepared="true"' : ""} data-card-id="${escapeAttr(id)}">` +
+      `<div class="card-stripe"></div>` +
+      `<div class="card-body">` +
+        thumbHtml(card, "card-thumb") +
+        `<div class="card-text">` +
+          `<div class="card-title">${star}${displayTitle}${qty}</div>` +
+          `<div class="card-desc rich-desc">${formatDesc(card.desc)}</div>` +
+        `</div>` +
+      `</div>` +
     `<div class="card-footer"><span>${card.footer || ""}</span><span class="card-tag">${card.tag}</span></div>` +
     `</div>`
   );

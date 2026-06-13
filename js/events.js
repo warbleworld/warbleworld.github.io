@@ -91,9 +91,18 @@ function handleFilterClick(e) {
   const activeFilters = [];
   bar.querySelectorAll(".filter-pill.active").forEach((p) => activeFilters.push(p.dataset.filter));
   const showAll = activeFilters.includes("all");
+  const unpreparedActive = activeFilters.includes("Unprepared");
+  const anyLevelActive = activeFilters.some((f) => f !== "all" && f !== "Unprepared");
 
   grid.querySelectorAll(".item-card").forEach((card) => {
-    card.classList.toggle("filter-hidden", !showAll && !activeFilters.includes(card.dataset.cat));
+    const levelActive = activeFilters.includes(card.dataset.cat);
+    const isUnprepared = card.dataset.unprepared === "true";
+    const show = showAll
+      ? true
+      : isUnprepared
+        ? unpreparedActive && (anyLevelActive ? levelActive : true)
+        : levelActive;
+    card.classList.toggle("filter-hidden", !show);
   });
   return true;
 }
