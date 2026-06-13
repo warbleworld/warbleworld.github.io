@@ -29,7 +29,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 15, 0.95);
+  background: var(--bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -44,7 +44,7 @@
 .player-btn {
   flex: 1;
   padding: 12px 8px;
-  background: none;
+  background: var(--bg);
   border: none;
   border-bottom: 3px solid transparent;
   color: var(--text-dim);
@@ -58,7 +58,7 @@
 
 .player-btn:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg);
 }
 
 .player-btn.active {
