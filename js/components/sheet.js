@@ -17,9 +17,21 @@ const PIP_LIMIT = 20;
  */
 function renderProfList(items) {
   const pills = items
-    .map((item) => `<li class="${item.proficient ? "prof-yes" : "prof-no"}">${item.label} ${item.bonus}</li>`)
+    .map((item) => {
+      const text = item.bonus ? `${item.label} ${item.bonus}` : item.label;
+      return `<li class="${item.proficient ? "prof-yes" : "prof-no"}">${text}</li>`;
+    })
     .join("");
   return `<ul class="cs-pills">${pills}</ul>`;
+}
+
+/**
+ * Render a simple list of labelled pills.
+ * @param {string[]} items
+ * @returns {string}
+ */
+function renderTagList(items) {
+  return renderProfList(items.map((item) => ({ label: item, bonus: "", proficient: true })));
 }
 
 /**
@@ -74,6 +86,39 @@ function computeSkills(data) {
 }
 
 /**
+ * Render one optional tag section if data is present.
+ * @param {string} title
+ * @param {string[] | undefined} items
+ * @returns {string}
+ */
+function renderOptionalTagSection(title, items) {
+  if (!Array.isArray(items) || items.length === 0) return "";
+  return `<div class="cs-section"><div class="cs-section-title">${title}</div>${renderTagList(items)}</div>`;
+}
+
+/**
+ * Render the spellcasting stats block when a character has spells.
+ * @param {object} data
+ * @returns {string}
+ */
+function renderSpellcastingStats(data) {
+  if (!Array.isArray(data.spells) || data.spells.length === 0) return "";
+
+  const spellAbility = ABILITIES.includes(data.spellcastingAbility) ? data.spellcastingAbility : "INT";
+  const spellMod = modifier(data.ab[spellAbility]);
+  const attackBonus = spellMod + data.prof;
+  const spellDC = 8 + spellMod + data.prof;
+
+  return `<div class="cs-section">` +
+    `<div class="cs-section-title">Spellcasting (${spellAbility})</div>` +
+    `<div class="cs-stats cs-stats-spellcasting">` +
+      `<div class="cs-stat"><div class="cs-stat-val">${signed(attackBonus)}</div><div class="cs-stat-label">Attack</div></div>` +
+      `<div class="cs-stat"><div class="cs-stat-val">${(spellDC)}</div><div class="cs-stat-label">Spell DC</div></div>` +
+    `</div>` +
+  `</div>`;
+}
+
+/**
  * Render a full character sheet.
  * @param {object} data - Character definition.
  * @returns {string} HTML string
@@ -87,6 +132,7 @@ export function renderSheet(data, level) {
       `<div class="cs-ab-mod">${abilityMod(data.ab[label])}</div>` +
       `</div>`,
   ).join("");
+  const speed = data.speed ?? 30;
 
   return `<div class="cs">` +
     `<div class="cs-left">` +
@@ -107,11 +153,19 @@ export function renderSheet(data, level) {
       `<div class="cs-stats">` +
         `<div class="cs-stat"><div class="cs-stat-val">${data.ac}</div><div class="cs-stat-label">Armor Class</div></div>` +
         `<div class="cs-stat"><div class="cs-stat-val">${data.hp}</div><div class="cs-stat-label">Hit Points</div></div>` +
-        `<div class="cs-stat"><div class="cs-stat-val">${data.init}</div><div class="cs-stat-label">Initiative</div></div>` +
+        `<div class="cs-stat"><div class="cs-stat-val">${signed(modifier(data.ab["DEX"]))}</div><div class="cs-stat-label">Initiative</div></div>` +
+        `<div class="cs-stat"><div class="cs-stat-val">${speed}</div><div class="cs-stat-label">Speed</div></div>` +
         `<div class="cs-stat"><div class="cs-stat-val">+${data.prof}</div><div class="cs-stat-label">Proficiency</div></div>` +
       `</div>` +
+      renderSpellcastingStats(data) +
       `<div class="cs-section"><div class="cs-section-title">Saving Throws</div>${renderProfList(computeSaves(data))}</div>` +
       `<div class="cs-section"><div class="cs-section-title">Skills</div>${renderProfList(computeSkills(data))}</div>` +
+      renderOptionalTagSection("Tools", data.tools) +
+      renderOptionalTagSection("Senses", data.senses) +
+      renderOptionalTagSection("Resistances", data.resistances) +
+      renderOptionalTagSection("Armor", data.armor) +
+      renderOptionalTagSection("Weapons", data.weapons) +
+      renderOptionalTagSection("Languages", data.languages) +
       `<div class="cs-section"><div class="cs-section-title">Counters &amp; Resources</div>${renderCounters(data.counters)}</div>` +
     `</div>` +
   `</div>`;

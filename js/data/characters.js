@@ -19,6 +19,7 @@ export const CHARACTERS = {
   vespera: {
     name: "Vespera", race: "Tiefling", class: "Divine Soul Sorcerer", img: PORTRAITS.vespera,
     ab: { STR: 8, DEX: 14, CON: 12, INT: 10, WIS: 13, CHA: 18 }, prof: PROF_BONUS, ac: 13, hp: 22, init: "+2",
+    spellcastingAbility: "CHA",
     saves: ["CHA", "DEX"],
     skills: ["Deception", "Intimidation", "Performance", "Persuasion", "Religion"],
     counters: [
@@ -34,8 +35,13 @@ export const CHARACTERS = {
   lucia: {
     name: "Lucia", race: "Fallen Aasimar", class: "Shadow Sorcerer", img: PORTRAITS.lucia,
     ab: { STR: 9, DEX: 12, CON: 15, INT: 10, WIS: 10, CHA: 20 }, prof: PROF_BONUS, ac: 11, hp: 38, init: "+1",
+    spellcastingAbility: "CHA",
     saves: ["CON", "CHA"],
     skills: ["Arcana", "Intimidation", "Persuasion", "Religion"],
+    senses: ["Darkvision | 120"],
+    resistances: ["Necrotic", "Radiant"],
+    weapons: ["Dagger", "Dart", "Light Crossbow", "Quarterstaff", "Sling"],
+    languages: ["Common", "Abyssal", "Celestial", "Infernal"],
     counters: [
       { name: "Hit Dice (d6)", max: 6, cur: 6, color: "#d4d0c8" },
       { name: "Sorcery Points", max: 6, cur: 6, color: "#d4d0c8" },
@@ -50,9 +56,14 @@ export const CHARACTERS = {
   },
   karmine: {
     name: "Karmine", race: "High Elf", class: "Bladesinger Wizard", img: PORTRAITS.karmine,
-    ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, prof: PROF_BONUS, ac: 15, hp: 38, init: "+3",
+    ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, prof: PROF_BONUS, ac: 15, hp: 38, init: "+3", speed: 35,
+    spellcastingAbility: "INT",
     saves: ["INT", "WIS"],
     skills: ["History", "Arcana", "Perception", "Insight", "Performance", "Investigation"],
+    senses: ["Darkvision | 60"],
+    armor: ["Light"],
+    weapons: ["Dagger", "Dart", "Light Crossbow", "Longbow", "Longsword", "Quarterstaff", "Rapier", "Shortbow", "Shortsword", "Sling"],
+    languages: ["Common", "Elvish", "Celestial", "Infernal", "Sylvan"],
     counters: [
       { name: "Hit Dice (d6)", max: 6, cur: 6, color: "#d4d0c8" },
       { name: "Arcane Recovery", max: 1, cur: 1, color: "#d4d0c8" },
@@ -86,6 +97,7 @@ export const CHARACTERS = {
   lucien: {
     name: "Lucien", race: "Wood Elf", class: "Light Cleric", img: PORTRAITS.lucien,
     ab: { STR: 10, DEX: 10, CON: 14, INT: 12, WIS: 17, CHA: 16 }, prof: PROF_BONUS, ac: 16, hp: 38, init: "+0",
+    spellcastingAbility: "WIS",
     saves: ["WIS", "CHA"],
     skills: ["Insight", "Medicine", "Persuasion", "Religion"],
     counters: [
@@ -102,6 +114,7 @@ export const CHARACTERS = {
   seabastion: {
     name: "Seabastion", race: "Sea Elf", class: "Tempest Cleric", img: PORTRAITS.seabastion,
     ab: { STR: 14, DEX: 10, CON: 14, INT: 10, WIS: 16, CHA: 12 }, prof: PROF_BONUS, ac: 18, hp: 28, init: "+0",
+    spellcastingAbility: "WIS",
     saves: ["WIS", "CHA"],
     skills: ["Athletics", "Medicine", "Nature", "Perception"],
     counters: [
@@ -117,10 +130,15 @@ export const CHARACTERS = {
   },
   christian: {
     name: "Christian", race: "Wood Elf", class: "Inquisitive Rogue", img: PORTRAITS.christian,
-    ab: { STR: 8, DEX: 20, CON: 12, INT: 12, WIS: 18, CHA: 12 }, prof: PROF_BONUS, ac: 16, hp: 39, init: "+5",
+    ab: { STR: 8, DEX: 20, CON: 12, INT: 12, WIS: 18, CHA: 12 }, prof: PROF_BONUS, ac: 16, hp: 39, speed: 35,
     saves: ["DEX", "INT"],
     skills: ["Sleight of Hand", "Perception", "Persuasion", "Stealth", "Insight", "Investigation", "Religion"],
     expertise: ["Investigation", "Perception", "Religion", "Stealth"],
+    tools: ["Dragonchess", "Thieves' Tools"],
+    senses: ["Darkvision | 60"],
+    armor: ["Light"],
+    weapons: ["Hand Crossbow", "Longbow", "Longsword", "Rapier", "Shortbow", "Shortsword", "Simple"],
+    languages: ["Common", "Dwarvish", "Elvish", "Thieves' Cant"],
     counters: [
       { name: "Hit Dice (d8)", max: 6, cur: 6, color: "#f0ece0" },
     ],
