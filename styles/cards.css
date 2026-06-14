@@ -61,6 +61,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Hidden + slightly blurred until the pixels finish decoding, then it
+   fades into place for a softer lazy-load reveal. */
+.card-thumb-img.is-loading {
+  opacity: 0;
+  filter: blur(8px);
 }
 
 .card-thumb-fallback {
@@ -75,6 +84,10 @@
   flex: 1;
   min-width: 0;
   word-break: break-word;
+  /* Column flex so .card-desc can fill the remaining height and clip overflow. */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .card-title {
@@ -106,17 +119,21 @@
   color: var(--text-dim);
   line-height: 1.5;
   position: relative;
+  /* Fill the leftover card space and clip overflow with the STANDARD box model.
+     We deliberately avoid -webkit-box / -webkit-line-clamp: that feature
+     mis-stacks multi-paragraph descriptions (\n\n -> </p><p>) into overlapping
+     lines on some WebKit engines, and it can't be feature-gated because old and
+     new WebKit both report support for it. This approach renders identically
+     everywhere. */
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
-  /* Older-browser fallback: cap to ~4 lines (4 x 1.5 line-height = 6em)
-     using the standard box model so block <p>/<br> children never overlap. */
-  max-height: 6em;
 }
 
-/* Older-browser fallback only: fade the clipped bottom edge so truncated text
-   dissolves into the card instead of being hard-cut mid-line. This is hidden
-   for modern browsers in the @supports block below. The gradient start uses
-   rgba(...0) rather than `transparent` to avoid a gray smude on old WebKit,
-   which interpolates the `transparent` keyword through black. */
+/* Fade the clipped bottom edge so truncated text dissolves into the card
+   instead of being hard-cut mid-line. Because .card-desc fills the available
+   height, this fade only darkens actual overflowing text; for short
+   descriptions the gradient sits over empty card background and is invisible. */
 .card-desc::after {
   content: "";
   position: absolute;
@@ -124,27 +141,13 @@
   right: 0;
   bottom: 0;
   height: 1.2em;
+  /* Prefixed form first for old WebKit (old Android/iOS), which ignore the
+     unprefixed function and would otherwise show no fade at all. rgba(...,0)
+     is used instead of the `transparent` keyword, which old WebKit
+     interpolates through black and renders as a gray smudge. */
+  background: -webkit-linear-gradient(top, rgba(17, 17, 24, 0), var(--bg-card));
   background: linear-gradient(to bottom, rgba(17, 17, 24, 0), var(--bg-card));
   pointer-events: none;
-}
-
-/* Modern browsers: keep the original native line-clamp + ellipsis, unchanged.
-   Gated on `aspect-ratio` (2021+, all modern engines) IN ADDITION to 
-   `webkit-line-clamp`, because some older WebKit engines falsely report
-   line-clamp support yet mishandle -webkit-box (causing overlap). Requiring a
-   genuinely modern feature keeps those older browsers on the fade fallback. */
-@supports (-webkit-line-clamp: 4) and (aspect-ratio: 1) {
-  .card-desc {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    text-overflow: ellipsis;
-    max-height: none;
-  }
-
-  .card-desc::after {
-    display: none;
-  }
 }
 
 .card-desc p {

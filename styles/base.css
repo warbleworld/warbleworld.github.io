@@ -58,6 +58,12 @@
 
 html {
   scrollbar-gutter: stable;
+  /* Disable browser scroll anchoring. When a view switch swaps the active
+     panel (old hidden, new shown), the browser would otherwise adjust
+     scrollTop to keep the prior visual position — fighting the explicit
+     per-view scroll restore in scroll.js and leaving a fresh tab stuck at
+     the position of the tab you came from. */
+  overflow-anchor: none;
 }
 
 body {
@@ -70,6 +76,7 @@ body {
   font-size: 14px;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-anchor: none;
 }
 
 main {

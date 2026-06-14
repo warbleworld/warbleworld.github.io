@@ -123,6 +123,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 18px;
+  height: 44px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 40px;
@@ -139,6 +140,7 @@
 @media (max-width: 400px) {
   .inc-btn {
     padding: 6px 12px;
+    height: 36px;
     gap: 5px;
     font-size: 0.65rem;
     letter-spacing: 0.5px;

@@ -22,4 +22,11 @@
   color: var(--text-dim);
   letter-spacing: 2px;
   text-transform: uppercase;
+  /* Remove the mobile double-tap zoom delay so the triple-tap easter
+     egg registers every tap consistently, and stop rapid taps from
+     selecting the footer text. */
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }

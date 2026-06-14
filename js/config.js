@@ -9,8 +9,10 @@
 export const PORTRAITS = {
   vespera: "vespera.png",
   lucia: "lucia.png",
+  speaksWithSpirits: "speaks-with-spirits.png",
   karmine: "karmine.png",
   rubic: "rubic.png",
+  akai: "akai.png",
   lucien: "lucien.png",
   seabastion: "seabastion.png",
   christian: "christian.png",
@@ -32,7 +34,7 @@ export const DEFAULT_INCARNATIONS = {
  * Incarnations that are temporarily unavailable. Their buttons are disabled
  * and their content is never built.
  */
-export const DISABLED_INCARNATIONS = ["vespera", "rubic", "lucien", "seabastion"];
+export const DISABLED_INCARNATIONS = ["vespera", "speaksWithSpirits", "rubic", "akai", "lucien", "seabastion"];
 
 /** Card-detail data source. */
 export const CARDS_URL = "cards.json";

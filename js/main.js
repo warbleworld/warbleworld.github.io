@@ -8,6 +8,8 @@ import { loadCards } from "./store.js";
 import { resolveImageUrl, installImageFallback } from "./core/images.js";
 import { buildIncarnation } from "./components/incarnation.js";
 import { installEventHandlers } from "./events.js";
+import { installD20Egg } from "./components/d20.js";
+import { installScroll } from "./scroll.js";
 
 /** Fill the incarnation avatar thumbnails from the portrait config. */
 function populateAvatars() {
@@ -95,22 +97,6 @@ function selectRandomPlayer() {
   if (activeInc) buildIncarnation(activeInc.id);
 }
 
-/**
- * Measure the stacked sticky bars and expose their heights as CSS
- * variables so each bar can stick directly beneath the previous one.
- */
-function updateStickyOffsets() {
-  const root = document.documentElement;
-  const playerBar = document.querySelector(".player-bar");
-  const activePage = document.querySelector(".player-page.active");
-  const incBar = activePage?.querySelector(".inc-bar");
-  const tabBar = activePage?.querySelector(".inc-content.active .tab-bar");
-
-  if (playerBar) root.style.setProperty("--player-bar-h", `${playerBar.offsetHeight}px`);
-  if (incBar) root.style.setProperty("--inc-bar-h", `${incBar.offsetHeight}px`);
-  if (tabBar) root.style.setProperty("--tab-bar-h", `${tabBar.offsetHeight}px`);
-}
-
 /** Prepare static markup and wire up the UI (runs after cards load). */
 function initApp() {
   populateAvatars();
@@ -118,10 +104,9 @@ function initApp() {
   applyDefaultIncarnations();
   ensureAvailableDefaults();
   installEventHandlers();
+  installD20Egg();
   selectRandomPlayer();
-  updateStickyOffsets();
-  window.addEventListener("resize", updateStickyOffsets);
-  document.addEventListener("click", () => requestAnimationFrame(updateStickyOffsets));
+  installScroll();
 }
 
 // Boot: graceful image fallback first, then load cards and init.

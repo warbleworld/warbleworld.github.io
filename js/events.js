@@ -5,6 +5,7 @@
 
 import { buildIncarnation } from "./components/incarnation.js";
 import { showCardModal, closeCardModal } from "./components/modal.js";
+import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
 
 // ── Delegated click handlers ────────────────────────────
 // Each returns `true` once it has handled the event, short-circuiting
@@ -14,6 +15,8 @@ function handleIncarnationClick(e) {
   const incBtn = e.target.closest(".inc-btn");
   if (!incBtn) return false;
   if (incBtn.classList.contains("inc-disabled")) return true; // swallow click
+
+  saveActiveScroll();
 
   const page = incBtn.closest(".player-page");
   page.querySelectorAll(".inc-btn").forEach((b) => {
@@ -30,12 +33,15 @@ function handleIncarnationClick(e) {
     target.classList.add("active");
     buildIncarnation(incBtn.dataset.inc);
   }
+  restoreActiveScroll();
   return true;
 }
 
 function handleTabClick(e) {
   const tabBtn = e.target.closest(".tab-btn");
   if (!tabBtn) return false;
+
+  saveActiveScroll();
 
   const bar = tabBtn.closest(".tab-bar");
   const parent = bar.parentElement;
@@ -51,6 +57,7 @@ function handleTabClick(e) {
 
   const target = document.getElementById(tabBtn.dataset.tab);
   if (target) target.classList.add("active");
+  restoreActiveScroll();
   return true;
 }
 
@@ -132,6 +139,8 @@ function handleClick(e) {
 
 /** Activate a player page and build its visible incarnation. */
 function activatePlayer(btn) {
+  saveActiveScroll();
+
   document.querySelectorAll(".player-btn").forEach((b) => {
     b.classList.remove("active");
     b.setAttribute("aria-selected", "false");
@@ -146,6 +155,7 @@ function activatePlayer(btn) {
   page.classList.add("active");
   const activeInc = page.querySelector(".inc-content.active");
   if (activeInc) buildIncarnation(activeInc.id);
+  restoreActiveScroll();
 }
 
 /**

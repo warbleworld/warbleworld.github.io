@@ -47,7 +47,7 @@ export function imageHtml(src, alt, className) {
   if (!url) return fallbackHtml(initial);
 
   return (
-    `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" class="${className}" ` +
+    `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" class="${className} is-loading" ` +
     `loading="lazy" decoding="async" data-fallback="${escapeAttr(initial)}">`
   );
 }
@@ -88,6 +88,18 @@ export function installImageFallback(root = document) {
       placeholder.className = "card-thumb-fallback";
       placeholder.textContent = initial;
       el.replaceWith(placeholder);
+    },
+    true,
+  );
+
+  // Fade images in once their pixels are ready. `load` does not bubble, so
+  // the listener runs in the capture phase. Images that were already cached
+  // (and so complete before this runs) are revealed immediately.
+  root.addEventListener(
+    "load",
+    (event) => {
+      const el = event.target;
+      if (el instanceof HTMLImageElement) el.classList.remove("is-loading");
     },
     true,
   );

@@ -50,9 +50,15 @@
   display: none;
 }
 
+/* Floor the content height to fill the viewport beneath the pinned bars.
+   This guarantees the page is always tall enough to scroll the title away
+   and keep the header anchored — even when a filter leaves only a few
+   cards. The empty space sits below the content, above the footer. */
 .tab-content.active {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 0;
+  min-height: calc(
+    100dvh - var(--player-bar-h, 48px) - var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
+  );
 }
