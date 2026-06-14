@@ -105,30 +105,35 @@
   font-size: 0.65rem;
   color: var(--text-dim);
   line-height: 1.5;
-  overflow: hidden;
-  /* Fallback for browsers without line-clamp support: cap to ~4 lines
-     (4 lines x 1.5 line-height = 6em) so text is never overlapped. */
   position: relative;
+  overflow: hidden;
+  /* Older-browser fallback: cap to ~4 lines (4 x 1.5 line-height = 6em)
+     using the standard box model so block <p>/<br> children never overlap. */
   max-height: 6em;
 }
 
-/* Fallback fade: soften the hard cut on legacy browsers so a partially
-   clipped line fades out instead of being sliced mid-glyph. */
+/* Older-browser fallback only: fade the clipped bottom edge so truncated text
+   dissolves into the card instead of being hard-cut mid-line. This is hidden
+   for modern browsers in the @supports block below. The gradient start uses
+   rgba(...0) rather than `transparent` to avoid a gray smude on old WebKit,
+   which interpolates the `transparent` keyword through black. */
 .card-desc::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 1.5em;
-  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  height: 1.2em;
+  background: linear-gradient(to bottom, rgba(17, 17, 24, 0), var(--bg-card));
   pointer-events: none;
 }
 
-/* Modern browsers: true multi-line clamp with ellipsis. Scoped behind
-   @supports so legacy engines that apply -webkit-box but ignore the clamp
-   (causing overlapping lines) never enter this block. */
-@supports (-webkit-line-clamp: 4) {
+/* Modern browsers: keep the original native line-clamp + ellipsis, unchanged.
+   Gated on `aspect-ratio` (2021+, all modern engines) IN ADDITION to 
+   `webkit-line-clamp`, because some older WebKit engines falsely report
+   line-clamp support yet mishandle -webkit-box (causing overlap). Requiring a
+   genuinely modern feature keeps those older browsers on the fade fallback. */
+@supports (-webkit-line-clamp: 4) and (aspect-ratio: 1) {
   .card-desc {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -137,7 +142,6 @@
     max-height: none;
   }
 
-  /* Clamp + ellipsis already handles truncation cleanly here. */
   .card-desc::after {
     display: none;
   }
