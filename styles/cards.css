@@ -105,12 +105,42 @@
   font-size: 0.65rem;
   color: var(--text-dim);
   line-height: 1.5;
-  /* Clamp to 4 lines on the card, with a fallback max-height for older browsers. */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* Fallback for browsers without line-clamp support: cap to ~4 lines
+     (4 lines x 1.5 line-height = 6em) so text is never overlapped. */
+  position: relative;
+  max-height: 6em;
+}
+
+/* Fallback fade: soften the hard cut on legacy browsers so a partially
+   clipped line fades out instead of being sliced mid-glyph. */
+.card-desc::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5em;
+  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  pointer-events: none;
+}
+
+/* Modern browsers: true multi-line clamp with ellipsis. Scoped behind
+   @supports so legacy engines that apply -webkit-box but ignore the clamp
+   (causing overlapping lines) never enter this block. */
+@supports (-webkit-line-clamp: 4) {
+  .card-desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    text-overflow: ellipsis;
+    max-height: none;
+  }
+
+  /* Clamp + ellipsis already handles truncation cleanly here. */
+  .card-desc::after {
+    display: none;
+  }
 }
 
 .card-desc p {
