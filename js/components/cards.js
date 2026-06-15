@@ -1,8 +1,8 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Card rendering: grids, filter pills, and individual cards.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
-import { escapeAttr } from "../core/html.js";
+import { escapeAttr, escapeHtml } from "../core/html.js";
 import { formatDesc } from "../core/markdown.js";
 import { thumbHtml } from "../core/images.js";
 import { getCard } from "../store.js";
@@ -122,7 +122,9 @@ export function renderCard(id, starred, count = 1, titleOverride, hidden = false
   const tag = effectiveTag(id, unprepared);
   const cls = cardClass(tag);
   const isUnprepared = !!(unprepared && unprepared.has(id));
-  const displayTitle = titleOverride || card.title;
+  const displayTitle = escapeHtml(titleOverride || card.title);
+  const displayFooter = escapeHtml(card.footer || "");
+  const displayTag = escapeHtml(card.tag || "");
   const star = starred && starred.has(id)
     ? '<span class="card-star" title="Starting item">⭐</span>'
     : "";
@@ -139,7 +141,7 @@ export function renderCard(id, starred, count = 1, titleOverride, hidden = false
           `<div class="card-desc rich-desc">${formatDesc(card.desc)}</div>` +
         `</div>` +
       `</div>` +
-    `<div class="card-footer"><span>${card.footer || ""}</span><span class="card-tag">${card.tag}</span></div>` +
+    `<div class="card-footer"><span>${displayFooter}</span><span class="card-tag">${displayTag}</span></div>` +
     `</div>`
   );
 }

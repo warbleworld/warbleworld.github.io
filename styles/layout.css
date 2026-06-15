@@ -1,4 +1,4 @@
-/* ── HEADER ── */
+/* -- HEADER -- */
 
 .header {
   padding: 28px 20px 20px;
@@ -7,12 +7,13 @@
 }
 
 .header-title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(1.3rem, 3.5vw, 2rem);
   font-weight: 900;
   color: var(--gold);
   letter-spacing: 3px;
   text-transform: uppercase;
+  line-height: 1;
 }
 
 .header-sub {
@@ -21,16 +22,16 @@
   letter-spacing: 4px;
   text-transform: uppercase;
   margin-top: 4px;
+  line-height: 1;
 }
 
-/* ── PLAYER SWITCHER ── */
+/* -- PLAYER SWITCHER -- */
 
 .player-bar {
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--bg);
-  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -39,11 +40,13 @@
   margin: 0 auto;
   display: flex;
   width: 100%;
+  height: 50px;
 }
 
 .player-btn {
   flex: 1;
-  padding: 12px 8px;
+  height: 50px;
+  padding: 0 8px;
   background: var(--bg);
   border: none;
   border-bottom: 3px solid transparent;
@@ -54,6 +57,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  line-height: 1;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -69,15 +73,17 @@
 }
 
 .player-btn-num {
-  font-family: 'Cinzel', serif;
+  font-family: 'Times New Roman', serif;
   font-weight: 700;
   font-size: 0.85rem;
+  line-height: 1;
 }
 
 .player-btn-name {
   font-size: 0.65rem;
   letter-spacing: 1px;
   text-transform: uppercase;
+  line-height: 1;
 }
 
 @media (max-width: 600px) {
@@ -90,7 +96,7 @@
   }
 }
 
-/* ── PLAYER PAGES & INCARNATION BAR ── */
+/* -- PLAYER PAGES & INCARNATION BAR -- */
 
 .player-page {
   max-width: 1000px;
@@ -119,6 +125,7 @@
 }
 
 .inc-btn {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -128,13 +135,14 @@
   border: 1px solid var(--border);
   border-radius: 40px;
   color: var(--text-dim);
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.25s;
   white-space: nowrap;
+  line-height: 1;
 }
 
 @media (max-width: 400px) {
@@ -149,6 +157,10 @@
   .inc-avatar {
     width: 22px;
     height: 22px;
+  }
+
+  .inc-avatar.card-thumb-fallback {
+    font-size: 0.65rem;
   }
 }
 
@@ -168,8 +180,24 @@
 .inc-avatar {
   width: 28px;
   height: 28px;
+  display: block;
+  flex: 0 0 auto;
   border-radius: 50%;
   object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.inc-avatar.is-loading {
+  opacity: 0;
+}
+
+.inc-avatar.card-thumb-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-raised);
+  line-height: 1;
 }
 
 .inc-disabled {
@@ -194,4 +222,7 @@
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  min-height: calc(
+    100dvh - var(--player-bar-h, 48px) - var(--inc-bar-h, 82px)
+  );
 }

@@ -1,4 +1,4 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Easter egg: a rollable 3D d20.
 // Rendered with WebGL (see d20-mesh.js) — a real icosahedron with
 // lit gold facets and engraved numbers that tumbles when rolled.
@@ -9,7 +9,7 @@
 // and touch, so no keyboard is required.
 //
 // Tap the die to roll. Close with the ✕ button, Esc, or the backdrop.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 import { createD20Renderer } from "./d20-mesh.js";
 
@@ -24,7 +24,7 @@ const FALLBACK_SVG = `
   <polygon points="100,10 177.94,55 177.94,145 100,190 22.06,145 22.06,55"
            fill="#b5933e" stroke="#e7cd80" stroke-width="2.5" stroke-linejoin="round"/>
   <text class="d20-num" x="100" y="118" text-anchor="middle" fill="#23190a"
-        font-family="'Cinzel', serif" font-weight="700" font-size="64">20</text>
+        font-family="'Times New Roman', serif" font-weight="700" font-size="64">20</text>
 </svg>`;
 
 let overlay = null;
@@ -74,6 +74,9 @@ function buildOverlay() {
     canvas.remove();
     die.innerHTML = FALLBACK_SVG;
     fallbackNum = die.querySelector(".d20-num");
+  }
+  if (renderer?.isLowEnd()) {
+    overlay.classList.add("low-end");
   }
 
   resultEl = document.createElement("div");
@@ -182,7 +185,10 @@ export function installD20Egg() {
   // touch and pen across all modern browsers, with no double-tap gesture
   // delay or click-coalescing — the things that made `click`/`touchstart`
   // unreliable for rapid taps on mobile.
-  const onTap = () => {
+  const onTap = (e) => {
+    // Safari can still smart-zoom non-button text on rapid taps unless the
+    // tap's default action is canceled explicitly.
+    if (e?.cancelable) e.preventDefault();
     const now = Date.now();
     taps = now - last <= TAP_WINDOW ? taps + 1 : 1;
     last = now;
@@ -193,10 +199,14 @@ export function installD20Egg() {
   };
 
   if (window.PointerEvent) {
-    footer.addEventListener("pointerup", onTap);
+    footer.addEventListener("pointerup", onTap, { passive: false });
+    // Defensive fallback: some iOS Safari builds still react to dblclick.
+    footer.addEventListener("dblclick", (e) => {
+      if (e.cancelable) e.preventDefault();
+    });
   } else {
     // Legacy fallback for browsers without Pointer Events.
-    footer.addEventListener("touchend", onTap, { passive: true });
+    footer.addEventListener("touchend", onTap, { passive: false });
     footer.addEventListener("click", onTap);
   }
 

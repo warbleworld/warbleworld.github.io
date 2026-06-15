@@ -1,7 +1,7 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // HTML escaping helpers
 // Shared by every module that interpolates data into markup.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 /**
  * Escape the characters that are unsafe inside HTML text nodes.

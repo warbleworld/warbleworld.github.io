@@ -1,10 +1,11 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Card detail modal.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 import { formatDesc } from "../core/markdown.js";
 import { thumbHtml } from "../core/images.js";
 import { getCard } from "../store.js";
+import { escapeHtml } from "../core/html.js";
 import { cardClass } from "./cards.js";
 
 /**
@@ -22,27 +23,32 @@ export function showCardModal(id) {
   backdrop.setAttribute("role", "dialog");
   backdrop.setAttribute("aria-label", card.title);
 
+  const displayTitle = escapeHtml(card.title || "");
+  const displayTag = escapeHtml(card.tag || "");
+  const displayFooter = escapeHtml(card.footer || "");
+  const displayMeta = displayFooter ? `${displayTag} · ${displayFooter}` : displayTag;
+
   backdrop.innerHTML =
     `<div class="card-modal">` +
     `<div class="card-modal-stripe ${cardClass(card.tag)}"><div class="card-stripe"></div></div>` +
     `<div class="card-modal-header">` +
     thumbHtml(card, "card-modal-thumb") +
     `<div>` +
-    `<div class="card-modal-title">${card.title}</div>` +
-    `<div class="card-modal-meta">${card.tag}${card.footer ? " · " + card.footer : ""}</div>` +
+    `<div class="card-modal-title">${displayTitle}</div>` +
+    `<div class="card-modal-meta">${displayMeta}</div>` +
     `</div>` +
     `<button class="card-modal-close" aria-label="Close">&times;</button>` +
     `</div>` +
     `<div class="card-modal-body"><div class="rich-desc">${formatDesc(card.desc)}</div></div>` +
-    `<div class="card-modal-footer ${cardClass(card.tag)}"><span>${card.footer || ""}</span><span class="card-tag">${card.tag}</span></div>` +
+    `<div class="card-modal-footer ${cardClass(card.tag)}"><span>${displayFooter}</span><span class="card-tag">${displayTag}</span></div>` +
     `</div>`;
 
   document.body.appendChild(backdrop);
   document.body.classList.add("modal-open");
 
   // Close when clicking the backdrop (but not the modal body).
-  backdrop.addEventListener("click", (event) => {
-    if (event.target === backdrop) closeCardModal();
+  backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) closeCardModal();
   });
 
   document.addEventListener("keydown", handleModalEscape);
@@ -56,6 +62,6 @@ export function closeCardModal() {
   document.removeEventListener("keydown", handleModalEscape);
 }
 
-function handleModalEscape(event) {
-  if (event.key === "Escape") closeCardModal();
+function handleModalEscape(e) {
+  if (e.key === "Escape") closeCardModal();
 }

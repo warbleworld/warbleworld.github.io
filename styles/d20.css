@@ -1,8 +1,8 @@
-/* ═══════════════════════════════════════
+/* =======================================
    EASTER EGG — 3D d20 (WebGL icosahedron)
    Summoned by tapping the footer three times
    (works the same with mouse or touch).
-   ═══════════════════════════════════════ */
+   ======================================= */
 
 .d20-overlay {
   position: fixed;
@@ -21,6 +21,11 @@
   /* Modal: swallow touch gestures so nothing behind can scroll. */
   touch-action: none;
   overscroll-behavior: contain;
+}
+
+.d20-overlay.low-end {
+  backdrop-filter: none;
+  background: radial-gradient(circle at center, rgba(12, 12, 20, 0.88), rgba(0, 0, 0, 0.97));
 }
 
 .d20-overlay:focus {
@@ -100,7 +105,7 @@ body.d20-modal-open {
   border-radius: 12px;
 }
 
-/* ── Fallback SVG (no WebGL) ── */
+/* -- Fallback SVG (no WebGL) -- */
 .d20-svg {
   width: 100%;
   height: 100%;
@@ -121,13 +126,13 @@ body.d20-modal-open {
   100% { transform: rotate(720deg) scale(1); }
 }
 
-/* ── Result + hint text ── */
+/* -- Result + hint text -- */
 .d20-result {
   /* Fixed line-height + matching min-height keeps the row the same
      size whether empty or filled, so rolling never shifts neighbours. */
   min-height: 1.2em;
   line-height: 1.2;
-  font-family: 'Cinzel', serif;
+  font-family: 'Times New Roman', serif;
   font-weight: 900;
   font-size: clamp(28px, 8vw, 46px);
   letter-spacing: 0.04em;
@@ -147,7 +152,7 @@ body.d20-modal-open {
 }
 
 .d20-hint {
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -155,5 +160,14 @@ body.d20-modal-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .d20-overlay {
+    backdrop-filter: none;
+  }
   .d20.rolling .d20-svg { animation-duration: 0.3s; }
+}
+
+@media (max-width: 640px) {
+  .d20-overlay {
+    backdrop-filter: blur(2px);
+  }
 }

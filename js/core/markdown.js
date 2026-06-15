@@ -1,10 +1,18 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Markdown-ish rich text renderer for card descriptions.
 // Supports: **bold**, *italic*, __underline__, `- item` lists,
 // [label](url) links, and newlines.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
-import { escapeHtml } from "./html.js";
+import { escapeAttr, escapeHtml } from "./html.js";
+
+const SAFE_LINK = /^(https?:|mailto:|tel:|\/|\.\/|\.\.\/|#)/i;
+
+function sanitizeLinkHref(rawUrl) {
+  const trimmed = String(rawUrl || "").trim();
+  if (!trimmed || !SAFE_LINK.test(trimmed)) return "#";
+  return trimmed;
+}
 
 /**
  * Parse `[label](url)` links, tolerating nested parentheses in the URL.
@@ -48,10 +56,10 @@ function parseLinks(html) {
       break;
     }
 
-    const url = html.slice(endLabel + 2, cursor);
+    const url = sanitizeLinkHref(html.slice(endLabel + 2, cursor));
     parsed +=
       html.slice(idx, start) +
-      `<a href="${url}" target="_blank" rel="noreferrer noopener">${label}</a>`;
+      `<a href="${escapeAttr(url)}" target="_blank" rel="noreferrer noopener">${label}</a>`;
     idx = cursor + 1;
   }
 

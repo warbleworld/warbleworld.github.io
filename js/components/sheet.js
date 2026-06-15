@@ -1,10 +1,10 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Character sheet: portrait, abilities, stats, proficiencies,
 // and resource counters.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 import { ABILITIES, SAVES, SKILLS, SKILL_ABILITY, modifier, signed, abilityMod } from "../core/dnd.js";
-import { imageHtml } from "../core/images.js";
+import { imageHtml, isImageCached } from "../core/images.js";
 import { renderRadar } from "./radar.js";
 
 /** When a counter's max exceeds this, show a numeric pool instead of pips. */
@@ -113,7 +113,7 @@ function renderSpellcastingStats(data) {
     `<div class="cs-section-title">Spellcasting (${spellAbility})</div>` +
     `<div class="cs-stats cs-stats-spellcasting">` +
       `<div class="cs-stat"><div class="cs-stat-val">${signed(attackBonus)}</div><div class="cs-stat-label">Attack</div></div>` +
-      `<div class="cs-stat"><div class="cs-stat-val">${(spellDC)}</div><div class="cs-stat-label">Spell DC</div></div>` +
+      `<div class="cs-stat"><div class="cs-stat-val">${spellDC}</div><div class="cs-stat-label">Spell DC</div></div>` +
     `</div>` +
   `</div>`;
 }
@@ -123,7 +123,9 @@ function renderSpellcastingStats(data) {
  * @param {object} data - Character definition.
  * @returns {string} HTML string
  */
-export function renderSheet(data, level) {
+export function renderSheet(data) {
+  const level = data.level;
+  const portraitIsCached = isImageCached(data.img);
   const abilityBoxes = ABILITIES.map(
     (label) =>
       `<div class="cs-ab-box">` +
@@ -137,7 +139,7 @@ export function renderSheet(data, level) {
   return `<div class="cs">` +
     `<div class="cs-left">` +
       `<div class="cs-portrait">` +
-        imageHtml(data.img, data.name, "cs-portrait-img") +
+        imageHtml(data.img, data.name, "cs-portrait-img", portraitIsCached) +
         `<div class="cs-portrait-overlay">` +
           `<div class="cs-portrait-info">` +
             `<div class="cs-portrait-name">${data.name}</div>` +

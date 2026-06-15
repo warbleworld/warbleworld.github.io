@@ -1,13 +1,13 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Global event handling: delegated clicks, swipe-to-switch-tab,
 // and the player switcher.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 import { buildIncarnation } from "./components/incarnation.js";
 import { showCardModal, closeCardModal } from "./components/modal.js";
 import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
 
-// ── Delegated click handlers ────────────────────────────
+// -- Delegated click handlers -----------------------------
 // Each returns `true` once it has handled the event, short-circuiting
 // the chain in `handleClick`.
 
@@ -135,7 +135,18 @@ function handleClick(e) {
     handleFilterClick(e);
 }
 
-// ── Player switcher ─────────────────────────────────────
+// -- Player switcher --------------------------------------
+
+function centerIncBarScrollOrigin(page) {
+  const bar = page?.querySelector(".inc-bar");
+  if (!bar) return;
+  const maxScroll = bar.scrollWidth - bar.clientWidth;
+  bar.scrollLeft = maxScroll > 0 ? Math.round(maxScroll / 2) : 0;
+}
+
+export function centerActiveIncarnationBar() {
+  centerIncBarScrollOrigin(document.querySelector(".player-page.active"));
+}
 
 /** Activate a player page and build its visible incarnation. */
 function activatePlayer(btn) {
@@ -153,6 +164,7 @@ function activatePlayer(btn) {
   const page = document.getElementById(btn.dataset.player);
   if (!page) return;
   page.classList.add("active");
+  centerIncBarScrollOrigin(page);
   const activeInc = page.querySelector(".inc-content.active");
   if (activeInc) buildIncarnation(activeInc.id);
   restoreActiveScroll();
@@ -167,4 +179,6 @@ export function installEventHandlers() {
   document.querySelectorAll(".player-btn").forEach((btn) => {
     btn.addEventListener("click", () => activatePlayer(btn));
   });
+
+  window.addEventListener("resize", centerActiveIncarnationBar);
 }

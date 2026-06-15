@@ -1,4 +1,4 @@
-/* ── TAB BAR (Sheet / Inventory / Features / Spells) ── */
+/* -- TAB BAR (Sheet / Inventory / Features / Spells) -- */
 
 .tab-bar {
   display: flex;
@@ -17,7 +17,7 @@
   border: none;
   border-bottom: 2px solid transparent;
   color: var(--text-dim);
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -50,15 +50,42 @@
   display: none;
 }
 
-/* Floor the content height to fill the viewport beneath the pinned bars.
-   This guarantees the page is always tall enough to scroll the title away
-   and keep the header anchored — even when a filter leaves only a few
-   cards. The empty space sits below the content, above the footer. */
+/* Independent content scroll axis. Each active panel is its own scroller
+   sized to fill the viewport beneath the pinned bars, so its scroll
+   position is separate from the header's (document) scroll. That lets a
+   view switch restore the header and the content position independently
+   — e.g. title partly visible AND the list scrolled down. The gesture
+   coordinator in scroll.js chains this scroller with the document.
+
+   Flex column so the footer (moved in here by scroll.js) can be pushed to
+   the bottom on short tabs, while the filter bar still pins via sticky.
+   Keeping the footer inside this scroller is what lets the pinned filter
+   pills stay visible all the way down: the footer is reached by scrolling
+   THIS element, so its sticky children never scroll out of their box. */
 .tab-content.active {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-height: calc(
+  flex-shrink: 0;
+  height: calc(
     100dvh - var(--player-bar-h, 48px) - var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
   );
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+  /* Hide this scroller's scrollbar (Firefox / legacy IE). */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Hide this scroller's scrollbar (WebKit / Blink). */
+.tab-content.active::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* The footer is relocated into the active scroller (see scroll.js). Push
+   it to the bottom on short tabs and keep its natural height. */
+.tab-content.active > .footer {
+  margin-top: auto;
+  flex-shrink: 0;
 }

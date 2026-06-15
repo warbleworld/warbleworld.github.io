@@ -1,6 +1,6 @@
-/* ═══════════════════════════════════════
+/* =======================================
    TURN OF FORTUNE'S WHEEL — STYLES
-   ═══════════════════════════════════════ */
+   ======================================= */
 
 :root {
   --gold: #c9a84c;
@@ -57,7 +57,11 @@
 }
 
 html {
-  scrollbar-gutter: stable;
+  /* The document scroll is now just the short header (+ footer) axis,
+     driven by the gesture coordinator in scroll.js. Hide its scrollbar so
+     it doesn't sit beside the inner content scroller's scrollbar; the
+     meaningful scroll affordance is the content scroller's own bar. */
+  scrollbar-width: none;
   /* Disable browser scroll anchoring. When a view switch swaps the active
      panel (old hidden, new shown), the browser would otherwise adjust
      scrollTop to keep the prior visual position — fighting the explicit
@@ -66,10 +70,14 @@ html {
   overflow-anchor: none;
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

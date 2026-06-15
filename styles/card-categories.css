@@ -1,4 +1,4 @@
-/* ── Card category colors: Inventory ── */
+/* -- Card category colors: Inventory -- */
 
 .cat-weapon .card-stripe {
   background: var(--cat-weapon);
@@ -45,7 +45,7 @@
   color: var(--cat-loot);
 }
 
-/* ── Card category colors: Features ── */
+/* -- Card category colors: Features -- */
 
 .cat-class .card-stripe {
   background: var(--cat-equipment);
@@ -83,7 +83,7 @@
   color: var(--cat-loot);
 }
 
-/* ── Card category colors: Spell levels ── */
+/* -- Card category colors: Spell levels -- */
 
 .spell-0 .card-stripe {
   background: #8ab4d6;
@@ -139,7 +139,7 @@
   color: #5b9acc;
 }
 
-/* ── Card category colors: Unprepared ── */
+/* -- Card category colors: Unprepared -- */
 
 .cat-unprepared .card-stripe {
   background: #555;

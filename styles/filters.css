@@ -1,14 +1,16 @@
-/* ── FILTER PILLS ── */
+/* -- FILTER PILLS -- */
 
 .filter-bar {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
+  flex-shrink: 0;
   padding: 10px 0;
   position: sticky;
-  top: calc(var(--player-bar-h, 48px) + var(--inc-bar-h, 82px) + var(--tab-bar-h, 38px));
+  top: 0;
   z-index: 70;
   background: var(--bg);
+  touch-action: pan-x;
 }
 
 .filter-pill {

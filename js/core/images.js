@@ -1,4 +1,4 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Centralised image handling.
 //
 // All image URLs in the app flow through `resolveImageUrl`, so the
@@ -10,14 +10,28 @@
 // and `installImageFallback` gracefully swaps any image that fails
 // to load (a very real case here, since many local files may be
 // missing) for a first-letter placeholder.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 import { escapeAttr, escapeHtml } from "./html.js";
 
 /** Folder (relative to index.html) that holds bundled images. */
 export const IMAGE_BASE = "images/";
 
+/** Track which image URLs have been successfully loaded (cached). */
+const cachedImageUrls = new Set();
+
 const ABSOLUTE_URL = /^(https?:)?\/\//i;
+
+/**
+ * Normalize an image source into a stable absolute cache key.
+ * @param {string} src
+ * @returns {string}
+ */
+function imageCacheKey(src) {
+  const url = resolveImageUrl(src);
+  if (!url) return "";
+  return new URL(url, document.baseURI).href;
+}
 
 /**
  * Resolve a stored image reference to a usable URL.
@@ -39,17 +53,42 @@ export function resolveImageUrl(src) {
  * @param {string} src - Raw image reference.
  * @param {string} alt - Accessible label / fallback seed.
  * @param {string} className - CSS class for the image.
+ * @param {boolean} [eager=false] - Use eager loading instead of lazy.
  * @returns {string} HTML string
  */
-export function imageHtml(src, alt, className) {
+export function imageHtml(src, alt, className, eager = false) {
   const url = resolveImageUrl(src);
   const initial = (alt || "?").charAt(0);
   if (!url) return fallbackHtml(initial);
 
+  const loading = eager ? "eager" : "lazy";
+  const loadingClass = eager ? "" : " is-loading";
   return (
-    `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" class="${className} is-loading" ` +
-    `loading="lazy" decoding="async" data-fallback="${escapeAttr(initial)}">`
+    `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" class="${className}${loadingClass}" ` +
+    `loading="${loading}" decoding="async" draggable="false" data-fallback="${escapeAttr(initial)}">`
   );
+}
+
+/**
+ * Prevent native image dragging/selection so drag gestures can remain
+ * available for app-level scroll interactions.
+ * @param {HTMLImageElement} img
+ */
+function applyImageInteractionGuards(img) {
+  img.draggable = false;
+  img.style.userSelect = "none";
+  img.style.webkitUserSelect = "none";
+  img.style.webkitUserDrag = "none";
+}
+
+/**
+ * Check whether an image source has already loaded in this session.
+ * @param {string} src
+ * @returns {boolean}
+ */
+export function isImageCached(src) {
+  const cacheKey = imageCacheKey(src);
+  return cacheKey ? cachedImageUrls.has(cacheKey) : false;
 }
 
 /**
@@ -60,7 +99,8 @@ export function imageHtml(src, alt, className) {
  * @returns {string} HTML string
  */
 export function thumbHtml(card, containerClass) {
-  return `<div class="${containerClass}">${imageHtml(card.img, card.title, "card-thumb-img")}</div>`;
+  const isCached = isImageCached(card.img);
+  return `<div class="${containerClass}">${imageHtml(card.img, card.title, "card-thumb-img", isCached)}</div>`;
 }
 
 /** First-letter placeholder used when an image is absent or broken. */
@@ -75,17 +115,22 @@ function fallbackHtml(initial) {
  * @param {Document|HTMLElement} [root=document]
  */
 export function installImageFallback(root = document) {
+  root.querySelectorAll("img").forEach((img) => applyImageInteractionGuards(img));
+
   root.addEventListener(
     "error",
-    (event) => {
-      const el = event.target;
+    (e) => {
+      const el = e.target;
       if (!(el instanceof HTMLImageElement)) return;
+      applyImageInteractionGuards(el);
       const initial = el.dataset.fallback;
       if (initial == null || el.dataset.failed) return;
 
       el.dataset.failed = "1";
       const placeholder = document.createElement("span");
-      placeholder.className = "card-thumb-fallback";
+      placeholder.className = el.classList.contains("inc-avatar")
+        ? "inc-avatar card-thumb-fallback"
+        : "card-thumb-fallback";
       placeholder.textContent = initial;
       el.replaceWith(placeholder);
     },
@@ -95,11 +140,17 @@ export function installImageFallback(root = document) {
   // Fade images in once their pixels are ready. `load` does not bubble, so
   // the listener runs in the capture phase. Images that were already cached
   // (and so complete before this runs) are revealed immediately.
+  // Also track the image URL so modal images can use eager loading if cached.
   root.addEventListener(
     "load",
-    (event) => {
-      const el = event.target;
-      if (el instanceof HTMLImageElement) el.classList.remove("is-loading");
+    (e) => {
+      const el = e.target;
+      if (el instanceof HTMLImageElement) {
+        applyImageInteractionGuards(el);
+        el.classList.remove("is-loading");
+        const cacheKey = imageCacheKey(el.currentSrc || el.src);
+        if (cacheKey) cachedImageUrls.add(cacheKey);
+      }
     },
     true,
   );

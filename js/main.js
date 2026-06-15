@@ -1,13 +1,13 @@
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 // Application entry point.
 // Loads card data, prepares the static markup, and boots the UI.
-// ─────────────────────────────────────────────────────────
+// ---------------------------------------------------------
 
 import { PORTRAITS, DEFAULT_INCARNATIONS, DISABLED_INCARNATIONS } from "./config.js";
 import { loadCards } from "./store.js";
 import { resolveImageUrl, installImageFallback } from "./core/images.js";
 import { buildIncarnation } from "./components/incarnation.js";
-import { installEventHandlers } from "./events.js";
+import { installEventHandlers, centerActiveIncarnationBar } from "./events.js";
 import { installD20Egg } from "./components/d20.js";
 import { installScroll } from "./scroll.js";
 
@@ -17,8 +17,11 @@ function populateAvatars() {
     const key = img.dataset.char;
     if (!PORTRAITS[key]) return;
     img.src = resolveImageUrl(PORTRAITS[key]);
-    img.loading = "lazy";
+    img.loading = "eager";
     img.decoding = "async";
+    img.width = 28;
+    img.height = 28;
+    img.classList.add("is-loading");
     img.dataset.fallback = (img.alt || key).charAt(0);
   });
 }
@@ -42,14 +45,14 @@ function applyDefaultIncarnations() {
     const targetBtn = page.querySelector(`.inc-btn[data-inc="${defaultId}"]`);
     if (!targetBtn) return;
 
-    // Deactivate current active incarnation
-    const prevContent = page.querySelector(".inc-content.active");
-    const prevBtn = page.querySelector(".inc-btn.active");
-    if (prevContent) prevContent.classList.remove("active");
-    if (prevBtn) {
-      prevBtn.classList.remove("active");
-      prevBtn.setAttribute("aria-selected", "false");
-    }
+    // Normalize the entire tablist first so ARIA mirrors visual state.
+    page.querySelectorAll(".inc-btn").forEach((btn) => {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-selected", "false");
+    });
+    page.querySelectorAll(".inc-content").forEach((content) => {
+      content.classList.remove("active");
+    });
 
     // Activate the desired default
     targetBtn.classList.add("active");
@@ -88,6 +91,14 @@ function selectRandomPlayer() {
   const btn = buttons[Math.floor(Math.random() * buttons.length)];
   if (!btn) return;
 
+  buttons.forEach((playerBtn) => {
+    playerBtn.classList.remove("active");
+    playerBtn.setAttribute("aria-selected", "false");
+  });
+  document.querySelectorAll(".player-page").forEach((playerPage) => {
+    playerPage.classList.remove("active");
+  });
+
   btn.classList.add("active");
   btn.setAttribute("aria-selected", "true");
   const page = document.getElementById(btn.dataset.player);
@@ -106,6 +117,7 @@ function initApp() {
   installEventHandlers();
   installD20Egg();
   selectRandomPlayer();
+  centerActiveIncarnationBar();
   installScroll();
 }
 

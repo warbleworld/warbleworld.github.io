@@ -1,9 +1,10 @@
-/* ── CARD GRID ── */
+/* -- CARD GRID -- */
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr));
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .item-card {
@@ -73,7 +74,7 @@
 }
 
 .card-thumb-fallback {
-  font-family: 'Cinzel', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-dim);
@@ -91,11 +92,11 @@
 }
 
 .card-title {
-  font-family: 'Cinzel', serif;
+  font-family: system-ui, sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-bright);
-  line-height: 1.3;
+  line-height: 1;
   margin-bottom: 2px;
 }
 
@@ -107,7 +108,7 @@
 
 .card-count {
   margin-left: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 0.6rem;
   font-weight: 600;
   color: var(--gold);
