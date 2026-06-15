@@ -41,12 +41,12 @@ export function cardClass(tag) {
 }
 
 /**
- * Normalise a loadout array (plain IDs or `{ id, count, title }`) into
+ * Normalize a loadout array (plain IDs or `{ id, count, title }`) into
  * a uniform list of `{ id, count, title }` entries.
  * @param {Array<string|{ id: string, count?: number, title?: string }>} items
  * @returns {Array<{ id: string, count: number, title: string|null }>}
  */
-export function normalizeItems(items) {
+function normalizeItems(items) {
   return items.map((item) =>
     typeof item === "string"
       ? { id: item, count: 1, title: null }
@@ -60,7 +60,7 @@ export function normalizeItems(items) {
  * @param {Set<string>} [unprepared]
  * @returns {string}
  */
-export function effectiveTag(id, unprepared) {
+function effectiveTag(id, unprepared) {
   if (unprepared && unprepared.has(id)) return "Unprepared";
   const card = getCard(id);
   return card ? card.tag : "Other";
@@ -69,13 +69,13 @@ export function effectiveTag(id, unprepared) {
 /**
  * Build a filter pill bar for a card grid. Renders only when there are
  * 2+ distinct categories.
- * @param {Array<{ id: string }>} items - Normalised entries.
+ * @param {Array<{ id: string }>} items - Normalized entries.
  * @param {string} gridId - ID of the grid the bar controls.
  * @param {string[]} [defaultExclude] - Categories hidden on load.
  * @param {Set<string>} [unprepared]
  * @returns {string} HTML string (empty if <= 1 category)
  */
-export function buildFilterBar(items, gridId, defaultExclude, unprepared) {
+function buildFilterBar(items, gridId, defaultExclude, unprepared) {
   if (!items.length) return "";
 
   const categories = [];
@@ -115,7 +115,7 @@ export function buildFilterBar(items, gridId, defaultExclude, unprepared) {
  * @param {Set<string>} [unprepared]
  * @returns {string} HTML string
  */
-export function renderCard(id, starred, count = 1, titleOverride, hidden = false, unprepared) {
+function renderCard(id, starred, count = 1, titleOverride, hidden = false, unprepared) {
   const card = getCard(id);
   if (!card) return "";
 

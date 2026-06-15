@@ -7,7 +7,9 @@
   flex-shrink: 0;
   padding: 10px 0;
   position: sticky;
-  top: 0;
+  top: calc(
+    var(--player-bar-h, 48px) + var(--inc-bar-h, 82px) + var(--tab-bar-h, 38px)
+  );
   z-index: 70;
   background: var(--bg);
   touch-action: pan-x;

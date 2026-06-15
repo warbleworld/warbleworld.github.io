@@ -14,14 +14,14 @@ import { PORTRAITS } from "../config.js";
 
 const getProfBonus = (level) => Math.ceil(1 + level / 4);
 
-/** Default colour for resource-counter pips. */
+/** Default color for resource-counter pips. */
 const PIP_COLOR = "#d4d0c8";
 
 export const CHARACTERS = {
   vespera: {
     level: 6,
     name: "Vespera", race: "Tiefling", class: "Divine Soul Sorcerer", img: PORTRAITS.vespera,
-    ab: { STR: 8, DEX: 14, CON: 12, INT: 10, WIS: 13, CHA: 18 }, prof: getProfBonus(6), ac: 13, hp: 22, init: "+2",
+    ab: { STR: 8, DEX: 14, CON: 12, INT: 10, WIS: 13, CHA: 18 }, prof: getProfBonus(6), ac: 13, hp: 22,
     spellcastingAbility: "CHA",
     saves: ["CHA", "DEX"],
     skills: ["Deception", "Intimidation", "Performance", "Persuasion", "Religion"],
@@ -38,7 +38,7 @@ export const CHARACTERS = {
   lucia: {
     level: 6,
     name: "Lucia", race: "Fallen Aasimar", class: "Shadow Sorcerer", img: PORTRAITS.lucia,
-    ab: { STR: 9, DEX: 12, CON: 15, INT: 10, WIS: 10, CHA: 20 }, prof: getProfBonus(6), ac: 11, hp: 38, init: "+1",
+    ab: { STR: 9, DEX: 12, CON: 15, INT: 10, WIS: 10, CHA: 20 }, prof: getProfBonus(6), ac: 11, hp: 38,
     spellcastingAbility: "CHA",
     saves: ["CON", "CHA"],
     skills: ["Arcana", "Intimidation", "Persuasion", "Religion"],
@@ -61,7 +61,7 @@ export const CHARACTERS = {
   speaksWithSpirits: {
     level: 6,
     name: "Speaks-With-Spirits", race: "Fallen Aasimar", class: "Shadow Sorcerer", img: PORTRAITS.speaksWithSpirits,
-    ab: { STR: 9, DEX: 12, CON: 15, INT: 10, WIS: 10, CHA: 20 }, prof: getProfBonus(6), ac: 11, hp: 38, init: "+1",
+    ab: { STR: 9, DEX: 12, CON: 15, INT: 10, WIS: 10, CHA: 20 }, prof: getProfBonus(6), ac: 11, hp: 38,
     spellcastingAbility: "CHA",
     saves: ["CON", "CHA"],
     skills: ["Arcana", "Intimidation", "Persuasion", "Religion"],
@@ -84,7 +84,7 @@ export const CHARACTERS = {
   karmine: {
     level: 6,
     name: "Karmine", race: "High Elf", class: "Bladesinger Wizard", img: PORTRAITS.karmine,
-    ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, prof: getProfBonus(6), ac: 15, hp: 38, init: "+3", speed: 35,
+    ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, prof: getProfBonus(6), ac: 15, hp: 38, speed: 35,
     spellcastingAbility: "INT",
     saves: ["INT", "WIS"],
     skills: ["History", "Arcana", "Perception", "Insight", "Performance", "Investigation"],
@@ -109,7 +109,7 @@ export const CHARACTERS = {
   rubic: {
     level: 6,
     name: "Rubic", race: "Harengon", class: "Rune Knight Fighter", img: PORTRAITS.rubic,
-    ab: { STR: 16, DEX: 14, CON: 16, INT: 10, WIS: 12, CHA: 8 }, prof: getProfBonus(6), ac: 18, hp: 44, init: "+5",
+    ab: { STR: 16, DEX: 14, CON: 16, INT: 10, WIS: 12, CHA: 8 }, prof: getProfBonus(6), ac: 18, hp: 44,
     saves: ["STR", "CON"],
     skills: ["Athletics", "Intimidation", "Perception", "Survival"],
     counters: [
@@ -126,7 +126,7 @@ export const CHARACTERS = {
   akai: {
     level: 6,
     name: "Akai", race: "Harengon", class: "Rune Knight Fighter", img: PORTRAITS.akai,
-    ab: { STR: 16, DEX: 14, CON: 16, INT: 10, WIS: 12, CHA: 8 }, prof: getProfBonus(6), ac: 18, hp: 44, init: "+5",
+    ab: { STR: 16, DEX: 14, CON: 16, INT: 10, WIS: 12, CHA: 8 }, prof: getProfBonus(6), ac: 18, hp: 44,
     saves: ["STR", "CON"],
     skills: ["Athletics", "Intimidation", "Perception", "Survival"],
     counters: [
@@ -143,7 +143,7 @@ export const CHARACTERS = {
   lucien: {
     level: 6,
     name: "Lucien", race: "Wood Elf", class: "Light Cleric", img: PORTRAITS.lucien,
-    ab: { STR: 10, DEX: 10, CON: 14, INT: 12, WIS: 17, CHA: 16 }, prof: getProfBonus(6), ac: 16, hp: 38, init: "+0",
+    ab: { STR: 10, DEX: 10, CON: 14, INT: 12, WIS: 17, CHA: 16 }, prof: getProfBonus(6), ac: 16, hp: 38,
     spellcastingAbility: "WIS",
     saves: ["WIS", "CHA"],
     skills: ["Insight", "Medicine", "Persuasion", "Religion"],
@@ -161,7 +161,7 @@ export const CHARACTERS = {
   seabastion: {
     level: 6,
     name: "Seabastion", race: "Sea Elf", class: "Tempest Cleric", img: PORTRAITS.seabastion,
-    ab: { STR: 14, DEX: 10, CON: 14, INT: 10, WIS: 16, CHA: 12 }, prof: getProfBonus(6), ac: 18, hp: 28, init: "+0",
+    ab: { STR: 14, DEX: 10, CON: 14, INT: 10, WIS: 16, CHA: 12 }, prof: getProfBonus(6), ac: 18, hp: 28,
     spellcastingAbility: "WIS",
     saves: ["WIS", "CHA"],
     skills: ["Athletics", "Medicine", "Nature", "Perception"],

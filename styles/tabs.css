@@ -50,42 +50,10 @@
   display: none;
 }
 
-/* Independent content scroll axis. Each active panel is its own scroller
-   sized to fill the viewport beneath the pinned bars, so its scroll
-   position is separate from the header's (document) scroll. That lets a
-   view switch restore the header and the content position independently
-   — e.g. title partly visible AND the list scrolled down. The gesture
-   coordinator in scroll.js chains this scroller with the document.
-
-   Flex column so the footer (moved in here by scroll.js) can be pushed to
-   the bottom on short tabs, while the filter bar still pins via sticky.
-   Keeping the footer inside this scroller is what lets the pinned filter
-   pills stay visible all the way down: the footer is reached by scrolling
-   THIS element, so its sticky children never scroll out of their box. */
+/* Plain document-flow content. The whole document is one native scroller
+   now (see scroll.js), so this panel no longer scrolls on its own — it
+   just lays its cards out and the page scrolls them. The filter bar inside
+   still pins via `position: sticky` relative to the document. */
 .tab-content.active {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  height: calc(
-    100dvh - var(--player-bar-h, 48px) - var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
-  );
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  overflow-anchor: none;
-  /* Hide this scroller's scrollbar (Firefox / legacy IE). */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-/* Hide this scroller's scrollbar (WebKit / Blink). */
-.tab-content.active::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-/* The footer is relocated into the active scroller (see scroll.js). Push
-   it to the bottom on short tabs and keep its natural height. */
-.tab-content.active > .footer {
-  margin-top: auto;
-  flex-shrink: 0;
+  display: block;
 }

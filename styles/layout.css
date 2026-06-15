@@ -4,6 +4,29 @@
   padding: 28px 20px 20px;
   text-align: center;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  /* Collapses to nothing when `html.title-collapsed` is set (see
+     scroll.js). --header-h is the measured expanded height, so the
+     animation runs from exactly that height down to 0. */
+  max-height: var(--header-h, 200px);
+  transition:
+    max-height 0.32s ease,
+    padding 0.32s ease,
+    opacity 0.26s ease,
+    border-width 0.32s ease,
+    border-color 0.32s ease;
+}
+
+html.title-collapsed .header {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  /* Collapse the border's WIDTH, not just its color: a transparent 1px
+     border still occupies a pixel and would shove the content down by one.
+     Zeroing the width removes that pixel entirely. */
+  border-bottom-width: 0;
+  border-color: transparent;
 }
 
 .header-title {
@@ -218,11 +241,5 @@
 }
 
 .inc-content.active {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  min-height: calc(
-    100dvh - var(--player-bar-h, 48px) - var(--inc-bar-h, 82px)
-  );
+  display: block;
 }

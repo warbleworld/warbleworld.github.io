@@ -57,17 +57,27 @@
 }
 
 html {
-  /* The document scroll is now just the short header (+ footer) axis,
-     driven by the gesture coordinator in scroll.js. Hide its scrollbar so
-     it doesn't sit beside the inner content scroller's scrollbar; the
-     meaningful scroll affordance is the content scroller's own bar. */
+  /* The whole document is the single native scroller now (see scroll.js).
+     Hide its scrollbar to keep the minimalist look; wheel / trackpad /
+     touch scrolling still work. */
   scrollbar-width: none;
+  /* Elastic overscroll (rubber-band bounce) is enabled on mobile only
+     (see the media query below). Desktop — mouse wheel and trackpad —
+     gets no bounce. */
+  overscroll-behavior-y: none;
   /* Disable browser scroll anchoring. When a view switch swaps the active
      panel (old hidden, new shown), the browser would otherwise adjust
-     scrollTop to keep the prior visual position — fighting the explicit
+     scroll position to keep the prior visual spot — fighting the explicit
      per-view scroll restore in scroll.js and leaving a fresh tab stuck at
      the position of the tab you came from. */
   overflow-anchor: none;
+}
+
+/* Mobile only: restore the native elastic overscroll bounce. */
+@media (hover: none) and (pointer: coarse) {
+  html {
+    overscroll-behavior-y: auto;
+  }
 }
 
 html::-webkit-scrollbar {

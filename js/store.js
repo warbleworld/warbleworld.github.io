@@ -18,8 +18,8 @@ export function getCard(id) {
   return cards[id];
 }
 
-/** Replace the entire card database (mainly for tests/loading). */
-export function setCards(data) {
+/** Replace the entire card database. */
+function setCards(data) {
   cards = data || {};
 }
 
