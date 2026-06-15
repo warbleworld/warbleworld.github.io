@@ -6,13 +6,12 @@
   flex-wrap: wrap;
   flex-shrink: 0;
   padding: 10px 0;
-  position: sticky;
-  top: calc(
-    var(--player-bar-h, 48px) + var(--inc-bar-h, 82px) + var(--tab-bar-h, 38px)
-  );
+  position: relative;
   z-index: 70;
   background: var(--bg);
   touch-action: pan-x;
+  /* Own compositing layer — see .player-bar (iOS Safari sticky repaint). */
+  transform: translateZ(0);
 }
 
 .filter-pill {

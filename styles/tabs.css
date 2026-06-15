@@ -5,9 +5,13 @@
   gap: 2px;
   border-bottom: 1px solid var(--border);
   position: sticky;
-  top: calc(var(--player-bar-h, 48px) + var(--inc-bar-h, 82px));
+  top: calc(
+    var(--header-h, 32px) + var(--player-bar-h, 48px) + var(--inc-bar-h, 82px)
+  );
   z-index: 80;
   background: var(--bg);
+  /* Own compositing layer — see .player-bar (iOS Safari sticky repaint). */
+  transform: translateZ(0);
 }
 
 .tab-btn {
@@ -50,10 +54,50 @@
   display: none;
 }
 
-/* Plain document-flow content. The whole document is one native scroller
-   now (see scroll.js), so this panel no longer scrolls on its own — it
-   just lays its cards out and the page scrolls them. The filter bar inside
-   still pins via `position: sticky` relative to the document. */
+/* Active tab fills the viewport but does NOT scroll itself. It is a flex
+   column: the hoisted filter bar sits pinned on top, and the inner
+   `.tab-scroll` region holds everything that scrolls. Keeping the filter
+   bar outside the scroller means the scroller's elastic/rubber-band
+   overscroll can never drag it. */
 .tab-content.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: calc(
+    100dvh - var(--header-h, 32px) - var(--player-bar-h, 48px) -
+      var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
+  );
+  overflow: hidden;
+}
+
+/* Filter bar is hoisted here (by scroll.js) so it stays fixed above the
+   scroll region. */
+.tab-content.active > .filter-bar {
+  flex-shrink: 0;
+}
+
+/* The only scroll container: gestures move this element, not the document. */
+.tab-content.active > .tab-scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tab-content.active > .tab-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Footer is moved into the scroll region by scroll.js.
+   Keep it anchored to the bottom when content is short, while remaining
+   reachable by scrolling this same container when content is long. */
+.tab-content.active > .tab-scroll > .footer {
+  margin-top: auto;
+  flex-shrink: 0;
 }

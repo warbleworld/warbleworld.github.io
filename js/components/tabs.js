@@ -30,5 +30,5 @@ export function buildTabBar(tabs, ariaLabel) {
  * @returns {string} HTML string
  */
 export function buildTabPanel(id, content, active) {
-  return `<div class="tab-content${active ? " active" : ""}" id="${escapeAttr(id)}" role="tabpanel">${content}</div>`;
+  return `<div class="tab-content${active ? " active" : ""}" id="${escapeAttr(id)}" role="tabpanel"><div class="tab-scroll">${content}</div></div>`;
 }

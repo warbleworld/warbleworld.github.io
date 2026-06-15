@@ -1,5 +1,5 @@
 // ---------------------------------------------------------
-// Centralized image handling.
+// Centralised image handling.
 //
 // All image URLs in the app flow through `resolveImageUrl`, so the
 // storage location can be changed in one place. Local images live
@@ -36,7 +36,7 @@ function imageCacheKey(src) {
 /**
  * Resolve a stored image reference to a usable URL.
  * - Absolute URLs and data URIs are returned unchanged.
- * - Bare filenames and `images/...` paths are normalized onto IMAGE_BASE.
+ * - Bare filenames and `images/...` paths are normalised onto IMAGE_BASE.
  * @param {string} src
  * @returns {string}
  */

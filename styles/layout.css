@@ -1,61 +1,76 @@
 /* -- HEADER -- */
 
 .header {
-  padding: 28px 20px 20px;
+  height: var(--edge-bar-h, 28px);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: var(--text-dim);
+  font-size: 0.55rem;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  line-height: 1;
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
-  /* Collapses to nothing when `html.title-collapsed` is set (see
-     scroll.js). --header-h is the measured expanded height, so the
-     animation runs from exactly that height down to 0. */
-  max-height: var(--header-h, 200px);
-  transition:
-    max-height 0.32s ease,
-    padding 0.32s ease,
-    opacity 0.26s ease,
-    border-width 0.32s ease,
-    border-color 0.32s ease;
+  /* A slim, always-visible sticky bar at the very top of the stack. Kept
+     compact so it costs minimal vertical room and leaves the rest of the
+     viewport for content. Its own compositing layer stops iOS Safari from
+     painting scrolled / rubber-band content over it. */
+  position: sticky;
+  top: 0;
+  z-index: 110;
+  background: var(--bg);
+  transform: translateZ(0);
 }
 
-html.title-collapsed .header {
-  max-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  opacity: 0;
-  /* Collapse the border's WIDTH, not just its color: a transparent 1px
-     border still occupies a pixel and would shove the content down by one.
-     Zeroing the width removes that pixel entirely. */
-  border-bottom-width: 0;
-  border-color: transparent;
+.header-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
 }
 
 .header-title {
-  font-family: 'Times New Roman', serif;
-  font-size: clamp(1.3rem, 3.5vw, 2rem);
-  font-weight: 900;
-  color: var(--gold);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  line-height: 1;
+  color: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
 }
 
 .header-sub {
-  font-size: 0.65rem;
-  color: var(--text-dim);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-top: 4px;
-  line-height: 1;
+  color: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
+}
+
+.header-sub::before {
+  content: "\00b7";
+  margin-right: 7px;
 }
 
 /* -- PLAYER SWITCHER -- */
 
 .player-bar {
   position: sticky;
-  top: 0;
+  top: var(--header-h, 32px);
   z-index: 100;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
+  /* Promote to its own compositing layer. Without this, iOS Safari can
+     mis-paint scrolled content over a sticky element during overflow /
+     rubber-band scrolling. A dedicated layer keeps it painting on top as
+     its z-index dictates. */
+  transform: translateZ(0);
 }
 
 .player-bar-inner {
@@ -142,9 +157,11 @@ html.title-collapsed .header {
   padding: 18px 0;
   justify-content: center;
   position: sticky;
-  top: var(--player-bar-h, 48px);
+  top: calc(var(--header-h, 32px) + var(--player-bar-h, 48px));
   z-index: 90;
   background: var(--bg);
+  /* Own compositing layer — see .player-bar (iOS Safari sticky repaint). */
+  transform: translateZ(0);
 }
 
 .inc-btn {

@@ -13,6 +13,7 @@
   --text-bright: #f0ece0;
   --border: #222230;
   --radius: 8px;
+  --edge-bar-h: 28px;
 
   /* Category color tokens */
   --cat-weapon: #cc0000;
@@ -94,6 +95,7 @@ body {
   font-size: 14px;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-y: hidden;
   overflow-anchor: none;
 }
 

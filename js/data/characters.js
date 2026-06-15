@@ -14,7 +14,7 @@ import { PORTRAITS } from "../config.js";
 
 const getProfBonus = (level) => Math.ceil(1 + level / 4);
 
-/** Default color for resource-counter pips. */
+/** Default colour for resource-counter pips. */
 const PIP_COLOR = "#d4d0c8";
 
 export const CHARACTERS = {

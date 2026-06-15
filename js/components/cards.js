@@ -41,7 +41,7 @@ export function cardClass(tag) {
 }
 
 /**
- * Normalize a loadout array (plain IDs or `{ id, count, title }`) into
+ * Normalise a loadout array (plain IDs or `{ id, count, title }`) into
  * a uniform list of `{ id, count, title }` entries.
  * @param {Array<string|{ id: string, count?: number, title?: string }>} items
  * @returns {Array<{ id: string, count: number, title: string|null }>}
@@ -69,7 +69,7 @@ function effectiveTag(id, unprepared) {
 /**
  * Build a filter pill bar for a card grid. Renders only when there are
  * 2+ distinct categories.
- * @param {Array<{ id: string }>} items - Normalized entries.
+ * @param {Array<{ id: string }>} items - Normalised entries.
  * @param {string} gridId - ID of the grid the bar controls.
  * @param {string[]} [defaultExclude] - Categories hidden on load.
  * @param {Set<string>} [unprepared]

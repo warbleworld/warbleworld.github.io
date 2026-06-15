@@ -1,10 +1,12 @@
 /* -- EMPTY STATE -- */
 
 .empty-msg {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  min-height: calc(
+    100dvh - var(--header-h, 32px) - var(--player-bar-h, 48px) -
+      var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
+  );
   padding: 30px;
   text-align: center;
   color: var(--text-dim);
@@ -15,13 +17,18 @@
 /* -- FOOTER -- */
 
 .footer {
+  height: var(--edge-bar-h, 28px);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 30px 20px;
   border-top: 1px solid var(--border);
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   color: var(--text-dim);
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
+  line-height: 1;
   /* Remove the mobile double-tap zoom delay so the triple-tap easter
      egg registers every tap consistently, and stop rapid taps from
      selecting the footer text. */
