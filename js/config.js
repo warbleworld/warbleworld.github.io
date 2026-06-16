@@ -7,15 +7,15 @@
  * time via `resolveImageUrl`). Swap these for CDN URLs to drop local files.
  */
 export const PORTRAITS = {
-  vespera: "vespera.png",
-  lucia: "lucia.png",
-  speaksWithSpirits: "speaks-with-spirits.png",
-  karmine: "karmine.png",
-  rubic: "rubic.png",
-  akai: "akai.png",
-  lucien: "lucien.png",
-  seabastion: "seabastion.png",
-  christian: "christian.png",
+  vespera: "vespera.webp",
+  lucia: "lucia.webp",
+  speaksWithSpirits: "speaks-with-spirits.webp",
+  karmine: "karmine.webp",
+  rubic: "rubic.webp",
+  akai: "akai.webp",
+  lucien: "lucien.webp",
+  seabastion: "seabastion.webp",
+  christian: "christian.webp",
 };
 
 /**
