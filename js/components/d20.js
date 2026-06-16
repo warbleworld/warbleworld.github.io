@@ -178,9 +178,19 @@ export function installD20Egg() {
   const footer = document.querySelector(".footer");
   if (!footer) return;
 
-  // Disable double-tap zoom on the footer across all mobile browsers.
-  // `manipulation` allows panning/scrolling but suppresses the zoom gesture.
-  footer.style.touchAction = "manipulation";
+  // iOS Safari ignores `touch-action: manipulation` for double-tap zoom,
+  // so cancel the second `touchend` that lands within the zoom window.
+  // This blocks the zoom gesture without affecting scrolling or taps.
+  let lastTouchEnd = 0;
+  footer.addEventListener(
+    "touchend",
+    (e) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300 && e.cancelable) e.preventDefault();
+      lastTouchEnd = now;
+    },
+    { passive: false }
+  );
 
   let taps = 0;
   let last = 0;

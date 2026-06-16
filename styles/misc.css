@@ -37,3 +37,9 @@
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Disable double-tap zoom on the footer across all mobile browsers.
+   `manipulation` allows panning/scrolling but suppresses the zoom gesture. */
+.footer * {
+  touch-action: manipulation;
+}
