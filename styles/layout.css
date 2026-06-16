@@ -62,7 +62,7 @@
 
 .player-bar {
   position: sticky;
-  top: var(--header-h, 32px);
+  top: var(--header-h, 28px);
   z-index: 100;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -111,7 +111,7 @@
 }
 
 .player-btn-num {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 0.85rem;
   line-height: 1;
@@ -157,7 +157,7 @@
   padding: 18px 0;
   justify-content: center;
   position: sticky;
-  top: calc(var(--header-h, 32px) + var(--player-bar-h, 48px));
+  top: calc(var(--header-h, 28px) + var(--player-bar-h, 50px));
   z-index: 90;
   background: var(--bg);
   /* Own compositing layer — see .player-bar (iOS Safari sticky repaint). */
@@ -175,7 +175,7 @@
   border: 1px solid var(--border);
   border-radius: 40px;
   color: var(--text-dim);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 1px;

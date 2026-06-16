@@ -52,7 +52,7 @@ export function renderRadar(abilities) {
     return (
       `<circle cx="${dx}" cy="${dy}" r="3" fill="var(--gold)"/>` +
       `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="central" ` +
-      `fill="var(--text-dim)" font-family="system-ui,sans-serif" font-size="8" font-weight="600" letter-spacing="1">${label}</text>`
+      `fill="var(--text-dim)" font-family="var(--font-ui)" font-size="8" font-weight="600" letter-spacing="1">${label}</text>`
     );
   }).join("");
 

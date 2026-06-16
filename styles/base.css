@@ -14,6 +14,12 @@
   --border: #222230;
   --radius: 8px;
   --edge-bar-h: 28px;
+  --header-h: 28px;
+  --player-bar-h: 50px;
+  --inc-bar-h: 80px;
+  --tab-bar-h: 38px;
+  --font-ui: system-ui, sans-serif;
+  --font-serif: 'Times New Roman', serif;
 
   /* Category color tokens */
   --cat-weapon: #cc0000;
@@ -88,7 +94,7 @@ html::-webkit-scrollbar {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

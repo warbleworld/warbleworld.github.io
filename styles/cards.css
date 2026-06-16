@@ -74,7 +74,7 @@
 }
 
 .card-thumb-fallback {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-dim);
@@ -92,7 +92,7 @@
 }
 
 .card-title {
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-bright);
@@ -108,7 +108,7 @@
 
 .card-count {
   margin-left: 4px;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.6rem;
   font-weight: 600;
   color: var(--gold);

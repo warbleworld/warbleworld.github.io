@@ -6,7 +6,7 @@
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: calc(
-    var(--header-h, 32px) + var(--player-bar-h, 48px) + var(--inc-bar-h, 82px)
+    var(--header-h, 28px) + var(--player-bar-h, 50px) + var(--inc-bar-h, 80px)
   );
   z-index: 80;
   background: var(--bg);
@@ -21,7 +21,7 @@
   border: none;
   border-bottom: 2px solid transparent;
   color: var(--text-dim);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -64,8 +64,8 @@
   flex-direction: column;
   flex-shrink: 0;
   height: calc(
-    100dvh - var(--header-h, 32px) - var(--player-bar-h, 48px) -
-      var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
+    100dvh - var(--header-h, 28px) - var(--player-bar-h, 50px) -
+      var(--inc-bar-h, 80px) - var(--tab-bar-h, 38px)
   );
   overflow: hidden;
 }

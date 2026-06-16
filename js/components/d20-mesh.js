@@ -176,18 +176,22 @@ function buildGeometry() {
 // Face-number assignment derived by solving the graph isomorphism between
 // the icosahedron's face adjacency graph and the standard d20 layout where
 // every face borders exactly the three neighbours listed below:
-//   1↔7,13,19  2↔12,18,20  3↔16,17,19  4↔11,14,18  5↔13,15,18
-//   6↔9,14,16  7↔1,15,17   8↔10,16,20  9↔6,11,19   10↔8,12,17
-//  11↔4,9,13  12↔2,10,15  13↔1,5,11   14↔4,6,20   15↔5,7,12
-//  16↔3,6,8   17↔3,7,10   18↔2,4,5    19↔1,3,9    20↔2,8,14
+//   1: 7,13,19  2: 12,18,20  3: 16,17,19  4: 11,14,18  5: 13,15,18
+//   6: 9,14,16  7: 1,15,17   8: 10,16,20  9: 6,11,19  10: 8,12,17
+//  11: 4,9,13  12: 2,10,15  13: 1,5,11   14: 4,6,20   15: 5,7,12
+//  16: 3,6,8   17: 3,7,10   18: 2,4,5    19: 1,3,9    20: 2,8,14
+// Opposite faces always sum to 21.
 // Index in the array = geometry face index 0-19 (face-list order in buildGeometry).
-const FACE_NUMBERS = [1, 13, 5, 15, 7, 11, 19, 17, 12, 18, 6, 16, 8, 20, 14, 9, 3, 10, 2, 4];
+const FACE_NUMBERS = [20, 2, 12, 10, 8, 18, 14, 16, 17, 15, 11, 9, 19, 1, 13, 4, 6, 3, 7, 5];
 
 function buildAtlasCanvas(faceNumbers, cell) {
   const canvas = document.createElement("canvas");
   canvas.width = cell * 5;
   canvas.height = cell * 4;
   const ctx = canvas.getContext("2d");
+  const serifFont = getComputedStyle(document.documentElement)
+    .getPropertyValue("--font-serif")
+    .trim() || "serif";
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#000";
@@ -202,7 +206,7 @@ function buildAtlasCanvas(faceNumbers, cell) {
   faceNumbers.forEach((num, i) => {
     const cx = (i % 5) * cell + cell * 0.5;
     const cy = Math.floor(i / 5) * cell + cell * 0.62;
-    ctx.font = "700 " + fontSize + "px 'Times New Roman', serif";
+    ctx.font = "700 " + fontSize + "px " + serifFont;
     ctx.fillText(String(num), cx, cy);
     if (num === 6 || num === 9) {
       ctx.fillRect(cx - underlineW / 2, cy + underlineY, underlineW, underlineH);

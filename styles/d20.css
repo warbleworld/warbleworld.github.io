@@ -132,7 +132,7 @@ body.d20-modal-open {
      size whether empty or filled, so rolling never shifts neighbours. */
   min-height: 1.2em;
   line-height: 1.2;
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-weight: 900;
   font-size: clamp(28px, 8vw, 46px);
   letter-spacing: 0.04em;
@@ -152,7 +152,7 @@ body.d20-modal-open {
 }
 
 .d20-hint {
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;

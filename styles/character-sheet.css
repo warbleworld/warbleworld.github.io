@@ -60,7 +60,7 @@
 }
 
 .cs-level-num {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   font-weight: 900;
   color: var(--text-bright);
@@ -68,7 +68,7 @@
 }
 
 .cs-level-label {
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.35rem;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -96,7 +96,7 @@
 }
 
 .cs-portrait-name {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--gold);
@@ -145,7 +145,7 @@
 }
 
 .cs-ab-score {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-bright);
@@ -207,7 +207,7 @@
 }
 
 .cs-stat-val {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--gold);
@@ -237,7 +237,7 @@
 }
 
 .cs-section-title {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 0.7rem;
   color: var(--gold);
   letter-spacing: 1.5px;
@@ -302,7 +302,7 @@
 }
 
 .cs-counter-pool {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1;

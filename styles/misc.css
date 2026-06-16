@@ -4,8 +4,8 @@
   display: grid;
   place-items: center;
   min-height: calc(
-    100dvh - var(--header-h, 32px) - var(--player-bar-h, 48px) -
-      var(--inc-bar-h, 82px) - var(--tab-bar-h, 38px)
+    100dvh - var(--header-h, 28px) - var(--player-bar-h, 50px) -
+      var(--inc-bar-h, 80px) - var(--tab-bar-h, 38px)
   );
   padding: 30px;
   text-align: center;

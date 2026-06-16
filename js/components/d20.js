@@ -24,7 +24,7 @@ const FALLBACK_SVG = `
   <polygon points="100,10 177.94,55 177.94,145 100,190 22.06,145 22.06,55"
            fill="#b5933e" stroke="#e7cd80" stroke-width="2.5" stroke-linejoin="round"/>
   <text class="d20-num" x="100" y="118" text-anchor="middle" fill="#23190a"
-        font-family="'Times New Roman', serif" font-weight="700" font-size="64">20</text>
+      font-family="var(--font-serif)" font-weight="700" font-size="64">20</text>
 </svg>`;
 
 let overlay = null;
@@ -178,16 +178,18 @@ export function installD20Egg() {
   const footer = document.querySelector(".footer");
   if (!footer) return;
 
+  // Disable double-tap zoom on the footer across all mobile browsers.
+  // `manipulation` allows panning/scrolling but suppresses the zoom gesture.
+  footer.style.touchAction = "manipulation";
+
   let taps = 0;
   let last = 0;
 
   // Use Pointer Events: `pointerup` fires exactly once per tap on mouse,
-  // touch and pen across all modern browsers, with no double-tap gesture
-  // delay or click-coalescing — the things that made `click`/`touchstart`
-  // unreliable for rapid taps on mobile.
+  // touch and pen across all modern browsers, with no click-coalescing
+  // — the thing that made `click`/`touchstart` unreliable for rapid taps.
   const onTap = (e) => {
-    // Safari can still smart-zoom non-button text on rapid taps unless the
-    // tap's default action is canceled explicitly.
+    // Suppress the trailing `click` that browsers synthesize after `pointerup`.
     if (e?.cancelable) e.preventDefault();
     const now = Date.now();
     taps = now - last <= TAP_WINDOW ? taps + 1 : 1;
@@ -200,10 +202,6 @@ export function installD20Egg() {
 
   if (window.PointerEvent) {
     footer.addEventListener("pointerup", onTap, { passive: false });
-    // Defensive fallback: some iOS Safari builds still react to dblclick.
-    footer.addEventListener("dblclick", (e) => {
-      if (e.cancelable) e.preventDefault();
-    });
   } else {
     // Legacy fallback for browsers without Pointer Events.
     footer.addEventListener("touchend", onTap, { passive: false });

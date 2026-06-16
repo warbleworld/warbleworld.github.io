@@ -90,7 +90,7 @@ body.modal-open {
 }
 
 .card-modal-title {
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-bright);
