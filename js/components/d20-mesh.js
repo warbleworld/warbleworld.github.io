@@ -246,6 +246,38 @@ const FRAG_SRC_HIGH = `
   uniform vec3 uColor;
   uniform sampler2D uTex;
   uniform vec2 uTexel;
+  uniform float uTime;
+
+  // Cheap hash/noise for subtle animated caustics.
+  float hash31(vec3 p) {
+    p = fract(p * 0.1031);
+    p += dot(p, p.yzx + 33.33);
+    return fract((p.x + p.y) * p.z);
+  }
+  float noise3(vec3 p) {
+    vec3 i = floor(p);
+    vec3 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    float n000 = hash31(i + vec3(0.0, 0.0, 0.0));
+    float n100 = hash31(i + vec3(1.0, 0.0, 0.0));
+    float n010 = hash31(i + vec3(0.0, 1.0, 0.0));
+    float n110 = hash31(i + vec3(1.0, 1.0, 0.0));
+    float n001 = hash31(i + vec3(0.0, 0.0, 1.0));
+    float n101 = hash31(i + vec3(1.0, 0.0, 1.0));
+    float n011 = hash31(i + vec3(0.0, 1.0, 1.0));
+    float n111 = hash31(i + vec3(1.0, 1.0, 1.0));
+    float nx00 = mix(n000, n100, f.x);
+    float nx10 = mix(n010, n110, f.x);
+    float nx01 = mix(n001, n101, f.x);
+    float nx11 = mix(n011, n111, f.x);
+    float nxy0 = mix(nx00, nx10, f.y);
+    float nxy1 = mix(nx01, nx11, f.y);
+    return mix(nxy0, nxy1, f.z);
+  }
+  vec3 spectral(float t) {
+    // Cosine palette: vibrant, stable, and fast.
+    return 0.55 + 0.45 * cos(6.28318 * (t + vec3(0.0, 0.33, 0.67)));
+  }
   void main() {
     vec3 N = normalize(vNormal);
     vec3 L = normalize(uLightDir);
@@ -253,9 +285,22 @@ const FRAG_SRC_HIGH = `
     vec3 H = normalize(L + V);
     float diff = max(dot(N, L), 0.0);
     float spec = pow(max(dot(N, H), 0.0), 28.0);
-    float rim = pow(1.0 - max(dot(N, V), 0.0), 3.0);
-    vec3 base = uColor * (0.32 + 0.78 * diff) + vec3(1.0, 0.93, 0.7) * spec * 0.6;
-    base += uColor * rim * 0.25;
+    float ndv = max(dot(N, V), 0.0);
+    float rim = pow(1.0 - ndv, 3.0);
+
+    // Arcane shimmer: iridescent fresnel + soft caustics in world space.
+    float fres = pow(1.0 - ndv, 5.0);
+    float caustic =
+      0.55 * noise3(vWorld * 3.8 + vec3(0.0, 0.0, uTime * 0.55)) +
+      0.45 * noise3(vWorld * 7.4 + vec3(uTime * 0.35, 0.0, 0.0));
+    caustic = smoothstep(0.25, 0.92, caustic);
+    vec3 iri = spectral(0.22 * uTime + 0.55 * fres + 0.08 * caustic);
+
+    vec3 base = uColor * (0.30 + 0.82 * diff);
+    base += vec3(1.0, 0.93, 0.7) * spec * 0.58;
+    base += uColor * rim * 0.18;
+    base = mix(base, base * iri, 0.28 + 0.48 * fres);
+    base += iri * (0.06 + 0.18 * fres) * caustic;
 
     vec2 off = uTexel * 2.0;
     float ink = texture2D(uTex, vUV).a;
@@ -268,6 +313,12 @@ const FRAG_SRC_HIGH = `
     color *= 1.0 - ink * 0.62;
     color += vec3(1.0, 0.95, 0.78) * lit * 0.9;
     color -= base * shadow * 0.9;
+
+    // Micro-sparkles: rare highlights that cluster near edges (fresnel).
+    float sparkN = noise3(vWorld * 18.0 + vec3(uTime * 1.6, uTime * 1.1, 0.0));
+    float spark = smoothstep(0.94, 0.995, sparkN) * (0.15 + 0.85 * fres);
+    color += vec3(1.0, 0.98, 0.9) * spark * 0.65;
+
     gl_FragColor = vec4(color, 1.0);
   }
 `;
@@ -281,6 +332,10 @@ const FRAG_SRC_LOW = `
   uniform vec3 uCamPos;
   uniform vec3 uColor;
   uniform sampler2D uTex;
+  uniform float uTime;
+  vec3 spectral(float t) {
+    return 0.60 + 0.40 * cos(6.28318 * (t + vec3(0.0, 0.33, 0.67)));
+  }
   void main() {
     vec3 N = normalize(vNormal);
     vec3 L = normalize(uLightDir);
@@ -288,13 +343,17 @@ const FRAG_SRC_LOW = `
     vec3 H = normalize(L + V);
     float diff = max(dot(N, L), 0.0);
     float spec = pow(max(dot(N, H), 0.0), 20.0);
-    float rim = pow(1.0 - max(dot(N, V), 0.0), 2.2);
+    float ndv = max(dot(N, V), 0.0);
+    float rim = pow(1.0 - ndv, 2.2);
+    float fres = pow(1.0 - ndv, 4.0);
 
     vec3 base = uColor * (0.35 + 0.75 * diff) + vec3(1.0, 0.93, 0.7) * spec * 0.45;
     base += uColor * rim * 0.18;
 
     float ink = texture2D(uTex, vUV).a;
+    vec3 iri = spectral(0.18 * uTime + 0.55 * fres);
     vec3 color = base * (1.0 - ink * 0.56);
+    color = mix(color, color * iri, 0.18 + 0.32 * fres);
     gl_FragColor = vec4(color, 1.0);
   }
 `;
@@ -350,6 +409,7 @@ function readUniforms(gl, program) {
     uColor: uni("uColor"),
     uTex: uni("uTex"),
     uTexel: uni("uTexel"),
+    uTime: uni("uTime"),
   };
 }
 
@@ -366,6 +426,8 @@ export function createD20Renderer(canvas) {
   if (!gl) return null;
 
   const lowEnd = isLowEndDevice();
+  // const reduceMotion = !!window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  const reduceMotion = false;
   const geo = buildGeometry();
   const faceNumbers = FACE_NUMBERS;
 
@@ -486,7 +548,7 @@ export function createD20Renderer(canvas) {
     gl.bindTexture(gl.TEXTURE_2D, useLowAtlas ? textureLow : textureHigh);
   }
 
-  function draw(q, pos) {
+  function draw(q, pos, timeSeconds) {
     const selected = pickProgram();
     qToMat4Into(modelMat, q);
     modelMat[12] = pos ? pos[0] : 0;
@@ -497,6 +559,7 @@ export function createD20Renderer(canvas) {
     bindTextureForProfile();
     gl.uniformMatrix4fv(selected.uniforms.uModel, false, modelMat);
     gl.uniformMatrix3fv(selected.uniforms.uNormalMat, false, normalMat);
+    if (selected.uniforms.uTime) gl.uniform1f(selected.uniforms.uTime, timeSeconds || 0);
 
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -504,50 +567,55 @@ export function createD20Renderer(canvas) {
   }
 
   function frame() {
-    if (!running || !anim) return;
+    if (!running) return;
 
     const now = performance.now();
-    const dtMs = Math.min(33, now - anim.last);
-    const dt = dtMs / 1000;
-    anim.last = now;
-    const elapsed = now - anim.start;
+    let pos = [0, 0];
+    if (anim) {
+      const dtMs = Math.min(33, now - anim.last);
+      const dt = dtMs / 1000;
+      anim.last = now;
+      const elapsed = now - anim.start;
 
-    const p = Math.min(1, elapsed / anim.duration);
-    qAxisAngleInto(tmpSpin, anim.axis, anim.totalSpin * (1 - easeOut(p)));
-    qMulInto(current, anim.target, tmpSpin);
+      const p = Math.min(1, elapsed / anim.duration);
+      qAxisAngleInto(tmpSpin, anim.axis, anim.totalSpin * (1 - easeOut(p)));
+      qMulInto(current, anim.target, tmpSpin);
 
-    if (elapsed < BOUNCE_MS) {
-      anim.vel[1] -= GRAVITY * dt;
-      anim.vel[0] *= 1 - AIR_DRAG;
-      anim.vel[1] *= 1 - AIR_DRAG;
-      anim.pos[0] += anim.vel[0] * dt;
-      anim.pos[1] += anim.vel[1] * dt;
+      if (elapsed < BOUNCE_MS) {
+        anim.vel[1] -= GRAVITY * dt;
+        anim.vel[0] *= 1 - AIR_DRAG;
+        anim.vel[1] *= 1 - AIR_DRAG;
+        anim.pos[0] += anim.vel[0] * dt;
+        anim.pos[1] += anim.vel[1] * dt;
 
-      if (anim.pos[0] > boundX) { anim.pos[0] = boundX; anim.vel[0] = -anim.vel[0] * RESTITUTION; }
-      else if (anim.pos[0] < -boundX) { anim.pos[0] = -boundX; anim.vel[0] = -anim.vel[0] * RESTITUTION; }
-      if (anim.pos[1] > boundY) { anim.pos[1] = boundY; anim.vel[1] = -anim.vel[1] * RESTITUTION; }
-      else if (anim.pos[1] < -boundY) { anim.pos[1] = -boundY; anim.vel[1] = -anim.vel[1] * RESTITUTION; }
-    } else {
-      if (!anim.returnFrom) anim.returnFrom = anim.pos.slice();
-      const rt = Math.min(1, (elapsed - BOUNCE_MS) / RETURN_MS);
-      const k = easeOut(rt);
-      anim.pos[0] = anim.returnFrom[0] * (1 - k);
-      anim.pos[1] = anim.returnFrom[1] * (1 - k);
+        if (anim.pos[0] > boundX) { anim.pos[0] = boundX; anim.vel[0] = -anim.vel[0] * RESTITUTION; }
+        else if (anim.pos[0] < -boundX) { anim.pos[0] = -boundX; anim.vel[0] = -anim.vel[0] * RESTITUTION; }
+        if (anim.pos[1] > boundY) { anim.pos[1] = boundY; anim.vel[1] = -anim.vel[1] * RESTITUTION; }
+        else if (anim.pos[1] < -boundY) { anim.pos[1] = -boundY; anim.vel[1] = -anim.vel[1] * RESTITUTION; }
+      } else {
+        if (!anim.returnFrom) anim.returnFrom = anim.pos.slice();
+        const rt = Math.min(1, (elapsed - BOUNCE_MS) / RETURN_MS);
+        const k = easeOut(rt);
+        anim.pos[0] = anim.returnFrom[0] * (1 - k);
+        anim.pos[1] = anim.returnFrom[1] * (1 - k);
+      }
+      pos = anim.pos;
+
+      if (elapsed >= BOUNCE_MS + RETURN_MS && p >= 1) {
+        current = new Float32Array(anim.target);
+        const done = anim.onSettle;
+        anim = null;
+
+        resize();
+        draw(current, [0, 0], reduceMotion ? 0 : now * 0.001);
+        if (done) done();
+        rafId = requestAnimationFrame(frame);
+        return;
+      }
     }
 
     resize();
-    draw(current, anim.pos);
-
-    if (elapsed >= BOUNCE_MS + RETURN_MS && p >= 1) {
-      current = new Float32Array(anim.target);
-      const done = anim.onSettle;
-      anim = null;
-
-      resize();
-      draw(current, [0, 0]);
-      if (done) done();
-      return;
-    }
+    draw(current, pos, reduceMotion ? 0 : now * 0.001);
 
     rafId = requestAnimationFrame(frame);
   }
@@ -581,12 +649,13 @@ export function createD20Renderer(canvas) {
   return {
     resize() {
       resize();
-      draw(current);
+      draw(current, [0, 0], reduceMotion ? 0 : performance.now() * 0.001);
     },
     start() {
       running = true;
       resize();
-      draw(current);
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(frame);
     },
     stop() {
       running = false;
@@ -597,7 +666,7 @@ export function createD20Renderer(canvas) {
       current = new Float32Array(restPose);
       if (running) {
         resize();
-        draw(current);
+        draw(current, [0, 0], reduceMotion ? 0 : performance.now() * 0.001);
       }
     },
     roll(result, onSettle) {
