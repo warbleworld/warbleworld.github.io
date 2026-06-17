@@ -30,6 +30,19 @@ export const DEFAULT_INCARNATIONS = {
   p3: "christian",
 };
 
+/** The player each incarnation belongs to. */
+export const INCARNATION_PLAYER = {
+  vespera: "p1",
+  lucia: "p1",
+  speaksWithSpirits: "p1",
+  karmine: "p2",
+  rubic: "p2",
+  akai: "p2",
+  lucien: "p3",
+  seabastion: "p3",
+  christian: "p3",
+};
+
 /**
  * Incarnations that are temporarily unavailable. Their buttons are disabled
  * and their content is never built.

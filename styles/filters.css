@@ -14,6 +14,15 @@
   transform: translateZ(0);
 }
 
+.filter-sep {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 2px 6px;
+  border-radius: 1px;
+  flex: 0 0 1px;
+}
+
 .filter-pill {
   padding: 4px 11px;
   border-radius: 20px;

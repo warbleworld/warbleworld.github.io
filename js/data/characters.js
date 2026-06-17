@@ -3,11 +3,12 @@
 //
 // Each entry describes one playable incarnation: ability scores,
 // proficiencies, derived stats, resource counters, and the card IDs
-// (resolved against cards.json) that make up its inventory, features,
-// and spells.
+// (resolved against cards.json) that make up its per-character inventory,
+// features, and spells. Shared player inventory is defined in players.js
+// and merged at render time.
 //
 // Loadout entries may be a plain card ID string, or an object
-// `{ id, count?, title? }` to override quantity or display title.
+// `{ id, count?, titleOverride? }` to override quantity or display title.
 // ---------------------------------------------------------
 
 import { PORTRAITS } from "../config.js";
@@ -31,9 +32,9 @@ export const CHARACTERS = {
       { name: "1st Level Slots", max: 4, cur: 4, color: PIP_COLOR },
       { name: "2nd Level Slots", max: 2, cur: 2, color: PIP_COLOR },
     ],
-    inv: ["lyre_divinity", "dagger", "cloth_mortuary", "healers_kit", "potion_heal", "backpack", "formaldehyde"],
-    feat: ["bardic_insp", "sc_bard", "darkvision_tiefling", "hellish_res", "infernal", "shelter", "divine_line"],
-    spells: ["thaumaturgy", "vicious_mock", "mage_hand", "heal_word", "aid_sp", "diss_whisper", "u_charm", "u_det_magic", "u_faerie"],
+    inv: [],
+    feat: [],
+    spells: [],
   },
   lucia: {
     level: 6,
@@ -56,10 +57,9 @@ export const CHARACTERS = {
       { name: "2nd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
       { name: "3rd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
     ],
-    inv: ["dagger", "common_clothes", "crystal", "golden_talisman", "locket", "sensory_stone", "ink", "potion_of_poison_resistance", { id: "rations", count: 4 }, "warming_waterskin", "waterskin", { id: "backpack", title: "Scholar's Pack" }, "scroll_case", "bag_of_sand", { id: "book", title: "Dustman Manifesto" }, "embalming_fluid", { id: "parchment", count: 10 }, "small_knife", "trinket_beads", "writing_quill"],
+    inv: ["dagger", "common_clothes", "crystal", "locket", "ink", { id: "rations", count: 4 }, "waterskin", { id: "backpack", titleOverride: "Scholar's Pack" }, "scroll_case", "bag_of_sand", { id: "parchment", count: 10 }, "small_knife", "writing_quill"],
     feat: ["spellcasting_sorcerer", "eyes_of_the_dark", "strength_of_the_grave", "font_of_magic", "sorcery_points", "flexible_casting", "metamagic", "metamagic_quickened_spell", "metamagic_twinned_spell", "sorcerous_versatility", "magical_guidance", "hound_of_ill_omen", "age_aasimar", "darkvision_aasimar", "celestial_resistance", "healing_hands", "light_bearer", "necrotic_shroud", "heart_of_darkness"],
     spells: ["chill_touch", "light", "mage_hand", "mind_sliver", "minor_illusion", "prestidigitation", "false_life", "ray_of_sickness", "shield", "blindness_deafness", "darkness", "hold_person", "spider_climb", "enemies_abound"],
-    starred: ["dagger", "common_clothes", "crystal", "locket", "ink", "rations", "waterskin", "backpack", "scroll_case", "bag_of_sand", "parchment", "small_knife", "writing_quill"],
   },
   speaksWithSpirits: {
     level: 6,
@@ -79,10 +79,9 @@ export const CHARACTERS = {
       { name: "Healing Hands", max: 1, cur: 1, color: PIP_COLOR },
       { name: "Necrotic Shroud", max: 1, cur: 1, color: PIP_COLOR },
     ],
-    inv: ["dagger", "common_clothes", "crystal", "golden_talisman", "locket", "sensory_stone", "ink", "potion_of_poison_resistance", { id: "rations", count: 4 }, "warming_waterskin", "waterskin", { id: "backpack", title: "Scholar's Pack" }, "scroll_case", "bag_of_sand", { id: "book", title: "Dustman Manifesto" }, "embalming_fluid", { id: "parchment", count: 10 }, "small_knife", "trinket_beads", "writing_quill"],
-    feat: ["spellcasting_sorcerer", "eyes_of_the_dark", "strength_of_the_grave", "font_of_magic", "sorcery_points", "flexible_casting", "metamagic", "metamagic_quickened_spell", "metamagic_twinned_spell", "sorcerous_versatility", "magical_guidance", "hound_of_ill_omen", "age_aasimar", "darkvision_aasimar", "celestial_resistance", "healing_hands", "light_bearer", "necrotic_shroud", "heart_of_darkness"],
-    spells: ["chill_touch", "light", "mage_hand", "mind_sliver", "minor_illusion", "prestidigitation", "false_life", "ray_of_sickness", "shield", "blindness_deafness", "darkness", "hold_person", "spider_climb", "enemies_abound"],
-    starred: ["dagger", "common_clothes", "crystal", "locket", "ink", "rations", "waterskin", "backpack", "scroll_case", "bag_of_sand", "parchment", "small_knife", "writing_quill"],
+    inv: [],
+    feat: [],
+    spells: [],
   },
   karmine: {
     level: 6,
@@ -103,18 +102,17 @@ export const CHARACTERS = {
       { name: "2nd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
       { name: "3rd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
     ],
-    inv: ["scalpel", "shortsword", "common_clothes", "crystal", "hat_of_disguise", "portal_compass", "studded_leather_armor", "blood_charm", { id: "clot_charm", count: 3 }, "ink", "pouch", "mysterious_letter", { id: "portal_key", title: "Portal Key (Eye-Shaped Piece of Lapis Lazuli)" }, "small_knife", "spellbook", "writing_quill"],
+    inv: ["shortsword", "common_clothes", "crystal", "studded_leather_armor", "ink", "pouch", "mysterious_letter", "small_knife", "spellbook", "writing_quill"],
     feat: ["arcane_recovery", "spellcasting_wizard", "training_in_war_and_song", "bladesong", "bladesinger_styles", "cantrip_formulas", "extra_attack", "age_elf", "darkvision_elf", "keen_senses", "fey_ancestry", "trance", "elf_weapon_training", "cantrip", "extra_language", "researcher", "elven_accuracy"],
     spells: ["booming_blade", "fire_bolt", "green_flame_blade", "mage_hand", "absorb_elements", "find_familiar", "shield", "sleep", "mirror_image", "misty_step", "shadow_blade", "tashas_mind_whip", "counterspell", "fireball", "haste"],
     unprep: ["burning_hands", "comprehend_languages", "detect_magic", "identify", "summon_fey"],
-    starred: ["shortsword", "common_clothes", "crystal", "studded_leather_armor", "ink", "pouch", "mysterious_letter", "small_knife", "spellbook", "writing_quill"],
   },
   rubic: {
     level: 6,
     name: "Rubic", race: "Harengon", class: "Rune Knight Fighter", img: PORTRAITS.rubic,
-    ab: { STR: 16, DEX: 14, CON: 16, INT: 10, WIS: 12, CHA: 8 }, ac: 18, hp: 44,
+    ab: { STR: 16, DEX: 14, CON: 20, INT: 9, WIS: 12, CHA: 9 }, ac: 18, hp: 44,
     saves: ["STR", "CON"],
-    skills: ["Athletics", "Intimidation", "Perception", "Survival"],
+    skills: ["Athletics", "Insight", "Intimidation", "Perception", "Survival"],
     counters: [
       { name: "Hit Dice", max: 5, cur: 5, color: PIP_COLOR },
       { name: "Second Wind", max: 1, cur: 1, color: PIP_COLOR },
@@ -124,7 +122,6 @@ export const CHARACTERS = {
     ],
     inv: ["glaive", "light_crossbow", "bolts", "chain_mail_x", "lucky_razor", "lucia_locket", "mystery_map", "explorer_pack"],
     feat: ["fight_def", "second_wind", "action_surge", "rune_carver", "giants_might", "rabbit_hop", "lucky_foot", "hare_trigger", "military"],
-    spells: [],
   },
   akai: {
     level: 6,
@@ -139,9 +136,8 @@ export const CHARACTERS = {
       { name: "Runes Active", max: 2, cur: 2, color: PIP_COLOR },
       { name: "Giant's Might", max: 3, cur: 3, color: PIP_COLOR },
     ],
-    inv: ["glaive", "light_crossbow", "bolts", "chain_mail_x", "lucky_razor", "lucia_locket", "mystery_map", "explorer_pack"],
-    feat: ["fight_def", "second_wind", "action_surge", "rune_carver", "giants_might", "rabbit_hop", "lucky_foot", "hare_trigger", "military"],
-    spells: [],
+    inv: [],
+    feat: [],
   },
   lucien: {
     level: 6,
@@ -157,9 +153,9 @@ export const CHARACTERS = {
       { name: "2nd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
       { name: "3rd Level Slots", max: 2, cur: 2, color: PIP_COLOR },
     ],
-    inv: ["holy_sune", "mace", "shield_sune", "scale_mail", "wine", "prayer_book", "perfume"],
-    feat: ["sc_cleric", "channel_div", "charm_beauty", "fey_ancestry", "darkvision_elf", "shelter"],
-    spells: ["sacred_flame", "light_sp", "thaumaturgy", "heal_word", "guiding_bolt", "hold_person", "scorch_ray", "fireball", "u_bless", "u_cure", "u_lesser_rest"],
+    inv: [],
+    feat: [],
+    spells: [],
   },
   seabastion: {
     level: 6,
@@ -175,9 +171,9 @@ export const CHARACTERS = {
       { name: "1st Level Slots", max: 4, cur: 4, color: PIP_COLOR },
       { name: "2nd Level Slots", max: 2, cur: 2, color: PIP_COLOR },
     ],
-    inv: ["warhammer", "holy_coral", "chain_mail", "shield_waves", "sailor_pack", "poison_cake"],
-    feat: ["sc_cleric", "channel_div", "wrath_storm", "darkvision_elf", "child_sea", "ships"],
-    spells: ["sacred_flame", "spare_dying", "thunderwave", "heal_word", "fog_cloud", "shatter", "u_bless", "u_create_water"],
+    inv: [],
+    feat: [],
+    spells: [],
   },
   christian: {
     level: 6,
@@ -194,10 +190,8 @@ export const CHARACTERS = {
     counters: [
       { name: "Hit Dice (d8)", max: 6, cur: 6, color: "#f0ece0" },
     ],
-    inv: [{ id: "dagger", count: 2 }, "rapier", "shortbow", "fine_clothes", "leather_armor", "necklace_of_prayer_beads", { id: "arrow", count: 20 }, "ball_bearings", { id: "candle", count: 5 }, "hempen_rope", "hooded_lantern", { id: "oil", count: 2 }, { id: "piton", count: 10 }, { id: "rations", count: 5 }, "string", "waterskin", { id: "backpack", title: "Burglar's Pack" }, "purse", "thieves_tools", "bell", "crowbar", "hammer", "signet_ring", "scroll_of_pedigree", "tinderbox"],
+    inv: [{ id: "dagger", count: 2 }, "rapier", "shortbow", "fine_clothes", "leather_armor", { id: "arrow", count: 20 }, "ball_bearings", { id: "candle", count: 5 }, "hempen_rope", "hooded_lantern", { id: "oil", count: 2 }, { id: "piton", count: 10 }, { id: "rations", count: 5 }, "string", "waterskin", { id: "backpack", titleOverride: "Burglar's Pack" }, "purse", "thieves_tools", "bell", "crowbar", "hammer", "signet_ring", "scroll_of_pedigree", "tinderbox"],
     feat: ["expertise", "sneak_attack", "thieves_cant", "cunning_action", "ear_for_deceit", "eye_for_detail", "insightful_fighting", "steady_aim", "uncanny_dodge", "age_elf", "darkvision_elf", "keen_senses", "fey_ancestry", "trance", "elf_weapon_training", "fleet_of_foot", "mask_of_the_wild", "position_of_privilege"],
-    spells: [],
-    starred: ["dagger", "rapier", "shortbow", "fine_clothes", "leather_armor", "arrow", "ball_bearings", "candle", "hempen_rope", "hooded_lantern", "oil", "piton", "rations", "string", "waterskin", "backpack", "purse", "thieves_tools", "bell", "crowbar", "hammer", "signet_ring", "scroll_of_pedigree", "tinderbox"],
   },
 };
 
