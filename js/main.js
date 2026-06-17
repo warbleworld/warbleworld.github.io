@@ -86,9 +86,12 @@ function ensureAvailableDefaults() {
 }
 
 /** Reveal a random player page on load and build its incarnation. */
-function selectRandomPlayer() {
+function selectRandomPlayer(forcedPlayerId) {
   const buttons = Array.from(document.querySelectorAll(".player-btn"));
-  const btn = buttons[Math.floor(Math.random() * buttons.length)];
+  let btn = forcedPlayerId
+    ? buttons.find((playerBtn) => playerBtn.dataset.player === forcedPlayerId)
+    : null;
+  if (!btn) btn = buttons[Math.floor(Math.random() * buttons.length)];
   if (!btn) return;
 
   buttons.forEach((playerBtn) => {
