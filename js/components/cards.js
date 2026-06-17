@@ -41,17 +41,21 @@ export function cardClass(tag) {
 }
 
 /**
- * Normalise a loadout array (plain IDs or `{ id, count, title }`) into
- * a uniform list of `{ id, count, title }` entries.
- * @param {Array<string|{ id: string, count?: number, title?: string }>} items
- * @returns {Array<{ id: string, count: number, title: string|null }>}
+ * Normalize a loadout array (plain IDs or `{ id, count, titleOverride }`) into
+ * a uniform list of `{ id, count, titleOverride }` entries.
+ * @param {Array<string|{ id: string, count?: number, titleOverride?: string, isStarting?: boolean }>} items
+ * @returns {Array<{ id: string, count: number, titleOverride: string|null }>}
  */
 function normalizeItems(items) {
-  return items.map((item) =>
-    typeof item === "string"
-      ? { id: item, count: 1, title: null }
-      : { id: item.id, count: item.count || 1, title: item.title || null },
-  );
+  return items.map((item) => {
+    if (typeof item === "string") return { id: item, count: 1, titleOverride: null, isStarting: false };
+    return {
+      id: item.id,
+      count: item.count || 1,
+      titleOverride: item.titleOverride,
+      isStarting: !!item.isStarting,
+    };
+  });
 }
 
 /**
@@ -75,7 +79,7 @@ function effectiveTag(id, unprepared) {
  * @param {Set<string>} [unprepared]
  * @returns {string} HTML string (empty if <= 1 category)
  */
-function buildFilterBar(items, gridId, defaultExclude, unprepared) {
+function buildFilterBar(items, gridId, defaultExclude, unprepared, opts) {
   if (!items.length) return "";
 
   const categories = [];
@@ -99,23 +103,28 @@ function buildFilterBar(items, gridId, defaultExclude, unprepared) {
     })
     .join("");
 
+  const triAll = !!(opts && opts.triAll === "starting");
+  const triAttr = triAll ? ' data-tri-all="starting"' : "";
+  const allLabel = triAll ? "All ↻" : "All";
+  const allTitle = triAll ? ' title="Click to cycle: All → Starting → Shared"' : "";
   return (
-    `<div class="filter-bar" data-grid="${escapeAttr(gridId)}">` +
-    `<button class="filter-pill${allActive ? " active" : ""}" data-filter="all">All</button>${pills}</div>`
+    `<div class="filter-bar" data-grid="${escapeAttr(gridId)}"${triAttr}>` +
+    `<button class="filter-pill${allActive ? " active" : ""}" data-filter="all"${allTitle}>${allLabel}</button>` +
+    `<span class="filter-sep" aria-hidden="true"></span>` +
+    `${pills}</div>`
   );
 }
 
 /**
  * Render a single grid card. Clicking it opens the detail modal.
  * @param {string} id
- * @param {Set<string>} [starred] - IDs that show a star badge.
  * @param {number} [count=1] - Copies (shows `x3` when > 1).
  * @param {string|null} [titleOverride] - Custom display title.
  * @param {boolean} [hidden=false] - Render filtered-out by default.
  * @param {Set<string>} [unprepared]
  * @returns {string} HTML string
  */
-function renderCard(id, starred, count = 1, titleOverride, hidden = false, unprepared) {
+function renderCard(id, count = 1, titleOverride, isStarting = false, hidden = false, unprepared) {
   const card = getCard(id);
   if (!card) return "";
 
@@ -125,14 +134,13 @@ function renderCard(id, starred, count = 1, titleOverride, hidden = false, unpre
   const displayTitle = escapeHtml(titleOverride || card.title);
   const displayFooter = escapeHtml(card.footer || "");
   const displayTag = escapeHtml(card.tag || "");
-  const star = starred && starred.has(id)
-    ? '<span class="card-star" title="Starting item">⭐</span>'
-    : "";
+  const star = isStarting ? '<span class="card-star" title="Starting item">⭐</span>' : "";
   const qty = count > 1 ? `<span class="card-count">x${count}</span>` : "";
   const hiddenCls = hidden ? " filter-hidden" : "";
+  const startingAttr = isStarting ? ' data-starting="true"' : ' data-starting="false"';
 
   return (
-    `<div class="item-card ${cls}${hiddenCls}" data-cat="${escapeAttr(card.tag)}"${isUnprepared ? ' data-unprepared="true"' : ""} data-card-id="${escapeAttr(id)}">` +
+    `<div class="item-card ${cls}${hiddenCls}" data-cat="${escapeAttr(card.tag)}"${isUnprepared ? ' data-unprepared="true"' : ""}${startingAttr} data-card-id="${escapeAttr(id)}">` +
       `<div class="card-stripe"></div>` +
       `<div class="card-body">` +
         thumbHtml(card, "card-thumb") +
@@ -148,14 +156,13 @@ function renderCard(id, starred, count = 1, titleOverride, hidden = false, unpre
 
 /**
  * Build a card grid (with optional filter bar) from a loadout array.
- * @param {Array<string|{ id: string, count?: number, title?: string }>} rawItems
+ * @param {Array<string|{ id: string, count?: number, titleOverride?: string, title?: string }>} rawItems
  * @param {string} gridId - Unique ID for the grid element.
- * @param {Set<string>} [starred]
  * @param {string[]} [defaultExclude]
  * @param {Set<string>} [unprepared]
  * @returns {string} HTML string
  */
-export function buildCardSection(rawItems, gridId, starred, defaultExclude, unprepared) {
+export function buildCardSection(rawItems, gridId, defaultExclude, unprepared, opts) {
   const items = normalizeItems(rawItems);
   if (!items.length) return '<div class="empty-msg">None :(</div>';
 
@@ -166,12 +173,12 @@ export function buildCardSection(rawItems, gridId, starred, defaultExclude, unpr
     .map((item) => {
       const tag = effectiveTag(item.id, unprepared);
       const hidden = hasExclusions && excluded.includes(tag);
-      return renderCard(item.id, starred, item.count, item.title, hidden, unprepared);
+      return renderCard(item.id, item.count, item.titleOverride, item.isStarting, hidden, unprepared);
     })
     .join("");
 
   return (
-    buildFilterBar(items, gridId, defaultExclude, unprepared) +
+    buildFilterBar(items, gridId, defaultExclude, unprepared, opts) +
     `<div class="card-grid" id="${escapeAttr(gridId)}">${cards}</div>`
   );
 }
