@@ -184,6 +184,13 @@
 }
 
 .rich-desc .desc-li {
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 18px;
+}
+
+.rich-desc .desc-center {
   display: block;
-  padding-left: 4px;
+  text-align: center;
 }

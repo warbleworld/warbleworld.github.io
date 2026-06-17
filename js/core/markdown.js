@@ -1,7 +1,7 @@
 // ---------------------------------------------------------
 // Markdown-ish rich text renderer for card descriptions.
-// Supports: **bold**, *italic*, __underline__, `- item` lists,
-// [label](url) links, and newlines.
+// Supports: **bold**, *italic*, __underline__, `*/- item` lists,
+// `::center:: text` centered lines, [label](url) links, and newlines.
 // ---------------------------------------------------------
 
 import { escapeAttr, escapeHtml } from "./html.js";
@@ -81,9 +81,12 @@ export function formatDesc(raw) {
   html = parseLinks(html);
   html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
   html = html.replace(/\*(.+?)\*/g, "<em>$1</em>");
-  html = html.replace(/^- (.+)$/gm, '<span class="desc-li">• $1</span>');
+  html = html.replace(/^(?:-|\*)\s+(.+)$/gm, '<span class="desc-li">$1</span>');
+  html = html.replace(/^::center::\s*(.+)$/gm, '<span class="desc-center">$1</span>');
   html = html.replace(/\n\n/g, "</p><p>");
   html = html.replace(/\n/g, "<br>");
+  html = html.replace(/(<span class="desc-li">[\s\S]*?<\/span>)<br>/g, "$1");
+  html = html.replace(/(<span class="desc-center">[\s\S]*?<\/span>)<br>/g, "$1");
 
   return "<p>" + html + "</p>";
 }
