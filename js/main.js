@@ -17,7 +17,7 @@ function populateAvatars() {
     const key = img.dataset.char;
     if (!PORTRAITS[key]) return;
     img.src = resolveImageUrl(PORTRAITS[key]);
-    img.loading = "eager";
+    img.loading = "lazy";
     img.decoding = "async";
     img.width = 28;
     img.height = 28;
