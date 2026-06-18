@@ -85,13 +85,16 @@ function ensureAvailableDefaults() {
   });
 }
 
-/** Reveal a random player page on load and build its incarnation. */
-function selectRandomPlayer(forcedPlayerId) {
+/** Reveal a random (or query-specified) player page on load and build its incarnation. */
+function selectRandomPlayer() {
   const buttons = Array.from(document.querySelectorAll(".player-btn"));
-  let btn = forcedPlayerId
-    ? buttons.find((playerBtn) => playerBtn.dataset.player === forcedPlayerId)
-    : null;
-  if (!btn) btn = buttons[Math.floor(Math.random() * buttons.length)];
+  // Collect the set of valid player IDs from the DOM so no arbitrary value is accepted.
+  const validPlayerIds = new Set(buttons.map((btn) => btn.dataset.player));
+  const urlParam = new URLSearchParams(window.location.search).get("player");
+  const requestedPlayerId = validPlayerIds.has(urlParam) ? urlParam : null;
+  const btn = requestedPlayerId
+    ? buttons.find((b) => b.dataset.player === requestedPlayerId)
+    : buttons[Math.floor(Math.random() * buttons.length)];
   if (!btn) return;
 
   buttons.forEach((playerBtn) => {
