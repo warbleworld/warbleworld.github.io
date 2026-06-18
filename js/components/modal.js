@@ -26,7 +26,13 @@ export function showCardModal(id) {
   const displayTitle = escapeHtml(card.title || "");
   const displayTag = escapeHtml(card.tag || "");
   const displayFooter = escapeHtml(card.footer || "");
-  const displayMeta = displayFooter ? `${displayTag} · ${displayFooter}` : displayTag;
+  const rawMetaItems = Array.isArray(card.meta)
+    ? card.meta
+    : (typeof card.meta === "string" ? [card.meta] : []);
+  const displayMetaItems = rawMetaItems
+    .map((item) => escapeHtml(String(item || "").trim()))
+    .filter(Boolean);
+  const displayMeta = displayMetaItems.join(" · ");
 
   backdrop.innerHTML =
     `<div class="card-modal">` +
