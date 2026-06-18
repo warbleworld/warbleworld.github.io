@@ -41,19 +41,20 @@ export function cardClass(tag) {
 }
 
 /**
- * Normalize a loadout array (plain IDs or `{ id, count, titleOverride }`) into
- * a uniform list of `{ id, count, titleOverride }` entries.
- * @param {Array<string|{ id: string, count?: number, titleOverride?: string, isStarting?: boolean }>} items
- * @returns {Array<{ id: string, count: number, titleOverride: string|null }>}
+ * Normalize a loadout array (plain IDs or `{ id, count, titleOverride, footerOverride }`) into
+ * a uniform list of `{ id, count, isStarting, titleOverride, footerOverride }` entries.
+ * @param {Array<string|{ id: string, count?: number, isStarting?: boolean, titleOverride?: string, footerOverride?: string}>} items
+ * @returns {Array<{ id: string, count: number, isStarting: boolean, titleOverride: string|null, footerOverride: string|null }>}
  */
 function normalizeItems(items) {
   return items.map((item) => {
-    if (typeof item === "string") return { id: item, count: 1, titleOverride: null, isStarting: false };
+    if (typeof item === "string") return { id: item, count: 1, isStarting: false, titleOverride: null, footerOverride: null };
     return {
       id: item.id,
       count: item.count || 1,
-      titleOverride: item.titleOverride,
       isStarting: !!item.isStarting,
+      titleOverride: item.titleOverride,
+      footerOverride: item.footerOverride,
     };
   });
 }
@@ -119,12 +120,14 @@ function buildFilterBar(items, gridId, defaultExclude, unprepared, opts) {
  * Render a single grid card. Clicking it opens the detail modal.
  * @param {string} id
  * @param {number} [count=1] - Copies (shows `x3` when > 1).
+ * @param {boolean} [isStarting=false] - Whether the card is a starting item (shows a star).
  * @param {string|null} [titleOverride] - Custom display title.
+ * @param {string|null} [footerOverride] - Custom display footer.
  * @param {boolean} [hidden=false] - Render filtered-out by default.
- * @param {Set<string>} [unprepared]
+ * @param {Set<string>} [unprepared] - Set of unprepared spell IDs to determine effective tag.
  * @returns {string} HTML string
  */
-function renderCard(id, count = 1, titleOverride, isStarting = false, hidden = false, unprepared) {
+function renderCard(id, count = 1, isStarting = false, titleOverride = null, footerOverride = null, hidden = false, unprepared) {
   const card = getCard(id);
   if (!card) return "";
 
@@ -132,7 +135,7 @@ function renderCard(id, count = 1, titleOverride, isStarting = false, hidden = f
   const cls = cardClass(tag);
   const isUnprepared = !!(unprepared && unprepared.has(id));
   const displayTitle = escapeHtml(titleOverride || card.title);
-  const displayFooter = escapeHtml(card.footer || "");
+  const displayFooter = escapeHtml(footerOverride || card.footer);
   const displayTag = escapeHtml(card.tag || "");
   const star = isStarting ? '<span class="card-star" title="Starting item">⭐</span>' : "";
   const qty = count > 1 ? `<span class="card-count">x${count}</span>` : "";
@@ -173,7 +176,7 @@ export function buildCardSection(rawItems, gridId, defaultExclude, unprepared, o
     .map((item) => {
       const tag = effectiveTag(item.id, unprepared);
       const hidden = hasExclusions && excluded.includes(tag);
-      return renderCard(item.id, item.count, item.titleOverride, item.isStarting, hidden, unprepared);
+      return renderCard(item.id, item.count, item.isStarting, item.titleOverride, item.footerOverride, hidden, unprepared);
     })
     .join("");
 
