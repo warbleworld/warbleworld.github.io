@@ -162,7 +162,10 @@ function handleCardClick(e) {
 
   const card = e.target.closest(".item-card[data-card-id]");
   if (card) {
-    showCardModal(card.dataset.cardId);
+    const overrides = {};
+    if (card.dataset.titleOverride) overrides.titleOverride = card.dataset.titleOverride;
+    if (card.dataset.footerOverride) overrides.footerOverride = card.dataset.footerOverride;
+    showCardModal(card.dataset.cardId, overrides);
     return true;
   }
 

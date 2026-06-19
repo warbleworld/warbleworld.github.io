@@ -11,8 +11,9 @@ import { cardClass } from "./cards.js";
 /**
  * Open the detail modal for a card. Closes any modal already open.
  * @param {string} id
+ * @param {{ titleOverride?: string|null, footerOverride?: string|null }} [overrides]
  */
-export function showCardModal(id) {
+export function showCardModal(id, overrides) {
   const card = getCard(id);
   if (!card) return;
 
@@ -23,9 +24,9 @@ export function showCardModal(id) {
   backdrop.setAttribute("role", "dialog");
   backdrop.setAttribute("aria-label", card.title);
 
-  const displayTitle = escapeHtml(card.title || "");
+  const displayTitle = escapeHtml((overrides && overrides.titleOverride) || card.title || "");
   const displayTag = escapeHtml(card.tag || "");
-  const displayFooter = escapeHtml(card.footer || "");
+  const displayFooter = escapeHtml((overrides && overrides.footerOverride) || card.footer || "");
   const rawMetaItems = Array.isArray(card.meta)
     ? card.meta
     : (typeof card.meta === "string" ? [card.meta] : []);

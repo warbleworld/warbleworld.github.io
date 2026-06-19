@@ -141,8 +141,11 @@ function renderCard(id, count = 1, isStarting = false, titleOverride = null, foo
   const hiddenCls = hidden ? " filter-hidden" : "";
   const startingAttr = isStarting ? ' data-starting="true"' : ' data-starting="false"';
 
+  const titleAttr = titleOverride ? ` data-title-override="${escapeAttr(titleOverride)}"` : "";
+  const footerAttr = footerOverride ? ` data-footer-override="${escapeAttr(footerOverride)}"` : "";
+
   return (
-    `<div class="item-card ${cls}${hiddenCls}" data-cat="${escapeAttr(card.tag)}"${isUnprepared ? ' data-unprepared="true"' : ""}${startingAttr} data-card-id="${escapeAttr(id)}">` +
+    `<div class="item-card ${cls}${hiddenCls}" data-cat="${escapeAttr(card.tag)}"${isUnprepared ? ' data-unprepared="true"' : ""}${startingAttr} data-card-id="${escapeAttr(id)}"${titleAttr}${footerAttr}>` +
       `<div class="card-stripe"></div>` +
       `<div class="card-body">` +
         thumbHtml(card, "card-thumb") +
