@@ -104,7 +104,9 @@ function renderOptionalTagSection(title, items) {
 function renderSpellcastingStats(data) {
   if (!Array.isArray(data.spells) || data.spells.length === 0) return "";
 
-  const spellAbility = ABILITIES.includes(data.spellcastingAbility) ? data.spellcastingAbility : "INT";
+  const spellAbility = ABILITIES.includes(data.spellcastingAbility) ? data.spellcastingAbility : null;
+  if (!spellAbility) return "";
+
   const spellMod = modifier(data.ab[spellAbility]);
   const attackBonus = spellMod + data.prof;
   const spellDC = 8 + spellMod + data.prof;
