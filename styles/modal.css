@@ -99,6 +99,7 @@ body.modal-open {
 
 .card-modal-meta {
   font-size: 0.65rem;
+  font-style: italic;
   color: var(--text-dim);
   margin-top: 2px;
 }

@@ -2,7 +2,31 @@
   "dagger": {
     "title": "Dagger",
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Dagger.webp",
-    "desc": "*Simple Weapon, Melee Weapon*\n\n**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
+    "desc": "*Simple Weapon, Melee Weapon*\n**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
+    "tag": "Weapon"
+  },
+  "glaive": {
+    "title": "Glaive",
+    "meta": ["Martial Weapon", "Melee Weapon"],
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Glaive.webp",
+    "desc": "**__1d10__** Slashing\n\n**Heavy**. Creatures that are Small or Tiny have disadvantage on attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small or Tiny creature to use effectively.\n\n**Reach**. This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
+    "footer": "Action",
+    "tag": "Weapon"
+  },
+  "light_crossbow": {
+    "title": "Light Crossbow",
+    "meta": ["Simple Weapon", "Ranged Weapon"],
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Light%20Crossbow.webp",
+    "desc": "**__1d8__** Piercing (80/320 ft.)\n\n**Range**. A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.\n\n**Ammunition**. You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nIf you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.\n\n**Loading**. Because of the time required to load this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or reaction to fire it, regardless of the number of attacks you can normally make.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
+    "footer": "Action",
+    "tag": "Weapon"
+  },
+  "pike": {
+    "title": "Pike",
+    "meta": ["Martial Wepaon", "Melee Weapon"], 
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Pike.webp",
+    "desc": "**__1d10__** Piercing\n\n**Heavy**. Creatures that are Small or Tiny have disadvantage on attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small or Tiny creature to use effectively.\n\n**Reach**. This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
+    "footer": "Action",
     "tag": "Weapon"
   },
   "rapier": {
@@ -13,8 +37,9 @@
   },
   "scalpel": {
     "title": "Scalpel",
+    "meta": ["Simple Weapon", "Melee Weapon"],
     "img": "images/knife-chef-steel-black.webp",
-    "desc": "*Simple Weapon, Melee Weapon*\n**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
+    "desc": "**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
     "tag": "Weapon"
   },
   "shortbow": {
@@ -32,8 +57,16 @@
 
 
 
+  "chain_mail": {
+    "title": "Chain Mail",
+    "meta": "Heavy Armor",
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Chain%20Mail.webp",
+    "desc": "AC 16\n\nMade of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.\n\nThe wearer has [Disadvantage](https://5e.tools/variantrules.html#disadvantage_xphb) on Dexterity (**__Stealth__**) checks.\n\nIf the wearer has a Strength score lower than 13, their speed is reduced by 10 feet.",
+    "tag": "Equipment"
+  },
   "common_clothes": {
     "title": "Common Clothes",
+    "meta": "Adventuring Gear",
     "img": "images/pants-brown-leather-pants.webp",
     "desc": "",
     "tag": "Equipment"
@@ -58,8 +91,10 @@
   },
   "hat_of_disguise": {
     "title": "Hat of Disguise",
+    "meta": ["Wondrous Item", "Uncommon", "Requires Attunement"],
     "img": "https://cdn.5e.tools/2024/img/items/XDMG/Hat%20of%20Disguise.webp",
     "desc": "While wearing this hat, you can use an action to cast the [disguise self](https://5e.tools/spells.html#disguise%20self_phb) spell from it at will. The spell ends if the hat is removed.",
+    "footer": "Action",
     "tag": "Equipment"
   },
   "leather_armor": {
@@ -82,6 +117,7 @@
   },
   "portal_compass": {
     "title": "Portal Compass",
+    "meta": ["Wondrous Item", "Uncommon"],
     "img": "https://cdn.5e.tools/2024/img/items/SatO/Portal%20Compass.webp",
     "desc": "This portable arcane instrument points in the direction of the last portal it passed through while it and the portal are on the same plane of existence. If that portal no longer exists, the needle becomes static until the compass passes through a new portal.",
     "tag": "Equipment"
@@ -115,8 +151,10 @@
   },
   "blood_charm": {
     "title": "Blood Charm",
+    "meta": ["Charm", "Uncommon"],
     "img": "images/heart-cross-strong-purple-orange.webp",
     "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nLike its younger cousin, the clot charm, the blood charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__4d4 + 4__** hit points. However, while the blood charm's initial healing effect is more powerful than the clot charm, it has no other lasting effects.",
+    "footer": "Action",
     "tag": "Consumables"
   },
   "candle": {
@@ -127,14 +165,25 @@
   },
   "clot_charm": {
     "title": "Clot Charm",
+    "meta": ["Charm", "Common"],
     "img": "images/heart-cross-purple-orange.webp",
     "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nThe charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__2d4 + 2__** hit points. Furthermore, as long as the charm is in effect, the user's blood becomes more \"aware\" of new wounds that occur, especially any attacks that draw blood. The charmed individual becomes more resistant to slashing and piercing attacks, as their blood clots and scabs over the wound as soon as the flesh is torn.",
+    "footer": "Action",
+    "tag": "Consumables"
+  },
+  "crossbow_bolt": {
+    "title": "Crossbow Bolt",
+    "meta": "Ammunition",
+    "img": "images/arrow-head-war-flight.webp",
+    "desc": "",
     "tag": "Consumables"
   },
   "hempen_rope": {
     "title": "Hempen Rope (50 feet)",
+    "meta": "Adventuring Gear",
     "img": "images/rope-coiled-wrapped-brown.webp",
     "desc": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+    "footer": "Action",
     "tag": "Consumables"
   },
   "hooded_lantern": {
@@ -169,14 +218,24 @@
   },
   "rations": {
     "title": "Rations (1 day)",
+    "meta": "Adventuring Gear",
     "img": "images/bread-loaf-boule-rustic-brown.webp",
     "desc": "Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.",
+    "footer": "Action",
     "tag": "Consumables"
   },
   "string": {
     "title": "String (10 feet)",
     "img": "images/reel-simple-string-white.webp",
     "desc": "",
+    "tag": "Consumables"
+  },
+  "torch": {
+    "title": "Torch",
+    "meta": "Adventuring Gear",
+    "img": "images/torch-white.webp",
+    "desc": "A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage.",
+    "footer": "Action",
     "tag": "Consumables"
   },
   "warming_waterskin": {
@@ -187,8 +246,10 @@
   },
   "waterskin": {
     "title": "Waterskin",
+    "meta": "Adventuring Gear",
     "img": "images/wetskin-leather-purple.webp",
     "desc": "A waterskin can hold up to 4 pints of liquid.",
+    "footer": "Action",
     "tag": "Consumables"
   },
 
@@ -196,12 +257,22 @@
 
   "backpack": {
     "title": "Backpack",
+    "meta": "Adventuring Gear",
     "img": "images/pack-rounded-leather-brown.webp",
     "desc": "A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack.",
     "tag": "Tools and Containers"
   },
+  "playing_card_set": {
+    "title": "Playing Card Set",
+    "meta": "Gaming Set",
+    "img": "images/playing-cards.webp",
+    "desc": "If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set.",
+    "footer": "Action",
+    "tag": "Tools and Containers"
+  },
   "pouch": {
     "title": "Pouch",
+    "meta": "Adventuring Gear",
     "img": "images/pouch-simple-leather-tan.webp",
     "desc": "A cloth or leather pouch can hold up to 20 [sling bullets](https://5e.tools/items.html#sling%20bullet_phb) or 50 [blowgun needles](https://5e.tools/items.html#blowgun%20needle_phb), among other things. A compartmentalized pouch for holding spell components is called a [component pouch](https://5e.tools/items.html#component%20pouch_phb). A pouch can hold up to ⅕ cubic foot or 6 pounds of gear.",
     "tag": "Tools and Containers"
@@ -230,6 +301,13 @@
   "bag_of_sand": {
     "title": "Bag of Sand",
     "img": "images/coinpouch-simple-leather-brown.webp",
+    "desc": "",
+    "tag": "Loot"
+  },
+  "bedroll": {
+    "title": "Bedroll",
+    "meta": "Adventuring Gear",
+    "img": "images/bedroll-pink.webp",
     "desc": "",
     "tag": "Loot"
   },
@@ -263,6 +341,13 @@
     "desc": "",
     "tag": "Loot"
   },
+  "mess_kit": {
+    "title": "Mess Kit",
+    "meta": "Adventuring Gear",
+    "img": "images/bowl-clay-brown.webp",
+    "desc": "This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl.",
+    "tag": "Loot"
+  },
   "mysterious_letter": {
     "title": "Mysterious Letter",
     "img": "images/diplomacy-writing-letter.webp",
@@ -278,6 +363,18 @@
   "portal_key": {
     "title": "Portal Key",
     "img": "images/gem-faceted-tapered-blue.webp",
+    "desc": "",
+    "tag": "Loot"
+  },
+  "prized_banner": {
+    "title": "Prized Banner",
+    "img": "images/banner-flag-blue.webp",
+    "desc": "",
+    "tag": "Loot"
+  },
+  "rank_insignia": {
+    "title": "Rank Insignia",
+    "img": "images/medal-ribbon-blue.webp",
     "desc": "",
     "tag": "Loot"
   },
@@ -307,6 +404,7 @@
   },
   "tinderbox": {
     "title": "Tinderbox",
+    "meta": "Adventuring Gear",
     "img": "images/crate-worn-brown.webp",
     "desc": "This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch—or anything else with abundant, exposed fuel—takes an action. Lighting any other fire takes 1 minute.",
     "tag": "Loot"

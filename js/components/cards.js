@@ -91,7 +91,6 @@ function buildFilterBar(items, gridId, defaultExclude, unprepared, opts) {
     if (!categories.includes(tag)) categories.push(tag);
   });
   if (hasUnprepared && !categories.includes("Unprepared")) categories.push("Unprepared");
-  if (categories.length <= 1) return "";
 
   const excluded = defaultExclude || [];
   const hasExclusions = excluded.length > 0;
