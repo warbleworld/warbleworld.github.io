@@ -50,9 +50,9 @@ export const CHARACTERS = {
     counters: [
       { name: "Hit Dice (d6)", max: 6, cur: 6, color: PIP_COLOR },
       { name: "Sorcery Points", max: 6, cur: 6, color: PIP_COLOR },
-      { name: "Strength of the Grave", max: 1, cur: 1, color: PIP_COLOR },
-      { name: "Healing Hands", max: 1, cur: 1, color: PIP_COLOR },
-      { name: "Necrotic Shroud", max: 1, cur: 1, color: PIP_COLOR },
+      { name: "Strength of the Grave (LR)", max: 1, cur: 1, color: PIP_COLOR },
+      { name: "Healing Hands (LR)", max: 1, cur: 1, color: PIP_COLOR },
+      { name: "Necrotic Shroud (LR)", max: 1, cur: 1, color: PIP_COLOR },
       { name: "1st Level Slots", max: 4, cur: 4, color: PIP_COLOR },
       { name: "2nd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
       { name: "3rd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
@@ -96,8 +96,8 @@ export const CHARACTERS = {
     languages: ["Common", "Elvish", "Celestial", "Infernal", "Sylvan"],
     counters: [
       { name: "Hit Dice (d6)", max: 6, cur: 6, color: PIP_COLOR },
-      { name: "Arcane Recovery", max: 1, cur: 1, color: PIP_COLOR },
-      { name: "Bladesong", max: 3, cur: 3, color: PIP_COLOR },
+      { name: "Arcane Recovery (SR 1/Day)", max: 1, cur: 1, color: PIP_COLOR },
+      { name: "Bladesong (LR)", max: 3, cur: 3, color: PIP_COLOR },
       { name: "1st Level Slots", max: 4, cur: 4, color: PIP_COLOR },
       { name: "2nd Level Slots", max: 3, cur: 3, color: PIP_COLOR },
       { name: "3rd Level Slots", max: 3, cur: 3, color: PIP_COLOR },

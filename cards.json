@@ -4,7 +4,6 @@
     "meta": ["Simple Weapon", "Melee Weapon"],
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Dagger.webp",
     "desc": "**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "glaive": {
@@ -12,7 +11,6 @@
     "meta": ["Martial Weapon", "Melee Weapon"],
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Glaive.webp",
     "desc": "**__1d10__** Slashing\n\n**Heavy**. Creatures that are Small or Tiny have disadvantage on attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small or Tiny creature to use effectively.\n\n**Reach**. This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "light_crossbow": {
@@ -20,23 +18,20 @@
     "meta": ["Simple Weapon", "Ranged Weapon"],
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Light%20Crossbow.webp",
     "desc": "**__1d8__** Piercing (80/320 ft.)\n\n**Range**. A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.\n\n**Ammunition**. You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nIf you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.\n\n**Loading**. Because of the time required to load this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or reaction to fire it, regardless of the number of attacks you can normally make.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "pike": {
     "title": "Pike",
-    "meta": ["Martial Wepaon", "Melee Weapon"], 
+    "meta": ["Martial Weapon", "Melee Weapon"], 
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Pike.webp",
     "desc": "**__1d10__** Piercing\n\n**Heavy**. Creatures that are Small or Tiny have disadvantage on attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small or Tiny creature to use effectively.\n\n**Reach**. This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "rapier": {
     "title": "Rapier",
-    "meta": ["Martial Wepaon", "Melee Weapon"], 
+    "meta": ["Martial Weapon", "Melee Weapon"], 
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Rapier.webp",
     "desc": "**__1d8__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "scalpel": {
@@ -44,7 +39,6 @@
     "meta": ["Simple Weapon", "Melee Weapon"],
     "img": "images/knife-chef-steel-black.webp",
     "desc": "**__1d4__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.\n\n**Thrown**. If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon. For example, if you throw a handaxe, you use your Strength, but if you throw a dagger, you can use either your Strength or your Dexterity, since the dagger has the finesse property.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "shortbow": {
@@ -52,15 +46,13 @@
     "meta": ["Simple Weapon", "Ranged Weapon"],
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shortbow.webp",
     "desc": "**__1d6__** Piercing (80/320 ft.)\n\n**Range**. A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.\n\n**Ammunition**. You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nIf you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
-    "footer": "Action",
     "tag": "Weapon"
   },
   "shortsword": {
     "title": "Shortsword",
-    "meta": ["Martial Wepaon", "Melee Weapon"], 
+    "meta": ["Martial Weapon", "Melee Weapon"], 
     "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shortsword.webp",
-    "desc": "*Martial Weapon, Melee Weapon*\n**__1d6__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.",
-    "footer": "Action",
+    "desc": "**__1d6__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.",
     "tag": "Weapon"
   },
 
@@ -128,6 +120,7 @@
     "meta": ["Wondrous Item", "Rare", "Requires Attunement By a Cleric, Druid, or Paladin"],
     "img": "https://cdn.5e.tools/2024/img/items/XDMG/Necklace%20of%20Prayer%20Beads.webp",
     "desc": "This necklace has **__1d4 + 2__** magic beads made from aquamarine, black pearl, or topaz. It also has many nonmagical beads made from stones such as amber, bloodstone, citrine, coral, jade, pearl, or quartz. If a magic bead is removed from the necklace, that bead loses its magic.\n        \nSix types of magic beads exist. A necklace can have more than one bead of the same type. To use one, you must be wearing the necklace. Each bead contains a spell that you can cast from it as a **__Bonus Action__** (using your spell save DC if a save is necessary). Once a magic bead's spell is cast, that bead can't be used again until the next dawn.\n\n**Branding Smite**\n*Level 2 Evocation*\n**Range**: Self \n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nThe next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra **__2d6__** radiant damage to the target, which becomes visible if it's [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb), and the target sheds dim light in a 5-foot radius and can't become [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb) until the spell ends.",
+    "footer": "Bonus Action",
     "tag": "Equipment"
   },
   "portal_compass": {
@@ -175,7 +168,6 @@
     "meta": ["Charm", "Uncommon"],
     "img": "images/heart-cross-strong-purple-orange.webp",
     "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nLike its younger cousin, the clot charm, the blood charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__4d4 + 4__** hit points. However, while the blood charm's initial healing effect is more powerful than the clot charm, it has no other lasting effects.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "candle": {
@@ -183,7 +175,6 @@
     "meta": "Adventuring Gear",
     "img": "images/candle-unlit-white.webp",
     "desc": "For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "clot_charm": {
@@ -191,7 +182,6 @@
     "meta": ["Charm", "Common"],
     "img": "images/heart-cross-purple-orange.webp",
     "desc": "This glistening blood drop is as hard and smooth as a pearl. When placed on the tongue, it dissolves instantly and spreads through the character's bloodstream.\n\nThe charm stimulates the user's blood into clotting and scabbing over existing wounds, healing **__2d4 + 2__** hit points. Furthermore, as long as the charm is in effect, the user's blood becomes more \"aware\" of new wounds that occur, especially any attacks that draw blood. The charmed individual becomes more resistant to slashing and piercing attacks, as their blood clots and scabs over the wound as soon as the flesh is torn.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "crossbow_bolt": {
@@ -206,7 +196,6 @@
     "meta": "Adventuring Gear",
     "img": "images/rope-coiled-wrapped-brown.webp",
     "desc": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "hooded_lantern": {
@@ -237,7 +226,6 @@
     "meta": "Adventuring Gear",
     "img": "images/pin-spiked.webp",
     "desc": "",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "potion_of_poison_resistance": {
@@ -252,7 +240,6 @@
     "meta": "Adventuring Gear",
     "img": "images/bread-loaf-boule-rustic-brown.webp",
     "desc": "Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "string": {
@@ -266,7 +253,6 @@
     "meta": "Adventuring Gear",
     "img": "images/torch-white.webp",
     "desc": "A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "warming_waterskin": {
@@ -274,7 +260,6 @@
     "meta": "Adventuring Gear",
     "img": "images/wetskin-leather-purple.webp",
     "desc": "This waterskin can hold up to 4 pints of liquid. Any liquid kept in this waterskin is automatically brought to and kept at 212 degrees Fahrenheit.",
-    "footer": "Action",
     "tag": "Consumables"
   },
   "waterskin": {
@@ -282,7 +267,6 @@
     "meta": "Adventuring Gear",
     "img": "images/wetskin-leather-purple.webp",
     "desc": "A waterskin can hold up to 4 pints of liquid.",
-    "footer": "Action",
     "tag": "Consumables"
   },
 
@@ -300,7 +284,6 @@
     "meta": "Gaming Set",
     "img": "images/playing-cards.webp",
     "desc": "If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set.",
-    "footer": "Action",
     "tag": "Tools and Containers"
   },
   "pouch": {
@@ -328,7 +311,6 @@
     "meta": "Tool",
     "img": "images/lockpicks-steel-grey.webp",
     "desc": "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks.\n\nPerhaps the most common tools used by adventurers, thieves' tools are designed for picking locks and foiling traps. Proficiency with the tools also grants you a general knowledge of traps and locks.\n\n**Components**. Thieves' tools include a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers.\n\n**History**. Your knowledge of traps grants you insight when answering questions about locations that are renowned for their traps.\n\n**Investigation and Perception**. You gain additional insight when looking for traps, because you have learned a variety of common signs that betray their presence.\n\n**Set a Trap**. Just as you can disable traps, you can also set them. As part of a short rest, you can create a trap using items you have on hand. The total of your check becomes the DC for someone else's attempt to discover or disable the trap. The trap deals damage appropriate to the materials used in crafting it (such as poison or a weapon) or damage equal to half the total of your check, whichever the DM deems appropriate.",
-    "footer": "Action",
     "tag": "Tools and Containers"
   },
 
@@ -477,7 +459,7 @@
   },
   "arcane_recovery": {
     "title": "Arcane Recovery",
-    "meta": "Recovery (LR)",
+    "meta": "Recovery (SR 1/Day)",
     "img": "images/explosion-lava-stone-green.webp",
     "desc": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\n\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
     "footer": "Special",
@@ -513,6 +495,7 @@
     "title": "Cunning Action",
     "img": "images/hypnosis-mesmerism-watch.webp",
     "desc": "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action.",
+    "footer": "Bonus Action",
     "tag": "Class"
   },
   "ear_for_deceit": {
@@ -537,6 +520,7 @@
     "title": "Eye for Detail",
     "img": "images/eye-ringed-glow-angry-small-teal.webp",
     "desc": "Starting at 3rd level, you can use a bonus action to make a Wisdom (Perception) check to spot a hidden creature or object or to make an Intelligence (Investigation) check to uncover or decipher clues.",
+    "footer": "Bonus Action",
     "tag": "Class"
   },
   "eyes_of_the_dark": {
@@ -569,12 +553,11 @@
     "meta": "Recovery (LR)",
     "img": "images/projectile-meteor-salvo-heavy-pink.webp",
     "desc": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.",
-    "footer": "Bonus Action",
     "tag": "Class"
   },
   "giants_might": {
     "title": "Giant's Might",
-    "meta": "Recovery (SR)",
+    "meta": "Recovery (LR)",
     "img": "images/hand-grip-hammer-spiked-blue.webp",
     "desc": "You have learned how to imbue yourself with the might of giants. As a bonus action, you magically gain the following benefits, which last for 1 minute:\n* If you are smaller than Large, you become Large, along with anything you are wearing. If you lack the room to become Large, your size doesn't change.\n* You have advantage on Strength checks and Strength saving throws.\n* Once on each of your turns, one of your attacks with a weapon or an unarmed strike can deal an extra 1d6 damage to a target on a hit.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses of it when you finish a long rest.",
     "footer": "Bonus Action",
@@ -584,13 +567,14 @@
     "title": "Hound of Ill Omen",
     "img": "images/wolf-howl-moon-forest-blue.webp",
     "desc": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend 3 sorcery points to magically summon a [hound of ill omen](https://5e.tools/bestiary.html#hound%20of%20ill%20omen_xge) to target one creature you can see within 120 feet of you. The hound uses the [dire wolf](https://5e.tools/bestiary.html#dire%20wolf_mm)'s statistics (see the Monster Manual or appendix C in the Player's Handbook), with the following changes:\n* The hound is size Medium, not Large, and it counts as a monstrosity, not a beast.\n* It appears with a number of temporary hit points equal to half your sorcerer level.\n* It can move through other creatures and objects as if they were [difficult terrain](https://5e.tools/quickreference.html#bookref-quick,3,difficult%20terrain). The hound takes 5 force damage if it ends its turn inside an object.\n* At the start of its turn, the hound automatically knows its target's location. If the target was hidden, it is no longer hidden from the hound.\n\nThe hound appears in an unoccupied space of your choice within 30 feet of the target. Roll initiative for the hound. On its turn, it can move only toward its target by the most direct route, and it can use its action only to attack its target. The hound can make opportunity attacks, but only against its target. Additionally, while the hound is within 5 feet of the target, the target has disadvantage on saving throws against any spell you cast. The hound disappears if it is reduced to 0 hit points, if its target is reduced to 0 hit points, or after 5 minutes.",
-    "footer": "Action",
+    "footer": "Bonus Action",
     "tag": "Class"
   },
   "insightful_fighting": {
     "title": "Insightful Fighting",
     "img": "images/weapons-crossed-swords-teal.webp",
     "desc": "At 3rd level, you gain the ability to decipher an opponent's tactics and develop a counter to them. As a bonus action, you can make a Wisdom (Insight) check against a creature you can see that isn't incapacitated, contested by the target's Charisma (Deception) check. If you succeed, you can use your Sneak Attack against that target even if you don't have advantage on the attack roll, but not if you have disadvantage on it.\n\nThis benefit lasts for 1 minute or until you successfully use this feature against a different target.",
+    "footer": "Bonus Action",
     "tag": "Class"
   },
   "magical_guidance": {
@@ -690,6 +674,7 @@
     "title": "Steady Aim",
     "img": "images/crosshair-bars-yellow.webp",
     "desc": "As a bonus action, you give yourself advantage on your next attack roll on the current turn. You can use this bonus action only if you haven't moved during this turn, and after you use the bonus action, your speed is 0 until the end of the current turn.",
+    "footer": "Bonus Action",
     "tag": "Class"
   },
   "strength_of_the_grave": {
@@ -716,6 +701,7 @@
     "title": "Uncanny Dodge",
     "img": "images/feet-winged-boots-brown.webp",
     "desc": "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you.",
+    "footer": "Reaction",
     "tag": "Class"
   },
 
@@ -789,6 +775,7 @@
   },
   "healing_hands": {
     "title": "Healing Hands",
+    "meta": "Recovery (LR)",
     "img": "images/water-hand.webp",
     "desc": "As an action, you can touch a creature and cause it to regain a number of hit points equal to your level. Once you use this trait, you can't use it again until you finish a long rest.",
     "footer": "Action",
@@ -827,6 +814,7 @@
   },
   "necrotic_shroud": {
     "title": "Necrotic Shroud",
+    "meta": "Recovery (LR)",
     "img": "images/fear-fright-monster-purple-blue.webp",
     "desc": "Starting at 3rd level, you can use your action to unleash the divine energy within yourself, causing your eyes to turn into pools of darkness and two skeletal, ghostly, flightless wings to sprout from your back. The instant you transform, other creatures within 10 feet of you that can see you must succeed on a Charisma saving throw (DC 8 + your proficiency bonus + your Charisma modifier) or become [frightened](https://5e.tools/conditionsdiseases.html#frightened_phb) of you until the end of your next turn.\n\nYour transformation lasts for 1 minute or until you end it as a bonus action. During it, once on each of your turns, you can deal extra necrotic damage to one target when you deal damage to it with an attack or a spell. The extra necrotic damage equals your level.\n\nOnce you use this trait, you can't use it again until you finish a long rest.",
     "footer": "Action",
