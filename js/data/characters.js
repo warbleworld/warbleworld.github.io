@@ -86,7 +86,7 @@ export const CHARACTERS = {
   karmine: {
     level: 6,
     name: "Karmine", race: "High Elf", class: "Bladesinger Wizard", img: PORTRAITS.karmine,
-    ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, ac: 15, hp: 38, speed: 35,
+    ab: { STR: 9, DEX: 16, CON: 15, INT: 20, WIS: 12, CHA: 9 }, ac: 15, hp: 38, speed: 30,
     spellcastingAbility: "INT",
     saves: ["INT", "WIS"],
     skills: ["History", "Arcana", "Perception", "Insight", "Performance", "Investigation"],
