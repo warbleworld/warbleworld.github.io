@@ -155,7 +155,7 @@ export function renderSheet(data) {
       `<div class="cs-stats">` +
         `<div class="cs-stat"><div class="cs-stat-val">${data.ac}</div><div class="cs-stat-label">Armor Class</div></div>` +
         `<div class="cs-stat"><div class="cs-stat-val">${data.hp}</div><div class="cs-stat-label">Hit Points</div></div>` +
-        `<div class="cs-stat"><div class="cs-stat-val">${signed(modifier(data.ab["DEX"]))}</div><div class="cs-stat-label">Initiative</div></div>` +
+        `<div class="cs-stat"><div class="cs-stat-val">${signed(modifier(data.ab["DEX"]) + data.initBonus)}</div><div class="cs-stat-label">Initiative</div></div>` +
         `<div class="cs-stat"><div class="cs-stat-val">${speed}</div><div class="cs-stat-label">Speed</div></div>` +
         `<div class="cs-stat"><div class="cs-stat-val">+${data.prof}</div><div class="cs-stat-label">Proficiency</div></div>` +
       `</div>` +

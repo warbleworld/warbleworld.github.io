@@ -111,6 +111,7 @@ export const CHARACTERS = {
     level: 6,
     name: "Rubic", race: "Harengon", class: "Rune Knight Fighter", img: PORTRAITS.rubic,
     ab: { STR: 16, DEX: 14, CON: 20, INT: 9, WIS: 12, CHA: 9 }, ac: 16, hp: 70,
+    initBonus: (ch) => ch.prof,
     saves: ["STR", "CON"],
     skills: ["Athletics", "Insight", "Intimidation", "Perception", "Survival"],
     tools: ["Playing Card Set", "Smith's Tools"],
@@ -205,4 +206,5 @@ export const CHARACTERS = {
 
 for (const ch of Object.values(CHARACTERS)) {
   ch.prof = getProfBonus(ch.level);
+  ch.initBonus = ch.initBonus ? ch.initBonus(ch) : 0;
 }
