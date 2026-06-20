@@ -4,6 +4,7 @@
 // ---------------------------------------------------------
 
 import { DISABLED_INCARNATIONS, INCARNATION_PLAYER } from "../config.js";
+import { escapeAttr } from "../core/html.js";
 import { CHARACTERS } from "../data/characters.js";
 import { PLAYER_INVENTORY } from "../data/players.js";
 import { getCard } from "../store.js";
@@ -13,6 +14,18 @@ import { buildCardSection } from "./cards.js";
 
 /** Tracks which incarnations have already been built (build-once). */
 const built = new Set();
+
+/** Per-incarnation card lists used by the search tab. */
+const searchIndex = new Map();
+
+/**
+ * Retrieve the stored card lists for a built incarnation.
+ * @param {string} charId
+ * @returns {{ inv: object[], feat: object[], spells: object[], unprepared: Set<string> } | null}
+ */
+export function getSearchData(charId) {
+  return searchIndex.get(charId) ?? null;
+}
 
 const TAG_ORDER = ["Weapon", "Equipment", "Consumables", "Tools and Containers", "Loot"];
 
@@ -80,21 +93,41 @@ export function buildIncarnation(id) {
   });
   const sortedInv = sortInventory([...sharedInv, ...inv]);
 
+  // Store card lists so the search tab can query them later.
+  searchIndex.set(id, {
+    inv: sortedInv,
+    feat: (data.feat || []).map(normalizeLoadoutItem),
+    spells: allSpells.map(normalizeLoadoutItem),
+    unprepared,
+  });
+
   const tabs = [
     { id: `${id}-sheet`, label: "Sheet" },
     { id: `${id}-inv`, label: "Inventory" },
     { id: `${id}-feat`, label: "Features" },
     { id: `${id}-spells`, label: "Spells" },
+    { id: `${id}-search`, label: "Search" },
   ];
+
+  const searchContent =
+    `<div class="search-bar">` +
+      `<input type="search" class="search-input" data-char-id="${escapeAttr(id)}" ` +
+      `placeholder="Search cards\u2026" autocomplete="off" spellcheck="false" ` +
+      `aria-label="Search cards">` +
+    `</div>` +
+    `<div class="search-results" id="${escapeAttr(id)}-search-results">` +
+      `<div class="search-empty">Type to search cards\u2026</div>` +
+    `</div>`;
 
   el.innerHTML =
     buildTabBar(tabs, "Character tabs") +
-    buildTabPanel(`${id}-sheet`, renderSheet(data), true) +
+    buildTabPanel(`${id}-sheet`, renderSheet(data, id), true) +
     buildTabPanel(`${id}-inv`, buildCardSection(sortedInv, `${id}-inv-g`, undefined, undefined, { triAll: "starting" }), false) +
     buildTabPanel(`${id}-feat`, buildCardSection(data.feat, `${id}-feat-g`), false) +
     buildTabPanel(
       `${id}-spells`,
       buildCardSection(allSpells, `${id}-sp-g`, hideUnprepared, unprepared),
       false,
-    );
+    ) +
+    buildTabPanel(`${id}-search`, searchContent, false);
 }

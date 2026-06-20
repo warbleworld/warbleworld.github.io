@@ -1,0 +1,76 @@
+/* -- SEARCH BAR & RESULTS -- */
+
+/* Pinned above the scroll region, same pattern as .filter-bar */
+.search-bar {
+  display: flex;
+  padding: 10px 0;
+  position: relative;
+  z-index: 70;
+  background: var(--bg);
+  transform: translateZ(0);
+}
+
+.tab-content.active > .search-bar {
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.search-input::placeholder {
+  color: var(--text-dim);
+}
+
+.search-input:focus {
+  border-color: var(--gold-dim);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Clear button in type=search inputs */
+.search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E") center / contain no-repeat;
+  cursor: pointer;
+}
+
+/* -- Result sections -- */
+
+.search-results {
+  flex-shrink: 0;
+}
+
+.search-empty {
+  text-align: center;
+  color: var(--text-dim);
+  font-style: italic;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+}
+
+.search-section {
+  margin-bottom: 24px;
+}
+
+.search-section-title {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}

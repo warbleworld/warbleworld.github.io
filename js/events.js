@@ -4,7 +4,12 @@
 // ---------------------------------------------------------
 
 import { buildIncarnation } from "./components/incarnation.js";
+import { getSearchData } from "./components/incarnation.js";
 import { showCardModal, closeCardModal } from "./components/modal.js";
+import { renderCard } from "./components/cards.js";
+import { fuzzyScore } from "./core/search.js";
+import { escapeHtml } from "./core/html.js";
+import { getCard } from "./store.js";
 import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
 
 // -- Delegated click handlers -----------------------------
@@ -172,6 +177,74 @@ function handleCardClick(e) {
   return false;
 }
 
+// -- Search handler ----------------------------------------
+
+let searchTimer = null;
+
+function performSearch(input) {
+  const charId = input.dataset.charId;
+  const query = input.value.trim();
+  const data = getSearchData(charId);
+  const resultsEl = document.getElementById(`${charId}-search-results`);
+
+  if (!data || !resultsEl) return;
+
+  if (!query) {
+    resultsEl.innerHTML = '<div class="search-empty">Type to search cards\u2026</div>';
+    return;
+  }
+
+  const scoreItem = (item) => {
+    const card = getCard(item.id);
+    if (!card) return null;
+    const titleScore = fuzzyScore(query, card.title);
+    const tagScore = fuzzyScore(query, card.tag || "");
+    const best = Math.max(titleScore ?? -1, (tagScore ?? -1) * 0.5);
+    return best > 0 ? { item, _score: best } : null;
+  };
+
+  const search = (items) =>
+    items.map(scoreItem).filter(Boolean).sort((a, b) => b._score - a._score).map((r) => r.item);
+
+  const invResults = search(data.inv);
+  const featResults = search(data.feat);
+  const spellResults = search(data.spells);
+
+  if (!invResults.length && !featResults.length && !spellResults.length) {
+    resultsEl.innerHTML = '<div class="search-empty">No matching cards found.</div>';
+    return;
+  }
+
+  const renderSection = (title, items) => {
+    if (!items.length) return "";
+    const cards = items
+      .map((it) =>
+        renderCard(it.id, it.count, it.isStarting, it.titleOverride || null, it.footerOverride || null, false, data.unprepared),
+      )
+      .join("");
+    return (
+      `<div class="search-section">` +
+        `<div class="search-section-title">${escapeHtml(title)}</div>` +
+        `<div class="card-grid">${cards}</div>` +
+      `</div>`
+    );
+  };
+
+  resultsEl.innerHTML =
+    renderSection("Inventory", invResults) +
+    renderSection("Features", featResults) +
+    renderSection("Spells", spellResults);
+}
+
+function handleSearchInput(e) {
+  const input = e.target;
+  if (!input.classList.contains("search-input")) return;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => performSearch(input), 200);
+}
+
+// -- Delegated click chain --------------------------------
+
 function handleClick(e) {
   handleIncarnationClick(e) ||
     handleTabClick(e) ||
@@ -220,6 +293,7 @@ function activatePlayer(btn) {
  */
 export function installEventHandlers() {
   document.addEventListener("click", handleClick);
+  document.addEventListener("input", handleSearchInput);
 
   document.querySelectorAll(".player-btn").forEach((btn) => {
     btn.addEventListener("click", () => activatePlayer(btn));

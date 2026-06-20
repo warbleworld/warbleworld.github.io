@@ -45,15 +45,17 @@ function activeScroller() {
   return activeLeaf()?.querySelector(":scope > .tab-scroll") ?? null;
 }
 
-/** Hoist the active panel's filter bar OUT of the scroller so it sits as a
-    static sibling above the scroll region, immune to rubber-band bounce. */
+/** Hoist the active panel's filter bar or search bar OUT of the scroller so
+    it sits as a static sibling above the scroll region, immune to rubber-band
+    bounce. */
 function detachFilterBar() {
   const leaf = activeLeaf();
   const scroller = activeScroller();
   if (!leaf || !scroller) return;
-  const filterBar = scroller.querySelector(":scope > .filter-bar");
-  if (filterBar && filterBar.parentElement !== leaf) {
-    leaf.insertBefore(filterBar, scroller);
+
+  for (const sel of [".filter-bar", ".search-bar"]) {
+    const bar = scroller.querySelector(`:scope > ${sel}`);
+    if (bar) leaf.insertBefore(bar, scroller);
   }
 }
 

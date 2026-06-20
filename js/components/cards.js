@@ -126,7 +126,7 @@ function buildFilterBar(items, gridId, defaultExclude, unprepared, opts) {
  * @param {Set<string>} [unprepared] - Set of unprepared spell IDs to determine effective tag.
  * @returns {string} HTML string
  */
-function renderCard(id, count = 1, isStarting = false, titleOverride = null, footerOverride = null, hidden = false, unprepared) {
+export function renderCard(id, count = 1, isStarting = false, titleOverride = null, footerOverride = null, hidden = false, unprepared) {
   const card = getCard(id);
   if (!card) return "";
 
