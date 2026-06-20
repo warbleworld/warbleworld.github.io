@@ -1224,6 +1224,13 @@
     "desc": "**Casting Time**: Action\n**Range**: 30 feet\n**Components**: V\n**Duration**: 1 minute\n**Description**\nYou can blind or deafen a foe. Choose one creature that you can see within range to make a Constitution saving throw. If it fails, the target is either [blinded](https://5e.tools/conditionsdiseases.html#blinded_phb) or [deafened](https://5e.tools/conditionsdiseases.html#deafened_phb) (your choice) for the duration. At the end of each of its turns, the target can make a Constitution saving throw. On a success, the spell ends.\n\n**At Higher Levels**. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
     "tag": "2nd Level"
   },
+  "branding_smite": {
+    "title": "Branding Smite",
+    "meta": "Level 2 Evocation",
+    "img": "images/dagger-rune-enchant-flame-strong-red.webp",
+    "desc": "**Casting Time**: Bonus Action\n**Range**: Self\n**Components**: V\n**Duration**: [Concentration](https://5e.tools/conditionsdiseases.html#concentration_phb), up to 1 minute\n**Description**\nThe next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra **__2d6__** radiant damage to the target, which becomes visible if it's [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb), and the target sheds dim light in a 5-foot radius and can't become [invisible](https://5e.tools/conditionsdiseases.html#invisible_phb) until the spell ends.",
+    "tag": "2nd Level"
+  },
   "darkness": {
     "title": "Darkness",
     "meta": "Level 2 Evocation",

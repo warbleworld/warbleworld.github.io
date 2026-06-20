@@ -207,6 +207,7 @@ export const CHARACTERS = {
     ],
     inv: [{ id: "dagger", count: 2 }, "rapier", "shortbow", "fine_clothes", "leather_armor", { id: "arrow", count: 20 }, "ball_bearings", { id: "candle", count: 5 }, "hempen_rope", "hooded_lantern", { id: "oil", count: 2 }, { id: "piton", count: 10 }, { id: "rations", count: 5 }, "string", "waterskin", { id: "backpack", titleOverride: "Burglar's Pack" }, "purse", "thieves_tools", "bell", "crowbar", "hammer", "signet_ring", "scroll_of_pedigree", "tinderbox"],
     feat: ["expertise", "sneak_attack", "thieves_cant", "cunning_action", "ear_for_deceit", "eye_for_detail", "insightful_fighting", "steady_aim", "uncanny_dodge", "age_elf", "darkvision_elf", "keen_senses", "fey_ancestry", "trance", "elf_weapon_training", "fleet_of_foot", "mask_of_the_wild", "position_of_privilege"],
+    spells: [{ id: "branding_smite", footerOverride: "Necklace of Prayer Beads" }],
   },
 };
 
