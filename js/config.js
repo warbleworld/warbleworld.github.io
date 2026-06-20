@@ -47,7 +47,7 @@ export const INCARNATION_PLAYER = {
  * Incarnations that are temporarily unavailable. Their buttons are disabled
  * and their content is never built.
  */
-export const DISABLED_INCARNATIONS = ["vespera", "speaksWithSpirits", "akai", "lucien", "seabastion"];
+export const DISABLED_INCARNATIONS = ["speaksWithSpirits", "akai", "lucien", "seabastion"];
 
 /** Card-detail data source. */
 export const CARDS_URL = "cards.json";
