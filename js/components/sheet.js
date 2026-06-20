@@ -145,7 +145,7 @@ export function renderSheet(data) {
         `<div class="cs-portrait-overlay">` +
           `<div class="cs-portrait-info">` +
             `<div class="cs-portrait-name">${data.name}</div>` +
-            `<div class="cs-portrait-meta">${data.race} · ${data.class}</div>` +
+            `<div class="cs-portrait-subtitle">${data.race} · ${data.class}</div>` +
           `</div>` +
           (level ? `<div class="cs-level" aria-label="Level ${level}"><span class="cs-level-num">${level}</span><span class="cs-level-label">LVL</span></div>` : "") +
         `</div>` +

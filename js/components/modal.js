@@ -27,13 +27,13 @@ export function showCardModal(id, overrides) {
   const displayTitle = escapeHtml((overrides && overrides.titleOverride) || card.title || "");
   const displayTag = escapeHtml(card.tag || "");
   const displayFooter = escapeHtml((overrides && overrides.footerOverride) || card.footer || "");
-  const rawMetaItems = Array.isArray(card.meta)
-    ? card.meta
-    : (typeof card.meta === "string" ? [card.meta] : []);
-  const displayMetaItems = rawMetaItems
+  const rawSubtitleItems = Array.isArray(card.subtitle)
+    ? card.subtitle
+    : (typeof card.subtitle === "string" ? [card.subtitle] : []);
+  const displaySubtitleItems = rawSubtitleItems
     .map((item) => escapeHtml(String(item || "").trim()))
     .filter(Boolean);
-  const displayMeta = displayMetaItems.join(" · ");
+  const displaySubtitle = displaySubtitleItems.join(" · ");
 
   backdrop.innerHTML =
     `<div class="card-modal">` +
@@ -42,7 +42,7 @@ export function showCardModal(id, overrides) {
     thumbHtml(card, "card-modal-thumb") +
     `<div>` +
     `<div class="card-modal-title">${displayTitle}</div>` +
-    `<div class="card-modal-meta">${displayMeta}</div>` +
+    `<div class="card-modal-subtitle">${displaySubtitle}</div>` +
     `</div>` +
     `<button class="card-modal-close" aria-label="Close">&times;</button>` +
     `</div>` +

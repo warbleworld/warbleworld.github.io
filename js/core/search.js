@@ -12,6 +12,17 @@ function tokenize(str) {
 }
 
 /**
+ * True when exactly one of the two characters is a digit. Such a
+ * substitution (e.g. '2' <-> 'a') is almost never a genuine typo, so it
+ * is excluded from edit-distance tolerance.
+ */
+function digitLetterMismatch(x, y) {
+  const xDigit = x >= "0" && x <= "9";
+  const yDigit = y >= "0" && y <= "9";
+  return xDigit !== yDigit;
+}
+
+/**
  * Levenshtein edit distance (bounded). Returns Infinity when the
  * distance exceeds `max`, avoiding unnecessary work.
  */
@@ -26,7 +37,12 @@ function editDistance(a, b, max) {
     curr[0] = i;
     let rowMin = i;
     for (let j = 1; j <= n; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      const cost =
+        a[i - 1] === b[j - 1]
+          ? 0
+          : digitLetterMismatch(a[i - 1], b[j - 1])
+          ? max + 1
+          : 1;
       curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
       if (curr[j] < rowMin) rowMin = curr[j];
     }
@@ -48,7 +64,7 @@ function maxTypos(len) {
  * Returns 0 when there is no meaningful match.
  */
 function tokenScore(qTok, tTok) {
-  if (qTok === tTok) return 100;                        // exact
+  if (qTok === tTok) return 100;                       // exact
   if (tTok.startsWith(qTok)) return 75 + qTok.length;  // prefix
   if (tTok.includes(qTok)) return 50 + qTok.length;    // substring
 
@@ -95,21 +111,26 @@ export function scoreText(query, target) {
 
 /** Field weight multipliers. */
 const WEIGHT_TITLE = 3;
-const WEIGHT_TAG   = 1;
+const WEIGHT_META  = 1;
 
 /**
  * Score a card against a search query using weighted field matching.
+ * `tag` and `meta` describe the same taxonomy of facets, so they are
+ * joined into a single bucket; a multi-facet query like "simple melee"
+ * can then match across labels.
  * @param {string} query
- * @param {{ title: string, tag?: string }} card
+ * @param {{ title: string, tag?: string, meta?: string[] }} card
  * @returns {number|null} Composite score, or null if no field matches.
  */
 export function scoreCard(query, card) {
   const titleScore = scoreText(query, card.title);
-  const tagScore   = scoreText(query, card.tag || "");
+
+  const facets = [card.tag, ...(card.meta || [])].filter(Boolean).join(" ");
+  const metaScore = scoreText(query, facets);
 
   const t = (titleScore ?? 0) * WEIGHT_TITLE;
-  const g = (tagScore   ?? 0) * WEIGHT_TAG;
+  const m = (metaScore  ?? 0) * WEIGHT_META;
 
-  const best = Math.max(t, g);
+  const best = Math.max(t, m);
   return best > 0 ? best : null;
 }

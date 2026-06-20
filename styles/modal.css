@@ -97,7 +97,7 @@ body.modal-open {
   line-height: 1;
 }
 
-.card-modal-meta {
+.card-modal-subtitle {
   font-size: 0.65rem;
   font-style: italic;
   color: var(--text-dim);
