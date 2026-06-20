@@ -257,6 +257,87 @@ function focusSearchIfActiveAndEmpty(tabBtn) {
   if (input && isEmpty) input.focus();
 }
 
+// -- Keyboard hotkeys (desktop) ---------------------------
+
+/** Non-search tab ids in order (per incarnation). */
+function getNavigableTabs(bar) {
+  return Array.from(bar.querySelectorAll(".tab-btn"))
+    .filter((b) => !b.dataset.tab.endsWith("-search"));
+}
+
+function getActiveTabBar() {
+  const page = document.querySelector(".player-page.active");
+  if (!page) return null;
+  const inc = page.querySelector(".inc-content.active");
+  if (!inc) return null;
+  return inc.querySelector(".tab-bar");
+}
+
+function activateTab(btn) {
+  const bar = btn.closest(".tab-bar");
+  const parent = bar.parentElement;
+
+  saveActiveScroll();
+  bar.querySelectorAll(".tab-btn").forEach((b) => {
+    b.classList.remove("active");
+    b.setAttribute("aria-selected", "false");
+  });
+  parent.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+
+  btn.classList.add("active");
+  btn.setAttribute("aria-selected", "true");
+
+  const target = document.getElementById(btn.dataset.tab);
+  if (target) target.classList.add("active");
+  restoreActiveScroll();
+  focusSearchIfActiveAndEmpty(btn);
+}
+
+function handleKeyboard(e) {
+  // Escape blurs the search input so hotkeys resume
+  if (e.key === "Escape" && e.target.matches(".search-input")) {
+    e.target.blur();
+    return;
+  }
+
+  // Ignore other keys when typing in an input/textarea
+  if (e.target.matches("input, textarea, select, [contenteditable]")) return;
+
+  const bar = getActiveTabBar();
+  if (!bar) return;
+
+  if (e.key === "/") {
+    e.preventDefault();
+    const searchBtn = Array.from(bar.querySelectorAll(".tab-btn"))
+      .find((b) => b.dataset.tab.endsWith("-search"));
+    if (searchBtn) activateTab(searchBtn);
+    return;
+  }
+
+  if (e.key === "j" || e.key === "ArrowLeft") {
+    e.preventDefault();
+    const tabs = getNavigableTabs(bar);
+    const active = bar.querySelector(".tab-btn.active");
+    let idx = tabs.indexOf(active);
+    // If active tab is search or not found, go to last navigable tab
+    if (idx === -1) idx = 0;
+    const next = (idx - 1 + tabs.length) % tabs.length;
+    activateTab(tabs[next]);
+    return;
+  }
+
+  if (e.key === "l" || e.key === "ArrowRight") {
+    e.preventDefault();
+    const tabs = getNavigableTabs(bar);
+    const active = bar.querySelector(".tab-btn.active");
+    let idx = tabs.indexOf(active);
+    if (idx === -1) idx = tabs.length - 1;
+    const next = (idx + 1) % tabs.length;
+    activateTab(tabs[next]);
+    return;
+  }
+}
+
 // -- Delegated click chain --------------------------------
 
 function handleClick(e) {
@@ -308,6 +389,7 @@ function activatePlayer(btn) {
 export function installEventHandlers() {
   document.addEventListener("click", handleClick);
   document.addEventListener("input", handleSearchInput);
+  document.addEventListener("keydown", handleKeyboard);
 
   document.querySelectorAll(".player-btn").forEach((btn) => {
     btn.addEventListener("click", () => activatePlayer(btn));
