@@ -306,6 +306,9 @@ function handleKeyboard(e) {
   // Ignore other keys when typing in an input/textarea
   if (e.target.matches("input, textarea, select, [contenteditable]")) return;
 
+  // Suspend navigation hotkeys while a modal is open
+  if (document.body.classList.contains("modal-open")) return;
+
   const bar = getActiveTabBar();
   if (!bar) return;
 
