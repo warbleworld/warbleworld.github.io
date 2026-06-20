@@ -63,6 +63,7 @@ function handleTabClick(e) {
   const target = document.getElementById(tabBtn.dataset.tab);
   if (target) target.classList.add("active");
   restoreActiveScroll();
+  focusSearchIfActiveAndEmpty(tabBtn);
   return true;
 }
 
@@ -239,6 +240,21 @@ function handleSearchInput(e) {
   if (!input.classList.contains("search-input")) return;
   clearTimeout(searchTimer);
   searchTimer = setTimeout(() => performSearch(input), 200);
+}
+
+// -- Search autofocus ------------------------------------
+
+/**
+ * If tabBtn targets search, focus the search input field if there are
+ * currently no search results to show.
+ */
+function focusSearchIfActiveAndEmpty(tabBtn) {
+  const tabId = tabBtn.dataset.tab;
+  if (!tabId || !tabId.endsWith("-search")) return;
+  const tab = document.getElementById(tabId);
+  const input = tab?.querySelector(".search-input");
+  const isEmpty = tab?.querySelector(".search-empty");
+  if (input && isEmpty) input.focus();
 }
 
 // -- Delegated click chain --------------------------------
