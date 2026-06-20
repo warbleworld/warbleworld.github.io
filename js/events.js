@@ -7,7 +7,7 @@ import { buildIncarnation } from "./components/incarnation.js";
 import { getSearchData } from "./components/incarnation.js";
 import { showCardModal, closeCardModal } from "./components/modal.js";
 import { renderCard } from "./components/cards.js";
-import { fuzzyScore } from "./core/search.js";
+import { scoreCard } from "./core/search.js";
 import { escapeHtml } from "./core/html.js";
 import { getCard } from "./store.js";
 import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
@@ -197,10 +197,8 @@ function performSearch(input) {
   const scoreItem = (item) => {
     const card = getCard(item.id);
     if (!card) return null;
-    const titleScore = fuzzyScore(query, card.title);
-    const tagScore = fuzzyScore(query, card.tag || "");
-    const best = Math.max(titleScore ?? -1, (tagScore ?? -1) * 0.5);
-    return best > 0 ? { item, _score: best } : null;
+    const score = scoreCard(query, card);
+    return score !== null ? { item, _score: score } : null;
   };
 
   const search = (items) =>
