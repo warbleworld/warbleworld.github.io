@@ -293,6 +293,79 @@ function activateTab(btn) {
   focusSearchIfActiveAndEmpty(btn);
 }
 
+/** Navigate players by offset. */
+function navigatePlayer(offset) {
+  const btns = Array.from(document.querySelectorAll(".player-btn"));
+  if (!btns.length) return;
+  const active = document.querySelector(".player-btn.active");
+  let idx = btns.indexOf(active);
+  if (idx === -1) idx = 0;
+  const next = (idx + offset + btns.length) % btns.length;
+  activatePlayer(btns[next]);
+}
+
+/** Jump to a specific player by 1-indexed position. */
+function activatePlayerByIndex(index) {
+  const btns = Array.from(document.querySelectorAll(".player-btn"));
+  if (index >= 1 && index <= btns.length) {
+    activatePlayer(btns[index - 1]);
+  }
+}
+
+/** Navigate incarnations by offset. */
+function navigateIncarnation(offset) {
+  const page = document.querySelector(".player-page.active");
+  if (!page) return;
+  const btns = Array.from(page.querySelectorAll(".inc-btn"));
+  if (!btns.length) return;
+  const active = page.querySelector(".inc-btn.active");
+  let idx = btns.indexOf(active);
+  if (idx === -1) idx = 0;
+  // Walk in the requested direction until we find a valid incarnation or
+  // exhaust all options
+  for (let i = 1; i <= btns.length; ++i) {
+    const candidate = btns[(idx + offset * i + btns.length * i) % btns.length];
+    if (!candidate.classList.contains("inc-disabled")) {
+      handleIncarnationClick({ target: candidate });
+      return;
+    }
+  }
+}
+
+/** Focus the search tab within the active tab bar. */
+function activateSearchTab(bar) {
+  const searchBtn = Array.from(bar.querySelectorAll(".tab-btn"))
+    .find((b) => b.dataset.tab.endsWith("-search"));
+  if (searchBtn) activateTab(searchBtn);
+}
+
+/** Navigate the active tab bar by offset (skips the search tab). */
+function navigateTab(bar, offset) {
+  const tabs = getNavigableTabs(bar);
+  const active = bar.querySelector(".tab-btn.active");
+  let idx = tabs.indexOf(active);
+  // If active tab is search or not found, start from the appropriate end.
+  if (idx === -1) idx = offset < 0 ? 0 : tabs.length - 1;
+  const next = (idx + offset + tabs.length) % tabs.length;
+  activateTab(tabs[next]);
+}
+
+/**
+ * Declarative hotkey map. Keys are lowercased `event.key` values; each
+ * handler receives a context object ({ bar }) and performs the navigation.
+ */
+const KEY_BINDINGS = {
+  "/": ({ bar }) => activateSearchTab(bar),     // focus search
+  j: ({ bar }) => navigateTab(bar, -1),         // prev tab
+  arrowleft: ({ bar }) => navigateTab(bar, -1), // prev tab
+  l: ({ bar }) => navigateTab(bar, 1),          // next tab
+  arrowright: ({ bar }) => navigateTab(bar, 1), // next tab
+  q: () => navigatePlayer(-1),                  // prev player
+  e: () => navigatePlayer(1),                   // next player
+  a: () => navigateIncarnation(-1),             // prev incarnation
+  d: () => navigateIncarnation(1),              // next incarnation
+};
+
 function handleKeyboard(e) {
   // Escape blurs the search input so hotkeys resume
   if (e.key === "Escape" && e.target.matches(".search-input")) {
@@ -300,47 +373,29 @@ function handleKeyboard(e) {
     return;
   }
 
-  // Do not intercept browser/OS shortcuts (e.g. Ctrl+L, Cmd+L)
+  // Don't intercept browser/OS shortcuts (e.g. Ctrl+L, Cmd+L).
   if (e.ctrlKey || e.metaKey || e.altKey) return;
 
   // Ignore other keys when typing in an input/textarea
   if (e.target.matches("input, textarea, select, [contenteditable]")) return;
 
-  // Suspend navigation hotkeys while a modal is open
+  // Suspend navigation hotkeys while a modal is open.
   if (document.body.classList.contains("modal-open")) return;
 
   const bar = getActiveTabBar();
   if (!bar) return;
 
-  if (e.key === "/") {
+  // 1-9: jump to player by index
+  if (e.key >= "1" && e.key <= "9") {
     e.preventDefault();
-    const searchBtn = Array.from(bar.querySelectorAll(".tab-btn"))
-      .find((b) => b.dataset.tab.endsWith("-search"));
-    if (searchBtn) activateTab(searchBtn);
+    activatePlayerByIndex(parseInt(e.key, 10));
     return;
   }
 
-  if (e.key === "j" || e.key === "ArrowLeft") {
+  const action = KEY_BINDINGS[e.key.toLowerCase()];
+  if (action) {
     e.preventDefault();
-    const tabs = getNavigableTabs(bar);
-    const active = bar.querySelector(".tab-btn.active");
-    let idx = tabs.indexOf(active);
-    // If active tab is search or not found, go to last navigable tab
-    if (idx === -1) idx = 0;
-    const next = (idx - 1 + tabs.length) % tabs.length;
-    activateTab(tabs[next]);
-    return;
-  }
-
-  if (e.key === "l" || e.key === "ArrowRight") {
-    e.preventDefault();
-    const tabs = getNavigableTabs(bar);
-    const active = bar.querySelector(".tab-btn.active");
-    let idx = tabs.indexOf(active);
-    if (idx === -1) idx = tabs.length - 1;
-    const next = (idx + 1) % tabs.length;
-    activateTab(tabs[next]);
-    return;
+    action({ bar });
   }
 }
 
