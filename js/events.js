@@ -300,6 +300,9 @@ function handleKeyboard(e) {
     return;
   }
 
+  // Do not intercept browser/OS shortcuts (e.g. Ctrl+L, Cmd+L)
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+
   // Ignore other keys when typing in an input/textarea
   if (e.target.matches("input, textarea, select, [contenteditable]")) return;
 
