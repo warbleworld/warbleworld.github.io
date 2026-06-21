@@ -75,6 +75,12 @@ function handleTabClick(e) {
     return true;
   }
 
+  // If clicking on an already-active search tab, force focus on the input
+  if (isAlreadyActive && isSearchTab) {
+    focusSearchIfActive(tabBtn, false);
+    return true;
+  }
+
   saveActiveScroll();
 
   const bar = tabBtn.closest(".tab-bar");

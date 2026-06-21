@@ -156,17 +156,18 @@ export function activatePlayerByIndex(index) {
 // -- Tab switching ----------------------------------------
 
 /**
- * If tabBtn targets search, focus the search input field. If requireEmpty
- * is true, only focus if the search results are currently empty.
+ * If tabBtn targets search, focus the search input field.
+ * If requireEmptyToFocus is true, only focus if the search results are
+ * currently empty.
  */
-export function focusSearchIfActive(tabBtn, requireEmpty = false) {
+export function focusSearchIfActive(tabBtn, requireEmptyToFocus = false) {
   const tabId = tabBtn.dataset.tab;
   if (!tabId || !tabId.endsWith("-search")) return;
   const tab = document.getElementById(tabId);
   const input = tab?.querySelector(".search-input");
 
   if (!input) return;
-  if (requireEmpty && !tab?.querySelector(".search-empty")) return;
+  if (requireEmptyToFocus && !tab?.querySelector(".search-empty")) return;
   input.focus({ preventScroll: true });
 }
 
