@@ -254,7 +254,7 @@ function focusSearchIfActiveAndEmpty(tabBtn) {
   const tab = document.getElementById(tabId);
   const input = tab?.querySelector(".search-input");
   const isEmpty = tab?.querySelector(".search-empty");
-  if (input && isEmpty) input.focus();
+  if (input && isEmpty) input.focus({ preventScroll: true });
 }
 
 // -- Keyboard hotkeys (desktop) ---------------------------
@@ -452,6 +452,18 @@ export function installEventHandlers() {
   document.addEventListener("input", handleSearchInput);
   document.addEventListener("keydown", handleKeyboard);
 
+  // Intercept direct clicks on the search input field. The native focus path
+  // causes older/mobile browsers to scroll the document (pushing the bar
+  // behind the tabs). By cancelling the native focus and driving it through
+  // same preventScroll path the search tab button uses, the scroll never
+  // happens.
+  document.addEventListener("pointerdown", (e) => {
+    const input = e.target.closest(".search-input");
+    if (!input) return;
+    if (document.activeElement === input) return; // already focused
+    e.preventDefault();
+    input.focus({ preventScroll: true });
+  });
   document.querySelectorAll(".player-btn").forEach((btn) => {
     btn.addEventListener("click", () => activatePlayer(btn));
   });
