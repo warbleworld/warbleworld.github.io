@@ -63,7 +63,7 @@ function handleTabClick(e) {
   const target = document.getElementById(tabBtn.dataset.tab);
   if (target) target.classList.add("active");
   restoreActiveScroll();
-  focusSearchIfActiveAndEmpty(tabBtn);
+  focusSearchIfActive(tabBtn, true);
   return true;
 }
 
@@ -245,16 +245,18 @@ function handleSearchInput(e) {
 // -- Search autofocus ------------------------------------
 
 /**
- * If tabBtn targets search, focus the search input field if there are
- * currently no search results to show.
+ * If tabBtn targets search, focus the search input field. If requireEmpty
+ * is true, only focus if the search results are currently empty.
  */
-function focusSearchIfActiveAndEmpty(tabBtn) {
+function focusSearchIfActive(tabBtn, requireEmpty = false) {
   const tabId = tabBtn.dataset.tab;
   if (!tabId || !tabId.endsWith("-search")) return;
   const tab = document.getElementById(tabId);
   const input = tab?.querySelector(".search-input");
-  const isEmpty = tab?.querySelector(".search-empty");
-  if (input && isEmpty) input.focus({ preventScroll: true });
+
+  if (!input) return;
+  if (requireEmpty && !tab?.querySelector(".search-empty")) return;
+  input.focus({ preventScroll: true });
 }
 
 // -- Keyboard hotkeys (desktop) ---------------------------
@@ -290,7 +292,7 @@ function activateTab(btn) {
   const target = document.getElementById(btn.dataset.tab);
   if (target) target.classList.add("active");
   restoreActiveScroll();
-  focusSearchIfActiveAndEmpty(btn);
+  focusSearchIfActive(btn, true);
 }
 
 /** Navigate players by offset. */
@@ -333,10 +335,14 @@ function navigateIncarnation(offset) {
 }
 
 /** Focus the search tab within the active tab bar. */
-function activateSearchTab(bar) {
+function activateSearchTab(bar, forceFocus = false) {
   const searchBtn = Array.from(bar.querySelectorAll(".tab-btn"))
     .find((b) => b.dataset.tab.endsWith("-search"));
-  if (searchBtn) activateTab(searchBtn);
+
+  if (!searchBtn) return;
+
+  activateTab(searchBtn);
+  focusSearchIfActive(searchBtn, !forceFocus);
 }
 
 /** Navigate the active tab bar by offset (skips the search tab). */
@@ -355,20 +361,21 @@ function navigateTab(bar, offset) {
  * handler receives a context object ({ bar }) and performs the navigation.
  */
 const KEY_BINDINGS = {
-  "/": ({ bar }) => activateSearchTab(bar),     // focus search
-  j: ({ bar }) => navigateTab(bar, -1),         // prev tab
-  arrowleft: ({ bar }) => navigateTab(bar, -1), // prev tab
-  l: ({ bar }) => navigateTab(bar, 1),          // next tab
-  arrowright: ({ bar }) => navigateTab(bar, 1), // next tab
-  q: () => navigatePlayer(-1),                  // prev player
-  e: () => navigatePlayer(1),                   // next player
-  a: () => navigateIncarnation(-1),             // prev incarnation
-  d: () => navigateIncarnation(1),              // next incarnation
+  "/": ({ bar }) => activateSearchTab(bar, true), // focus search
+  j: ({ bar }) => navigateTab(bar, -1),           // prev tab
+  arrowleft: ({ bar }) => navigateTab(bar, -1),   // prev tab
+  l: ({ bar }) => navigateTab(bar, 1),            // next tab
+  arrowright: ({ bar }) => navigateTab(bar, 1),   // next tab
+  q: () => navigatePlayer(-1),                    // prev player
+  e: () => navigatePlayer(1),                     // next player
+  a: () => navigateIncarnation(-1),               // prev incarnation
+  d: () => navigateIncarnation(1),                // next incarnation
 };
 
 function handleKeyboard(e) {
   // Escape blurs the search input so hotkeys resume
   if (e.key === "Escape" && e.target.matches(".search-input")) {
+    e.preventDefault();
     e.target.blur();
     return;
   }
