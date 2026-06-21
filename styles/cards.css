@@ -63,7 +63,7 @@
   height: 100%;
   object-fit: cover;
   opacity: 1;
-  transition: opacity 0.4s ease, filter 0.4s ease;
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 /* Hidden + slightly blurred until the pixels finish decoding, then it

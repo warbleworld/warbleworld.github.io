@@ -70,6 +70,25 @@ export function imageHtml(src, alt, className, eager = false) {
 }
 
 /**
+ * Configure an existing avatar `<img>` element to display a portrait:
+ * resolves the source, enables lazy loading + async decoding, and seeds
+ * the fallback glyph used when the image fails to load. The `is-loading`
+ * fade is skipped when the portrait is already cached.
+ * @param {HTMLImageElement} img - Target image element.
+ * @param {string} src - Raw portrait reference.
+ * @param {string} [alt] - Accessible label; the existing alt is kept when omitted.
+ */
+export function applyAvatarImage(img, src, alt) {
+  if (!img) return;
+  if (alt != null) img.alt = alt;
+  img.src = resolveImageUrl(src);
+  img.loading = "lazy";
+  img.decoding = "async";
+  img.dataset.fallback = (img.alt || "?").charAt(0);
+  img.classList.toggle("is-loading", !isImageCached(src));
+}
+
+/**
  * Prevent native image dragging/selection so drag gestures can remain
  * available for app-level scroll interactions.
  * @param {HTMLImageElement} img

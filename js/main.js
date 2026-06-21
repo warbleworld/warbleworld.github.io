@@ -5,7 +5,7 @@
 
 import { PORTRAITS, DEFAULT_INCARNATIONS, DISABLED_INCARNATIONS } from "./config.js";
 import { loadCards } from "./store.js";
-import { resolveImageUrl, installImageFallback } from "./core/images.js";
+import { applyAvatarImage, installImageFallback } from "./core/images.js";
 import { buildIncarnation } from "./components/incarnation.js";
 import { installEventHandlers, centerActiveIncarnationBar, updatePlayerBtnAvatar } from "./events.js";
 import { installD20Egg } from "./components/d20.js";
@@ -16,13 +16,9 @@ function populateAvatars() {
   document.querySelectorAll(".inc-avatar[data-char]").forEach((img) => {
     const key = img.dataset.char;
     if (!PORTRAITS[key]) return;
-    img.src = resolveImageUrl(PORTRAITS[key]);
-    img.loading = "lazy";
-    img.decoding = "async";
     img.width = 28;
     img.height = 28;
-    img.classList.add("is-loading");
-    img.dataset.fallback = (img.alt || key).charAt(0);
+    applyAvatarImage(img, PORTRAITS[key]);
   });
 }
 

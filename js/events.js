@@ -12,7 +12,7 @@ import { escapeHtml } from "./core/html.js";
 import { getCard } from "./store.js";
 import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
 import { PORTRAITS, DISABLED_INCARNATIONS } from "./config.js";
-import { resolveImageUrl } from "./core/images.js";
+import { applyAvatarImage, isImageCached } from "./core/images.js";
 
 // -- Delegated click handlers -----------------------------
 // Each returns `true` once it has handled the event, short-circuiting
@@ -48,8 +48,8 @@ export function updatePlayerBtnAvatar(playerId) {
   const avatarImg = document.querySelector(`.player-btn-avatar[data-player-avatar="${playerId}"]`);
   if (!avatarImg) return;
   if (charId && PORTRAITS[charId]) {
-    avatarImg.src = resolveImageUrl(PORTRAITS[charId]);
-    avatarImg.alt = activeBtn.querySelector("span")?.textContent || charId;
+    const label = activeBtn.querySelector("span")?.textContent || charId;
+    applyAvatarImage(avatarImg, PORTRAITS[charId], label);
   }
 }
 
@@ -83,6 +83,14 @@ function showIncModal(playerId) {
     const clone = btn.cloneNode(true);
     clone.classList.remove("active");
     clone.setAttribute("aria-selected", "false");
+    // The clone inherits the original's `is-loading` class. On mobile, the
+    // `.inc-bar` is `display: none`, so the originals never load/cache and
+    // keep `is-loading` forever. Re-evaluate against the cache so the fade
+    // only plays for portraits that genuinely haven't loaded yet.
+    const avatar = clone.querySelector(".inc-avatar");
+    if (avatar instanceof HTMLImageElement) {
+      avatar.classList.toggle("is-loading", !isImageCached(avatar.currentSrc || avatar.src));
+    }
     modal.appendChild(clone);
   });
 

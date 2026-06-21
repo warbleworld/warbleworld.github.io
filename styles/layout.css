@@ -203,11 +203,12 @@
     object-fit: cover;
     flex: 0 0 auto;
     opacity: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, filter 0.2s ease;
   }
 
   .player-btn-avatar.is-loading {
     opacity: 0;
+    filter: blur(8px);
   }
 }
 
@@ -354,11 +355,12 @@
   border-radius: 50%;
   object-fit: cover;
   opacity: 1;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 .inc-avatar.is-loading {
   opacity: 0;
+  filter: blur(8px);
 }
 
 .inc-avatar.card-thumb-fallback {
