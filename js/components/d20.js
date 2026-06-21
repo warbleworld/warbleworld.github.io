@@ -12,6 +12,7 @@
 // ---------------------------------------------------------
 
 import { createD20Renderer } from "./d20-mesh.js";
+import { createD20Effects } from "./d20-effects.js";
 
 /** Taps on the footer needed to summon the die. */
 const TAP_TARGET = 3;
@@ -31,6 +32,7 @@ let overlay = null;
 let die = null;
 let resultEl = null;
 let renderer = null;
+let effects = null;
 let fallbackNum = null;
 let rolling = false;
 /** Scroll position captured while the modal locks the page. */
@@ -88,6 +90,16 @@ function buildOverlay() {
   hint.textContent = "Tap the die to roll";
 
   overlay.append(close, die, resultEl, hint);
+
+  // Juice layer (sparks, edge wobble, recoil, confetti). Pointer-transparent
+  // canvas overlaid on the modal; safe to skip if construction fails.
+  try {
+    effects = createD20Effects(overlay, die, { lowEnd: !!renderer?.isLowEnd() });
+    renderer?.setOnCollide((info) => effects.collide(info));
+  } catch (err) {
+    console.warn("d20 effects unavailable.", err);
+    effects = null;
+  }
   overlay.addEventListener("click", (e) => {
     // Ignore the synthesized click that follows the opening tap's
     // pointerup, which would otherwise close the modal immediately.
@@ -96,7 +108,10 @@ function buildOverlay() {
   });
   document.body.appendChild(overlay);
 
-  window.addEventListener("resize", () => renderer?.resize());
+  window.addEventListener("resize", () => {
+    renderer?.resize();
+    effects?.resize();
+  });
 }
 
 /** Apply the result text + crit styling, then release the roll lock. */
@@ -104,8 +119,17 @@ function showResult(result) {
   resultEl.textContent =
     result === 20 ? "Nat 20!" : result === 1 ? "Nat 1…" : String(result);
   resultEl.className = "d20-result";
-  if (result === 20) resultEl.classList.add("crit-hit");
-  else if (result === 1) resultEl.classList.add("crit-fail");
+  if (result === 20) {
+    resultEl.classList.add("crit-hit");
+    effects?.settlePop("106,168,79", true);
+    effects?.confettiBurst();
+  } else if (result === 1) {
+    resultEl.classList.add("crit-fail");
+    effects?.settlePop("204,68,68", true);
+    effects?.critFail();
+  } else {
+    effects?.settlePop("201,168,76");
+  }
   rolling = false;
 }
 
@@ -153,6 +177,8 @@ function openOverlay() {
   overlay.classList.add("open");
   renderer?.reset();
   renderer?.start();
+  effects?.resize();
+  effects?.clear();
   // Focus the dialog itself (not the die) so keyboard users get context
   // and Esc works, without showing a pointer-triggered focus ring.
   overlay.focus({ preventScroll: true });
@@ -162,6 +188,7 @@ function openOverlay() {
 function closeOverlay() {
   rolling = false;
   renderer?.stop();
+  effects?.clear();
   overlay?.classList.remove("open");
 
   // Unlock the page and restore the prior scroll position.

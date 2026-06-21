@@ -15,11 +15,15 @@ const CAMERA_DISTANCE = 3.4;
 const DIE_SCALE = 0.46;
 
 // Roll physics (world units, seconds).
-const BOUNCE_MS = 1300;
+const BOUNCE_MS = 1400;
 const RETURN_MS = 520;
-const GRAVITY = 5.2;
-const RESTITUTION = 0.78;
-const AIR_DRAG = 0.012;
+const GRAVITY = 6.6;
+const RESTITUTION = 0.82;
+const AIR_DRAG = 0.01;
+// Speed (world units/s) that maps to a full-strength collision.
+const MAX_HIT_SPEED = 12;
+// Below this, a wall touch is too gentle to be worth a spark.
+const MIN_HIT_SPEED = 1.2;
 
 const STATIC_MAX_DPR = 2;
 
@@ -420,6 +424,9 @@ export function createD20Renderer(canvas) {
 
   let boundX = 0;
   let boundY = 0;
+  let halfW = 1;
+  let halfH = 1;
+  let collideCb = null;
 
   // Rendering quality derived from the device class. Low-end devices use a
   // cheaper shader and smaller number atlas, and drop to 1x DPR while a roll
@@ -450,10 +457,22 @@ export function createD20Renderer(canvas) {
 
   function updateBounds() {
     const aspect = canvas.width / canvas.height || 1;
-    const halfH = Math.tan(Math.PI / 10) * CAMERA_DISTANCE;
-    const halfW = halfH * aspect;
+    halfH = Math.tan(Math.PI / 10) * CAMERA_DISTANCE;
+    halfW = halfH * aspect;
     boundX = Math.max(0, halfW - DIE_SCALE);
     boundY = Math.max(0, halfH - DIE_SCALE);
+  }
+
+  // Report a wall hit to the effects layer in CSS-fraction coordinates
+  // (0..1 across the canvas), tagged with which wall and how hard.
+  function emitCollision(edge, worldX, worldY, speed) {
+    if (!collideCb || speed < MIN_HIT_SPEED) return;
+    collideCb({
+      edge,
+      fracX: (worldX / halfW + 1) / 2,
+      fracY: (1 - worldY / halfH) / 2,
+      strength: Math.min(1, speed / MAX_HIT_SPEED),
+    });
   }
 
   function resize() {
@@ -523,10 +542,10 @@ export function createD20Renderer(canvas) {
       anim.pos[0] += anim.vel[0] * dt;
       anim.pos[1] += anim.vel[1] * dt;
 
-      if (anim.pos[0] > boundX) { anim.pos[0] = boundX; anim.vel[0] = -anim.vel[0] * RESTITUTION; }
-      else if (anim.pos[0] < -boundX) { anim.pos[0] = -boundX; anim.vel[0] = -anim.vel[0] * RESTITUTION; }
-      if (anim.pos[1] > boundY) { anim.pos[1] = boundY; anim.vel[1] = -anim.vel[1] * RESTITUTION; }
-      else if (anim.pos[1] < -boundY) { anim.pos[1] = -boundY; anim.vel[1] = -anim.vel[1] * RESTITUTION; }
+      if (anim.pos[0] > boundX) { anim.pos[0] = boundX; emitCollision("right", halfW, anim.pos[1], Math.abs(anim.vel[0])); anim.vel[0] = -anim.vel[0] * RESTITUTION; }
+      else if (anim.pos[0] < -boundX) { anim.pos[0] = -boundX; emitCollision("left", -halfW, anim.pos[1], Math.abs(anim.vel[0])); anim.vel[0] = -anim.vel[0] * RESTITUTION; }
+      if (anim.pos[1] > boundY) { anim.pos[1] = boundY; emitCollision("top", anim.pos[0], halfH, Math.abs(anim.vel[1])); anim.vel[1] = -anim.vel[1] * RESTITUTION; }
+      else if (anim.pos[1] < -boundY) { anim.pos[1] = -boundY; emitCollision("bottom", anim.pos[0], -halfH, Math.abs(anim.vel[1])); anim.vel[1] = -anim.vel[1] * RESTITUTION; }
     } else {
       if (!anim.returnFrom) anim.returnFrom = anim.pos.slice();
       const rt = Math.min(1, (elapsed - BOUNCE_MS) / RETURN_MS);
@@ -566,11 +585,11 @@ export function createD20Renderer(canvas) {
       last: now,
       duration: BOUNCE_MS + RETURN_MS,
       axis,
-      totalSpin: Math.PI * (8 + Math.random() * 6),
+      totalSpin: Math.PI * (10 + Math.random() * 8),
       target,
       onSettle,
       pos: [0, 0],
-      vel: [(Math.random() < 0.5 ? -1 : 1) * (6 + Math.random() * 3), 3.5 + Math.random() * 2.5],
+      vel: [(Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 4), 5 + Math.random() * 3],
       returnFrom: null,
     };
     running = true;
@@ -602,6 +621,9 @@ export function createD20Renderer(canvas) {
     },
     roll(result, onSettle) {
       startRoll(result, onSettle);
+    },
+    setOnCollide(fn) {
+      collideCb = fn;
     },
     isLowEnd() {
       return lowEnd;

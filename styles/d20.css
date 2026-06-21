@@ -21,6 +21,9 @@
   /* Modal: swallow touch gestures so nothing behind can scroll. */
   touch-action: none;
   overscroll-behavior: contain;
+  /* The whole easter egg is a toy, not a document — nothing is selectable. */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .d20-overlay.low-end {
@@ -62,6 +65,10 @@ body.d20-modal-open {
   border: 1px solid var(--border);
   border-radius: 50%;
   cursor: pointer;
+  /* Above the effects canvas so it always stays tappable. */
+  z-index: 10;
+  user-select: none;
+  -webkit-user-select: none;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -87,6 +94,10 @@ body.d20-modal-open {
   /* No double-tap zoom delay; quick repeated taps roll reliably. */
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Recoil/scale juice is driven via inline transform from the fx layer. */
+  will-change: transform;
 }
 
 /* Show a brighter gold border only for real keyboard focus. */
@@ -103,6 +114,17 @@ body.d20-modal-open {
   height: 100%;
   display: block;
   border-radius: 12px;
+}
+
+/* Effects canvas: sparks, edge wobble, confetti, ash. Pointer-transparent
+   so it never intercepts taps meant for the die or close button. */
+.d20-fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* -- Fallback SVG (no WebGL) -- */
