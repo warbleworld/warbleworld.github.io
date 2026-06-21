@@ -7,7 +7,7 @@ import { buildIncarnation } from "./incarnation.js";
 import { saveActiveScroll, restoreActiveScroll } from "../scroll.js";
 import { applyAvatarImage, isImageCached } from "../core/images.js";
 import { isMobile } from "../core/interaction.js";
-import { PORTRAITS } from "../config.js";
+import { PORTRAITS, AVATAR_SIZES } from "../config.js";
 
 // -- Player button avatar ---------------------------------
 
@@ -21,7 +21,7 @@ export function updatePlayerBtnAvatar(playerId) {
   if (!avatarImg) return;
   if (charId && PORTRAITS[charId]) {
     const label = activeBtn.querySelector("span")?.textContent || charId;
-    applyAvatarImage(avatarImg, PORTRAITS[charId], label);
+    applyAvatarImage(avatarImg, PORTRAITS[charId], label, AVATAR_SIZES);
   }
 }
 

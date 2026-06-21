@@ -19,6 +19,24 @@ export const PORTRAITS = {
 };
 
 /**
+ * Widths (in CSS pixels) for which a resized copy of each portrait exists.
+ * Resized files must live alongside the base image and follow the naming
+ * convention `<name>-<width>w.<ext>` (e.g. `lucia-384w.webp` for
+ * `lucia.webp`). The browser selects the best fit from the generated
+ * `srcset`, falling back to the base file where no variants are available.
+ */
+export const PORTRAIT_WIDTHS = [96, 192, 384, 768];
+
+/**
+ * `sizes` hints describing how large a portrait renders, so the browser can
+ * pick the right `srcset` candidate before layout. The large character-sheet
+ * portrait spans the viewport on mobile and a ~250px column otherwise; the
+ * small avatars are a fixed thumbnail.
+ */
+export const PORTRAIT_SIZES = "(max-width: 600px) 100vw, 250px";
+export const AVATAR_SIZES = "32px";
+
+/**
  * Default incarnation to activate for each player page on load.
  * Keys are player page IDs; values are incarnation IDs.
  * If the specified incarnation is disabled, `ensureAvailableDefaults`

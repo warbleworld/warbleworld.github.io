@@ -3,7 +3,7 @@
 // Loads card data, prepares the static markup, and boots the UI.
 // ---------------------------------------------------------
 
-import { PORTRAITS, DEFAULT_INCARNATIONS, DISABLED_INCARNATIONS } from "./config.js";
+import { PORTRAITS, DEFAULT_INCARNATIONS, DISABLED_INCARNATIONS, AVATAR_SIZES } from "./config.js";
 import { loadCards } from "./store.js";
 import { applyAvatarImage, installImageFallback } from "./core/images.js";
 import { buildIncarnation } from "./components/incarnation.js";
@@ -16,9 +16,9 @@ function populateAvatars() {
   document.querySelectorAll(".inc-avatar[data-char]").forEach((img) => {
     const key = img.dataset.char;
     if (!PORTRAITS[key]) return;
-    img.width = 28;
-    img.height = 28;
-    applyAvatarImage(img, PORTRAITS[key]);
+    img.width = 24;
+    img.height = 24;
+    applyAvatarImage(img, PORTRAITS[key], undefined, AVATAR_SIZES);
   });
 }
 

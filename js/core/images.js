@@ -13,6 +13,7 @@
 // ---------------------------------------------------------
 
 import { escapeAttr, escapeHtml } from "./html.js";
+import { PORTRAIT_WIDTHS } from "../config.js";
 
 /** Folder (relative to index.html) that holds bundled images. */
 export const IMAGE_BASE = "images/";
@@ -48,23 +49,48 @@ export function resolveImageUrl(src) {
 }
 
 /**
+ * Build a `srcset` of resized variants for a local image, following the
+ * `<name>-<width>w.<ext>` naming convention. Returns an empty string for
+ * absolute/data URLs or sources without an extension, so callers can safely
+ * fall back to a plain `src`.
+ * @param {string} src - Raw image reference.
+ * @param {number[]} [widths=PORTRAIT_WIDTHS] - Variant widths in pixels.
+ * @returns {string} A `srcset` value, or "" when no variants apply.
+ */
+export function buildSrcset(src, widths = PORTRAIT_WIDTHS) {
+  if (!src || ABSOLUTE_URL.test(src) || src.startsWith("data:")) return "";
+  const url = resolveImageUrl(src);
+  const dot = url.lastIndexOf(".");
+  if (dot === -1 || !widths || !widths.length) return "";
+  const base = url.slice(0, dot);
+  const ext = url.slice(dot);
+  return widths.map((w) => `${escapeAttr(`${base}-${w}w${ext}`)} ${w}w`).join(", ");
+}
+
+/**
  * Build an `<img>` (with lazy loading + fallback metadata) or a
  * first-letter placeholder when no source is available.
  * @param {string} src - Raw image reference.
  * @param {string} alt - Accessible label / fallback seed.
  * @param {string} className - CSS class for the image.
  * @param {boolean} [eager=false] - Use eager loading instead of lazy.
+ * @param {string} [sizes=""] - When set, emit a responsive `srcset`/`sizes`
+ *   pair (built from `buildSrcset`) so the browser can pick a resized variant.
  * @returns {string} HTML string
  */
-export function imageHtml(src, alt, className, eager = false) {
+export function imageHtml(src, alt, className, eager = false, sizes = "") {
   const url = resolveImageUrl(src);
   const initial = (alt || "?").charAt(0);
   if (!url) return fallbackHtml(initial);
 
   const loading = eager ? "eager" : "lazy";
   const loadingClass = eager ? "" : " is-loading";
+  const srcset = sizes ? buildSrcset(src) : "";
+  const responsiveAttrs = srcset
+    ? ` srcset="${srcset}" sizes="${escapeAttr(sizes)}" data-srcbase="${escapeAttr(url)}"`
+    : "";
   return (
-    `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" class="${className}${loadingClass}" ` +
+    `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" class="${className}${loadingClass}"${responsiveAttrs} ` +
     `loading="${loading}" decoding="async" draggable="false" data-fallback="${escapeAttr(initial)}">`
   );
 }
@@ -77,11 +103,23 @@ export function imageHtml(src, alt, className, eager = false) {
  * @param {HTMLImageElement} img - Target image element.
  * @param {string} src - Raw portrait reference.
  * @param {string} [alt] - Accessible label; the existing alt is kept when omitted.
+ * @param {string} [sizes=""] - When set, also apply a responsive `srcset`/`sizes`.
  */
-export function applyAvatarImage(img, src, alt) {
+export function applyAvatarImage(img, src, alt, sizes = "") {
   if (!img) return;
   if (alt != null) img.alt = alt;
-  img.src = resolveImageUrl(src);
+  const url = resolveImageUrl(src);
+  img.src = url;
+  const srcset = sizes ? buildSrcset(src) : "";
+  if (srcset) {
+    img.srcset = srcset;
+    img.sizes = sizes;
+    img.dataset.srcbase = url;
+  } else {
+    img.removeAttribute("srcset");
+    img.removeAttribute("sizes");
+    delete img.dataset.srcbase;
+  }
   img.loading = "lazy";
   img.decoding = "async";
   img.dataset.fallback = (img.alt || "?").charAt(0);
@@ -169,6 +207,12 @@ export function installImageFallback(root = document) {
         el.classList.remove("is-loading");
         const cacheKey = imageCacheKey(el.currentSrc || el.src);
         if (cacheKey) cachedImageUrls.add(cacheKey);
+        // For responsive images the loaded URL is a resized variant; also
+        // record the base source so `isImageCached` recognises the portrait
+        // on later renders and skips the fade.
+        if (el.dataset.srcbase) {
+          cachedImageUrls.add(new URL(el.dataset.srcbase, document.baseURI).href);
+        }
       }
     },
     true,

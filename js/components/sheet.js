@@ -5,6 +5,7 @@
 
 import { ABILITIES, SAVES, SKILLS, SKILL_ABILITY, modifier, signed, abilityMod } from "../core/dnd.js";
 import { imageHtml, isImageCached } from "../core/images.js";
+import { PORTRAIT_SIZES } from "../config.js";
 import { renderRadar } from "./radar.js";
 
 /** When a counter's max exceeds this, show a numeric pool instead of pips. */
@@ -141,7 +142,7 @@ export function renderSheet(data) {
   return `<div class="cs">` +
     `<div class="cs-left">` +
       `<div class="cs-portrait">` +
-        imageHtml(data.img, data.name, "cs-portrait-img", portraitIsCached) +
+        imageHtml(data.img, data.name, "cs-portrait-img", portraitIsCached, PORTRAIT_SIZES) +
         `<div class="cs-portrait-overlay">` +
           `<div class="cs-portrait-info">` +
             `<div class="cs-portrait-name">${data.name}</div>` +
