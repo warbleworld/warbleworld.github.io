@@ -9,7 +9,7 @@ import { CHARACTERS } from "../data/characters.js";
 import { PLAYER_INVENTORY } from "../data/players.js";
 import { getCard } from "../store.js";
 import { buildTabBar, buildTabPanel } from "./tabs.js";
-import { renderSheet } from "./sheet.js";
+import { renderSheet, applyCounterColors } from "./sheet.js";
 import { buildCardSection } from "./cards.js";
 
 /** Tracks which incarnations have already been built (build-once). */
@@ -139,4 +139,6 @@ export function buildIncarnation(id) {
       btn.setAttribute("data-has-filters", "");
     }
   });
+
+  applyCounterColors(el);
 }

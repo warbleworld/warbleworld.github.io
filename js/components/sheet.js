@@ -5,6 +5,7 @@
 
 import { ABILITIES, SAVES, SKILLS, SKILL_ABILITY, modifier, signed, abilityMod } from "../core/dnd.js";
 import { imageHtml, isImageCached } from "../core/images.js";
+import { escapeAttr, escapeHtml } from "../core/html.js";
 import { PORTRAIT_SIZES } from "../config.js";
 import { renderRadar } from "./radar.js";
 
@@ -19,7 +20,8 @@ const PIP_LIMIT = 20;
 function renderProfList(items) {
   const pills = items
     .map((item) => {
-      const text = item.bonus ? `${item.label} ${item.bonus}` : item.label;
+      const label = escapeHtml(item.label);
+      const text = item.bonus ? `${label} ${escapeHtml(item.bonus)}` : label;
       return `<li class="${item.proficient ? "prof-yes" : "prof-no"}">${text}</li>`;
     })
     .join("");
@@ -44,25 +46,45 @@ function renderCounters(counters) {
   const blocks = counters
     .map((counter) => {
       let content;
+      const color = escapeAttr(counter.color);
+      const name = escapeHtml(counter.name);
+      const nameAttr = escapeAttr(counter.name);
       if (counter.max > PIP_LIMIT) {
-        content = `<div class="cs-counter-pool" style="color:${counter.color}">${counter.cur} / ${counter.max}</div>`;
+        content = `<div class="cs-counter-pool">${counter.cur} / ${counter.max}</div>`;
       } else {
         const pips = Array.from({ length: counter.max }, (_, i) => {
           const filled = i < counter.cur;
           const sep = i > 0 && i % 5 === 0 ? '<div class="cs-pip-sep"></div>' : "";
           return (
             sep +
-            `<div class="cs-pip${filled ? " filled" : ""}" style="--pip-color:${counter.color}" ` +
-            `role="checkbox" aria-checked="${filled}" aria-label="${counter.name} ${i + 1} of ${counter.max}"></div>`
+            `<div class="cs-pip${filled ? " filled" : ""}" ` +
+            `role="checkbox" aria-checked="${filled}" aria-label="${nameAttr} ${i + 1} of ${counter.max}"></div>`
           );
         }).join("");
         content = `<div class="cs-pips">${pips}</div>`;
       }
-      return `<div class="cs-counter"><div class="cs-counter-label">${counter.name}</div>${content}</div>`;
+      return `<div class="cs-counter" data-counter-color="${color}"><div class="cs-counter-label">${name}</div>${content}</div>`;
     })
     .join("");
 
   return `<div class="cs-counters">${blocks}</div>`;
+}
+
+/**
+ * Apply counter colors via the CSSOM after the sheet markup is inserted.
+ * Keeping colors out of inline `style` attributes lets the page run under a
+ * strict `style-src 'self'` CSP. Invalid color values are ignored by the
+ * CSSOM, so no escaping/validation of the raw value is required here.
+ * @param {Document|HTMLElement} root
+ */
+export function applyCounterColors(root) {
+  root.querySelectorAll(".cs-counter[data-counter-color]").forEach((counterEl) => {
+    const color = counterEl.dataset.counterColor;
+    if (!color) return;
+    const pool = counterEl.querySelector(".cs-counter-pool");
+    if (pool) pool.style.color = color;
+    counterEl.querySelectorAll(".cs-pip").forEach((pip) => pip.style.setProperty("--pip-color", color));
+  });
 }
 
 /** Compute the save rows for a character. */
@@ -94,7 +116,7 @@ function computeSkills(data) {
  */
 function renderOptionalTagSection(title, items) {
   if (!Array.isArray(items) || items.length === 0) return "";
-  return `<div class="cs-section"><div class="cs-section-title">${title}</div>${renderTagList(items)}</div>`;
+  return `<div class="cs-section"><div class="cs-section-title">${escapeHtml(title)}</div>${renderTagList(items)}</div>`;
 }
 
 /**
@@ -107,13 +129,14 @@ function renderSpellcastingStats(data) {
 
   const spellAbility = ABILITIES.includes(data.spellcastingAbility) ? data.spellcastingAbility : null;
   if (!spellAbility) return "";
+  const spellAbilityLabel = escapeHtml(spellAbility);
 
   const spellMod = modifier(data.ab[spellAbility]);
   const attackBonus = spellMod + data.prof;
   const spellDC = 8 + spellMod + data.prof;
 
   return `<div class="cs-section">` +
-    `<div class="cs-section-title">Spellcasting (${spellAbility})</div>` +
+    `<div class="cs-section-title">Spellcasting (${spellAbilityLabel})</div>` +
     `<div class="cs-stats cs-stats-spellcasting">` +
       `<div class="cs-stat"><div class="cs-stat-val">${signed(attackBonus)}</div><div class="cs-stat-label">Attack</div></div>` +
       `<div class="cs-stat"><div class="cs-stat-val">${spellDC}</div><div class="cs-stat-label">Spell DC</div></div>` +
@@ -132,8 +155,8 @@ export function renderSheet(data) {
   const abilityBoxes = ABILITIES.map(
     (label) =>
       `<div class="cs-ab-box">` +
-      `<div class="cs-ab-label">${label}</div>` +
-      `<div class="cs-ab-score">${data.ab[label]}</div>` +
+      `<div class="cs-ab-label">${escapeHtml(label)}</div>` +
+      `<div class="cs-ab-score">${escapeHtml(data.ab[label])}</div>` +
       `<div class="cs-ab-mod">${abilityMod(data.ab[label])}</div>` +
       `</div>`,
   ).join("");
@@ -145,8 +168,8 @@ export function renderSheet(data) {
         imageHtml(data.img, data.name, "cs-portrait-img", portraitIsCached, PORTRAIT_SIZES) +
         `<div class="cs-portrait-overlay">` +
           `<div class="cs-portrait-info">` +
-            `<div class="cs-portrait-name">${data.name}</div>` +
-            `<div class="cs-portrait-subtitle">${data.race} · ${data.class}</div>` +
+            `<div class="cs-portrait-name">${escapeHtml(data.name)}</div>` +
+            `<div class="cs-portrait-subtitle">${escapeHtml(data.race)} · ${escapeHtml(data.class)}</div>` +
           `</div>` +
           (level ? `<div class="cs-level" aria-label="Level ${level}"><span class="cs-level-num">${level}</span><span class="cs-level-label">LVL</span></div>` : "") +
         `</div>` +

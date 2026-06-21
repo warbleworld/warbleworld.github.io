@@ -99,7 +99,7 @@ function buildFilterBar(items, gridId, defaultExclude, unprepared, opts) {
   const pills = categories
     .map((category) => {
       const active = hasExclusions && !excluded.includes(category);
-      return `<button class="filter-pill${active ? " active" : ""}" data-filter="${escapeAttr(category)}">${category}</button>`;
+      return `<button class="filter-pill${active ? " active" : ""}" data-filter="${escapeAttr(category)}">${escapeHtml(category)}</button>`;
     })
     .join("");
 
