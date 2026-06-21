@@ -120,6 +120,54 @@ function mat3FromMat4Into(out, m) {
   return out;
 }
 
+// Convert a 3x3 rotation matrix (row-major args mRC) to a quaternion (x,y,z,w).
+function matrixToQuat(m00, m01, m02, m10, m11, m12, m20, m21, m22) {
+  const tr = m00 + m11 + m22;
+  let x, y, z, w;
+  if (tr > 0) {
+    const s = Math.sqrt(tr + 1) * 2;
+    w = 0.25 * s;
+    x = (m21 - m12) / s;
+    y = (m02 - m20) / s;
+    z = (m10 - m01) / s;
+  } else if (m00 > m11 && m00 > m22) {
+    const s = Math.sqrt(1 + m00 - m11 - m22) * 2;
+    w = (m21 - m12) / s;
+    x = 0.25 * s;
+    y = (m01 + m10) / s;
+    z = (m02 + m20) / s;
+  } else if (m11 > m22) {
+    const s = Math.sqrt(1 + m11 - m00 - m22) * 2;
+    w = (m02 - m20) / s;
+    x = (m01 + m10) / s;
+    y = 0.25 * s;
+    z = (m12 + m21) / s;
+  } else {
+    const s = Math.sqrt(1 + m22 - m00 - m11) * 2;
+    w = (m10 - m01) / s;
+    x = (m02 + m20) / s;
+    y = (m12 + m21) / s;
+    z = 0.25 * s;
+  }
+  return new Float32Array([x, y, z, w]);
+}
+
+// Orientation that turns a face squarely toward the camera (+Z) with its
+// number upright (the face's `up` mapped to screen up, +Y), so the digits
+// are clearly readable.
+function quatUprightFace(normal, up) {
+  const fz = norm3(normal);
+  let fy = norm3(up);
+  const d = dot3(fy, fz);
+  fy = norm3([fy[0] - fz[0] * d, fy[1] - fz[1] * d, fy[2] - fz[2] * d]);
+  const fx = cross(fy, fz);
+  return matrixToQuat(
+    fx[0], fx[1], fx[2],
+    fy[0], fy[1], fy[2],
+    fz[0], fz[1], fz[2]
+  );
+}
+
 function buildGeometry() {
   const t = (1 + Math.sqrt(5)) / 2;
   const v = [
@@ -139,6 +187,7 @@ function buildGeometry() {
   const normals = [];
   const uvs = [];
   const faceNormals = [];
+  const faceUps = [];
 
   faces.forEach((face, i) => {
     const ia = face[0];
@@ -154,6 +203,10 @@ function buildGeometry() {
       n = norm3(cross(sub(b, a), sub(c, a)));
     }
     faceNormals[i] = n;
+    // The number's "up" on this face points from the base edge midpoint to
+    // the apex vertex `a` (which maps to the top of the glyph in the atlas).
+    const midBC = [(b[0] + c[0]) / 2, (b[1] + c[1]) / 2, (b[2] + c[2]) / 2];
+    faceUps[i] = norm3(sub(a, midBC));
 
     const col = i % 5;
     const row = Math.floor(i / 5);
@@ -172,6 +225,7 @@ function buildGeometry() {
     normals: new Float32Array(normals),
     uvs: new Float32Array(uvs),
     faceNormals,
+    faceUps,
     count: faces.length * 3,
     faceCount: faces.length,
   };
@@ -412,7 +466,7 @@ export function createD20Renderer(canvas) {
   const baseCam = [0, 0, CAMERA_DISTANCE];
   const baseColor = [0.79, 0.66, 0.29];
 
-  const restPose = qFromTo(geo.faceNormals[0], [0.15, 0.25, 1]);
+  const restPose = quatUprightFace(geo.faceNormals[0], geo.faceUps[0]);
   let current = new Float32Array(restPose);
   let anim = null;
   let running = false;
@@ -573,7 +627,7 @@ export function createD20Renderer(canvas) {
 
   function startRoll(result, onSettle) {
     const faceIndex = Math.max(0, faceNumbers.indexOf(result));
-    const target = qFromTo(geo.faceNormals[faceIndex], [0, 0, 1]);
+    const target = quatUprightFace(geo.faceNormals[faceIndex], geo.faceUps[faceIndex]);
     const axis = norm3([
       Math.random() * 2 - 1,
       Math.random() * 2 - 1,
