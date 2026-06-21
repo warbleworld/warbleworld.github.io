@@ -427,42 +427,31 @@ function activateTab(btn) {
   focusSearchIfActive(btn, true);
 }
 
-/** Navigate players by offset. */
-function navigatePlayer(offset) {
-  const btns = Array.from(document.querySelectorAll(".player-btn"));
-  if (!btns.length) return;
-  const active = document.querySelector(".player-btn.active");
-  let idx = btns.indexOf(active);
-  if (idx === -1) idx = 0;
-  const next = (idx + offset + btns.length) % btns.length;
-  activatePlayer(btns[next]);
+/** Advance the given player's page to its next selectable incarnation. */
+function cycleIncarnation(page) {
+  const buttons = Array.from(page.querySelectorAll(".inc-btn"))
+    .filter((b) => !b.classList.contains("inc-disabled"));
+  if (buttons.length < 2) return;
+
+  const activeIdx = buttons.findIndex((b) => b.classList.contains("active"));
+  const next = buttons[(activeIdx + 1) % buttons.length];
+  next.click();
 }
 
-/** Jump to a specific player by 1-indexed position. */
+/**
+ * Jump to a specific player by 1-indexed position. If that player is already
+ * active, advance to their next incarnation instead.
+ */
 function activatePlayerByIndex(index) {
   const btns = Array.from(document.querySelectorAll(".player-btn"));
-  if (index >= 1 && index <= btns.length) {
-    activatePlayer(btns[index - 1]);
-  }
-}
+  if (index < 1 || index > btns.length) return;
 
-/** Navigate incarnations by offset. */
-function navigateIncarnation(offset) {
-  const page = document.querySelector(".player-page.active");
-  if (!page) return;
-  const btns = Array.from(page.querySelectorAll(".inc-btn"));
-  if (!btns.length) return;
-  const active = page.querySelector(".inc-btn.active");
-  let idx = btns.indexOf(active);
-  if (idx === -1) idx = 0;
-  // Walk in the requested direction until we find a valid incarnation or
-  // exhaust all options
-  for (let i = 1; i <= btns.length; ++i) {
-    const candidate = btns[(idx + offset * i + btns.length * i) % btns.length];
-    if (!candidate.classList.contains("inc-disabled")) {
-      handleIncarnationClick({ target: candidate });
-      return;
-    }
+  const btn = btns[index - 1];
+  if (btn.classList.contains("active")) {
+    const page = document.getElementById(btn.dataset.player);
+    if (page) cycleIncarnation(page);
+  } else {
+    activatePlayer(btn);
   }
 }
 
@@ -494,14 +483,8 @@ function navigateTab(bar, offset) {
  */
 const KEY_BINDINGS = {
   "/": ({ bar }) => activateSearchTab(bar, true), // focus search
-  j: ({ bar }) => navigateTab(bar, -1),           // prev tab
-  arrowleft: ({ bar }) => navigateTab(bar, -1),   // prev tab
-  l: ({ bar }) => navigateTab(bar, 1),            // next tab
-  arrowright: ({ bar }) => navigateTab(bar, 1),   // next tab
-  q: () => navigatePlayer(-1),                    // prev player
-  e: () => navigatePlayer(1),                     // next player
-  a: () => navigateIncarnation(-1),               // prev incarnation
-  d: () => navigateIncarnation(1),                // next incarnation
+  q: ({ bar }) => navigateTab(bar, -1),           // prev tab
+  e: ({ bar }) => navigateTab(bar, 1),            // next tab
 };
 
 function handleKeyboard(e) {
