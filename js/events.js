@@ -1,125 +1,35 @@
 // ---------------------------------------------------------
-// Global event handling: delegated clicks, swipe-to-switch-tab,
-// and the player switcher.
+// Global event wiring: delegated clicks, keyboard hotkeys, the
+// search input, and the player switcher bootstrap. The actual view
+// logic lives in the navigation/filters/search-results modules; this
+// file just routes DOM events to them.
 // ---------------------------------------------------------
 
 import { buildIncarnation } from "./components/incarnation.js";
-import { getSearchData } from "./components/incarnation.js";
 import { showCardModal, closeCardModal } from "./components/modal.js";
-import { renderCard } from "./components/cards.js";
-import { scoreCard } from "./core/search.js";
-import { escapeHtml } from "./core/html.js";
-import { getCard } from "./store.js";
+import { shouldIgnoreClick, isMobile, installInteractionGuards } from "./core/interaction.js";
 import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
-import { PORTRAITS, DISABLED_INCARNATIONS } from "./config.js";
-import { applyAvatarImage, isImageCached } from "./core/images.js";
+import { toggleFilters, handleFilterClick } from "./components/filters.js";
+import { performSearch } from "./components/search-results.js";
+import {
+  updatePlayerBtnAvatar,
+  centerActiveIncarnationBar,
+  activatePlayer,
+  showIncModal,
+  closeIncModal,
+  focusSearchIfActive,
+  getActiveTabBar,
+  activatePlayerByIndex,
+  activateSearchTab,
+  navigateTab,
+} from "./components/navigation.js";
+
+// Re-exported for main.js's boot sequence.
+export { updatePlayerBtnAvatar, centerActiveIncarnationBar };
 
 // -- Delegated click handlers -----------------------------
 // Each returns `true` once it has handled the event, short-circuiting
 // the chain in `handleClick`.
-
-// -- Touch/click guard ------------------------------------
-// Prevents double-fire on mobile and ignores long-press releases.
-
-let _pointerDownTime = 0;
-let _lastHandledClick = 0;
-const LONG_PRESS_MS = 400;
-const DEBOUNCE_MS = 80;
-
-document.addEventListener("pointerdown", () => {
-  _pointerDownTime = Date.now();
-}, true);
-
-/** Returns true if the click should be ignored (long-press or duplicate). */
-function shouldIgnoreClick() {
-  const now = Date.now();
-  if (now - _lastHandledClick < DEBOUNCE_MS) return true;
-  if (_pointerDownTime && now - _pointerDownTime > LONG_PRESS_MS) return true;
-  _lastHandledClick = now;
-  return false;
-}
-
-/** Update the player button avatar to reflect the active incarnation. */
-export function updatePlayerBtnAvatar(playerId) {
-  const page = document.getElementById(playerId);
-  if (!page) return;
-  const activeBtn = page.querySelector(".inc-btn.active, .inc-btn[aria-selected='true']");
-  const charId = activeBtn?.dataset.inc;
-  const avatarImg = document.querySelector(`.player-btn-avatar[data-player-avatar="${playerId}"]`);
-  if (!avatarImg) return;
-  if (charId && PORTRAITS[charId]) {
-    const label = activeBtn.querySelector("span")?.textContent || charId;
-    applyAvatarImage(avatarImg, PORTRAITS[charId], label);
-  }
-}
-
-// -- Incarnation modal ------------------------------------
-
-function closeIncModal() {
-  const existing = document.querySelector(".inc-modal-backdrop");
-  if (existing) existing.remove();
-  document.querySelectorAll(".player-btn.caret-open").forEach((b) => b.classList.remove("caret-open"));
-}
-
-function showIncModal(playerId) {
-  closeIncModal();
-
-  const page = document.getElementById(playerId);
-  if (!page) return;
-
-  const activeInc = page.querySelector(".inc-btn.active")?.dataset.inc;
-  const buttons = Array.from(page.querySelectorAll(".inc-btn"))
-    .filter((btn) => btn.dataset.inc !== activeInc);
-
-  if (!buttons.length) return;
-
-  const backdrop = document.createElement("div");
-  backdrop.className = "inc-modal-backdrop";
-
-  const modal = document.createElement("div");
-  modal.className = "inc-modal";
-
-  buttons.forEach((btn) => {
-    const clone = btn.cloneNode(true);
-    clone.classList.remove("active");
-    clone.setAttribute("aria-selected", "false");
-    // The clone inherits the original's `is-loading` class. On mobile, the
-    // `.inc-bar` is `display: none`, so the originals never load/cache and
-    // keep `is-loading` forever. Re-evaluate against the cache so the fade
-    // only plays for portraits that genuinely haven't loaded yet.
-    const avatar = clone.querySelector(".inc-avatar");
-    if (avatar instanceof HTMLImageElement) {
-      avatar.classList.toggle("is-loading", !isImageCached(avatar.currentSrc || avatar.src));
-    }
-    modal.appendChild(clone);
-  });
-
-  backdrop.appendChild(modal);
-  document.body.appendChild(backdrop);
-
-  // Flip the caret to indicate open content
-  const playerBtn = document.querySelector(`.player-btn[data-player="${playerId}"]`);
-  if (playerBtn) playerBtn.classList.add("caret-open");
-
-  backdrop.addEventListener("click", (e) => {
-    const clickedBtn = e.target.closest(".inc-btn");
-    if (clickedBtn) {
-      const incId = clickedBtn.dataset.inc;
-      // Activate the incarnation on the actual page
-      const realBtn = page.querySelector(`.inc-btn[data-inc="${incId}"]`);
-      if (realBtn) realBtn.click();
-      updatePlayerBtnAvatar(playerId);
-      closeIncModal();
-      return;
-    }
-    if (e.target === backdrop) closeIncModal();
-  });
-}
-
-/** True when the viewport is at the mobile breakpoint. */
-function isMobile() {
-  return window.matchMedia("(max-width: 600px)").matches;
-}
 
 function handleIncarnationClick(e) {
   const incBtn = e.target.closest(".inc-btn");
@@ -149,19 +59,6 @@ function handleIncarnationClick(e) {
   updatePlayerBtnAvatar(page.id);
   restoreActiveScroll();
   return true;
-}
-
-// -- Filter toggle ----------------------------------------
-
-function toggleFilters(tabBtn) {
-  const tabId = tabBtn.dataset.tab;
-  const panel = document.getElementById(tabId);
-  if (!panel) return;
-  const filterBar = panel.querySelector(".filter-bar");
-  if (!filterBar) return;
-
-  const isOpen = filterBar.classList.toggle("filter-visible");
-  tabBtn.classList.toggle("caret-open", isOpen);
 }
 
 function handleTabClick(e) {
@@ -208,89 +105,6 @@ function handlePipClick(e) {
   return true;
 }
 
-function handleFilterClick(e) {
-  const pill = e.target.closest(".filter-pill");
-  if (!pill) return false;
-
-  const bar = pill.closest(".filter-bar");
-  const grid = document.getElementById(bar.dataset.grid);
-  if (!grid) return true;
-
-  const allPill = bar.querySelector('[data-filter="all"]');
-  const clicked = pill.dataset.filter;
-  const triAll = bar.dataset.triAll === "starting";
-
-  const setTriAllState = (state) => {
-    // state: "all" | "starting" | "shared"
-    allPill.dataset.allState = state;
-    const label = state === "all" ? "All" : state === "starting" ? "Starting" : "Shared";
-    allPill.textContent = `${label} ↻`;
-    // When tri-state is active, the "all" pill is the mode toggle, so keep it visually active.
-    allPill.classList.add("active");
-  };
-
-  const cycleTriAllState = () => {
-    const current = allPill.dataset.allState || "all";
-    const next = current === "all" ? "starting" : current === "starting" ? "shared" : "all";
-    setTriAllState(next);
-  };
-
-  if (clicked === "all") {
-    if (triAll) {
-      cycleTriAllState();
-    } else {
-      bar.querySelectorAll(".filter-pill").forEach((p) => p.classList.remove("active"));
-      allPill.classList.add("active");
-    }
-  } else {
-    // In tri-state mode, clicking tag pills should layer on top of the current
-    // starting/shared mode, not reset it.
-    if (triAll) {
-      pill.classList.toggle("active");
-    } else {
-      allPill.classList.remove("active");
-      pill.classList.toggle("active");
-      if (!bar.querySelector(".filter-pill.active")) {
-        allPill.classList.add("active");
-      }
-    }
-  }
-
-  const activeFilters = [];
-  bar.querySelectorAll(".filter-pill.active").forEach((p) => activeFilters.push(p.dataset.filter));
-
-  // In tri-state inventory mode, the "all" pill is a mode toggle, not a tag
-  // selector; exclude it from tag decisions.
-  const activeTagFilters = triAll ? activeFilters.filter((f) => f !== "all") : activeFilters;
-  const showAll = triAll ? activeTagFilters.length === 0 : activeFilters.includes("all");
-  const unpreparedActive = activeTagFilters.includes("Unprepared");
-  const anyLevelActive = triAll ? activeTagFilters.some((f) => f !== "Unprepared") : activeFilters.some((f) => f !== "all" && f !== "Unprepared");
-  const triState = triAll ? (allPill.dataset.allState || "all") : "all";
-
-  grid.querySelectorAll(".item-card").forEach((card) => {
-    const levelActive = activeFilters.includes(card.dataset.cat);
-    const isUnprepared = card.dataset.unprepared === "true";
-    const starting = card.dataset.starting === "true";
-    const startingOk = !triAll
-      ? true
-      : triState === "all"
-        ? true
-        : triState === "starting"
-          ? starting
-          : !starting;
-
-    const showByTag = showAll
-      ? true
-      : isUnprepared
-        ? unpreparedActive && (anyLevelActive ? levelActive : true)
-        : levelActive;
-
-    const show = showByTag && startingOk;
-    card.classList.toggle("filter-hidden", !show);
-  });
-  return true;
-}
-
 function handleCardClick(e) {
   const closeBtn = e.target.closest(".card-modal-close");
   if (closeBtn) {
@@ -310,62 +124,19 @@ function handleCardClick(e) {
   return false;
 }
 
-// -- Search handler ----------------------------------------
+// -- Delegated click chain --------------------------------
+
+function handleClick(e) {
+  handleIncarnationClick(e) ||
+    handleTabClick(e) ||
+    handlePipClick(e) ||
+    handleCardClick(e) ||
+    handleFilterClick(e);
+}
+
+// -- Search input -----------------------------------------
 
 let searchTimer = null;
-
-function performSearch(input) {
-  const charId = input.dataset.charId;
-  const query = input.value.trim();
-  const data = getSearchData(charId);
-  const resultsEl = document.getElementById(`${charId}-search-results`);
-
-  if (!data || !resultsEl) return;
-
-  if (!query) {
-    resultsEl.innerHTML = '<div class="search-empty">Type to search cards\u2026</div>';
-    return;
-  }
-
-  const scoreItem = (item) => {
-    const card = getCard(item.id);
-    if (!card) return null;
-    const score = scoreCard(query, card);
-    return score !== null ? { item, _score: score } : null;
-  };
-
-  const search = (items) =>
-    items.map(scoreItem).filter(Boolean).sort((a, b) => b._score - a._score).map((r) => r.item);
-
-  const invResults = search(data.inv);
-  const featResults = search(data.feat);
-  const spellResults = search(data.spells);
-
-  if (!invResults.length && !featResults.length && !spellResults.length) {
-    resultsEl.innerHTML = '<div class="search-empty">No matching cards found.</div>';
-    return;
-  }
-
-  const renderSection = (title, items) => {
-    if (!items.length) return "";
-    const cards = items
-      .map((it) =>
-        renderCard(it.id, it.count, it.isStarting, it.titleOverride || null, it.footerOverride || null, false, data.unprepared),
-      )
-      .join("");
-    return (
-      `<div class="search-section">` +
-        `<div class="search-section-title">${escapeHtml(title)}</div>` +
-        `<div class="card-grid">${cards}</div>` +
-      `</div>`
-    );
-  };
-
-  resultsEl.innerHTML =
-    renderSection("Inventory", invResults) +
-    renderSection("Features", featResults) +
-    renderSection("Spells", spellResults);
-}
 
 function handleSearchInput(e) {
   const input = e.target;
@@ -374,108 +145,7 @@ function handleSearchInput(e) {
   searchTimer = setTimeout(() => performSearch(input), 200);
 }
 
-// -- Search autofocus ------------------------------------
-
-/**
- * If tabBtn targets search, focus the search input field. If requireEmpty
- * is true, only focus if the search results are currently empty.
- */
-function focusSearchIfActive(tabBtn, requireEmpty = false) {
-  const tabId = tabBtn.dataset.tab;
-  if (!tabId || !tabId.endsWith("-search")) return;
-  const tab = document.getElementById(tabId);
-  const input = tab?.querySelector(".search-input");
-
-  if (!input) return;
-  if (requireEmpty && !tab?.querySelector(".search-empty")) return;
-  input.focus({ preventScroll: true });
-}
-
 // -- Keyboard hotkeys (desktop) ---------------------------
-
-/** Non-search tab ids in order (per incarnation). */
-function getNavigableTabs(bar) {
-  return Array.from(bar.querySelectorAll(".tab-btn"))
-    .filter((b) => !b.dataset.tab.endsWith("-search"));
-}
-
-function getActiveTabBar() {
-  const page = document.querySelector(".player-page.active");
-  if (!page) return null;
-  const inc = page.querySelector(".inc-content.active");
-  if (!inc) return null;
-  return inc.querySelector(".tab-bar");
-}
-
-function activateTab(btn) {
-  const bar = btn.closest(".tab-bar");
-  const parent = bar.parentElement;
-
-  saveActiveScroll();
-  bar.querySelectorAll(".tab-btn").forEach((b) => {
-    b.classList.remove("active");
-    b.setAttribute("aria-selected", "false");
-  });
-  parent.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
-
-  btn.classList.add("active");
-  btn.setAttribute("aria-selected", "true");
-
-  const target = document.getElementById(btn.dataset.tab);
-  if (target) target.classList.add("active");
-  restoreActiveScroll();
-  focusSearchIfActive(btn, true);
-}
-
-/** Advance the given player's page to its next selectable incarnation. */
-function cycleIncarnation(page) {
-  const buttons = Array.from(page.querySelectorAll(".inc-btn"))
-    .filter((b) => !b.classList.contains("inc-disabled"));
-  if (buttons.length < 2) return;
-
-  const activeIdx = buttons.findIndex((b) => b.classList.contains("active"));
-  const next = buttons[(activeIdx + 1) % buttons.length];
-  next.click();
-}
-
-/**
- * Jump to a specific player by 1-indexed position. If that player is already
- * active, advance to their next incarnation instead.
- */
-function activatePlayerByIndex(index) {
-  const btns = Array.from(document.querySelectorAll(".player-btn"));
-  if (index < 1 || index > btns.length) return;
-
-  const btn = btns[index - 1];
-  if (btn.classList.contains("active")) {
-    const page = document.getElementById(btn.dataset.player);
-    if (page) cycleIncarnation(page);
-  } else {
-    activatePlayer(btn);
-  }
-}
-
-/** Focus the search tab within the active tab bar. */
-function activateSearchTab(bar, forceFocus = false) {
-  const searchBtn = Array.from(bar.querySelectorAll(".tab-btn"))
-    .find((b) => b.dataset.tab.endsWith("-search"));
-
-  if (!searchBtn) return;
-
-  activateTab(searchBtn);
-  focusSearchIfActive(searchBtn, !forceFocus);
-}
-
-/** Navigate the active tab bar by offset (skips the search tab). */
-function navigateTab(bar, offset) {
-  const tabs = getNavigableTabs(bar);
-  const active = bar.querySelector(".tab-btn.active");
-  let idx = tabs.indexOf(active);
-  // If active tab is search or not found, start from the appropriate end.
-  if (idx === -1) idx = offset < 0 ? 0 : tabs.length - 1;
-  const next = (idx + offset + tabs.length) % tabs.length;
-  activateTab(tabs[next]);
-}
 
 /**
  * Declarative hotkey map. Keys are lowercased `event.key` values; each
@@ -521,55 +191,14 @@ function handleKeyboard(e) {
   }
 }
 
-// -- Delegated click chain --------------------------------
-
-function handleClick(e) {
-  handleIncarnationClick(e) ||
-    handleTabClick(e) ||
-    handlePipClick(e) ||
-    handleCardClick(e) ||
-    handleFilterClick(e);
-}
-
-// -- Player switcher --------------------------------------
-
-function centerIncBarScrollOrigin(page) {
-  const bar = page?.querySelector(".inc-bar");
-  if (!bar) return;
-  const maxScroll = bar.scrollWidth - bar.clientWidth;
-  bar.scrollLeft = maxScroll > 0 ? Math.round(maxScroll / 2) : 0;
-}
-
-export function centerActiveIncarnationBar() {
-  centerIncBarScrollOrigin(document.querySelector(".player-page.active"));
-}
-
-/** Activate a player page and build its visible incarnation. */
-function activatePlayer(btn) {
-  saveActiveScroll();
-
-  document.querySelectorAll(".player-btn").forEach((b) => {
-    b.classList.remove("active");
-    b.setAttribute("aria-selected", "false");
-  });
-  document.querySelectorAll(".player-page").forEach((p) => p.classList.remove("active"));
-
-  btn.classList.add("active");
-  btn.setAttribute("aria-selected", "true");
-
-  const page = document.getElementById(btn.dataset.player);
-  if (!page) return;
-  page.classList.add("active");
-  centerIncBarScrollOrigin(page);
-  const activeInc = page.querySelector(".inc-content.active");
-  if (activeInc) buildIncarnation(activeInc.id);
-  restoreActiveScroll();
-}
+// -- Boot -------------------------------------------------
 
 /**
  * Wire up every global event listener. Call once on boot.
  */
 export function installEventHandlers() {
+  installInteractionGuards();
+
   document.addEventListener("click", handleClick);
   document.addEventListener("input", handleSearchInput);
   document.addEventListener("keydown", handleKeyboard);
