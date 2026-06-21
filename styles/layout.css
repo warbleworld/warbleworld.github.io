@@ -110,6 +110,61 @@
   border-bottom-color: var(--gold);
 }
 
+/* Mobile: gold accent bar with directional caret indicator */
+@media (max-width: 600px) {
+  .player-btn {
+    position: relative;
+  }
+
+  .player-btn.active {
+    border-bottom-color: transparent;
+  }
+
+  .player-btn::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 13px;
+    background: var(--gold);
+    clip-path: polygon(
+      0 5px,
+      calc(50% - 5px) 5px,
+      50% 5px,
+      calc(50% + 5px) 5px,
+      100% 5px,
+      100% 8px,
+      calc(50% + 5px) 8px,
+      50% 13px,
+      calc(50% - 5px) 8px,
+      0 8px
+    );
+    opacity: 0;
+    transition: opacity 0.25s, clip-path 0.2s ease;
+    pointer-events: none;
+  }
+
+  .player-btn.active::after {
+    opacity: 1;
+  }
+
+  .player-btn.caret-open::after {
+    clip-path: polygon(
+      0 5px,
+      calc(50% - 5px) 5px,
+      50% 0,
+      calc(50% + 5px) 5px,
+      100% 5px,
+      100% 8px,
+      calc(50% + 5px) 8px,
+      50% 8px,
+      calc(50% - 5px) 8px,
+      0 8px
+    );
+  }
+}
+
 .player-btn-num {
   font-family: var(--font-serif);
   font-weight: 700;
@@ -132,6 +187,74 @@
   .player-btn-num {
     font-size: 1rem;
   }
+}
+
+/* Player button avatar — hidden on desktop, shown on mobile */
+.player-btn-avatar {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .player-btn-avatar {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .player-btn-avatar.is-loading {
+    opacity: 0;
+  }
+}
+
+/* -- INCARNATION MODAL -- */
+
+.inc-modal-backdrop {
+  position: fixed;
+  top: calc(var(--header-h, 28px) + var(--player-bar-h, 50px));
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+  animation: incPopIn 0.12s ease;
+}
+
+@keyframes incPopIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.inc-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 380px;
+  width: calc(100% - 24px);
+  animation: incPopSlide 0.15s ease;
+}
+
+@keyframes incPopSlide {
+  from { transform: translateY(-6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.inc-modal .inc-btn {
+  flex: 0 0 auto;
 }
 
 /* -- PLAYER PAGES & INCARNATION BAR -- */
@@ -162,6 +285,12 @@
   background: var(--bg);
   /* Own compositing layer — see .player-bar (iOS Safari sticky repaint). */
   transform: translateZ(0);
+}
+
+@media (max-width: 600px) {
+  .inc-bar {
+    display: none;
+  }
 }
 
 .inc-btn {

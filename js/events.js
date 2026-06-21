@@ -11,15 +11,115 @@ import { scoreCard } from "./core/search.js";
 import { escapeHtml } from "./core/html.js";
 import { getCard } from "./store.js";
 import { saveActiveScroll, restoreActiveScroll } from "./scroll.js";
+import { PORTRAITS, DISABLED_INCARNATIONS } from "./config.js";
+import { resolveImageUrl } from "./core/images.js";
 
 // -- Delegated click handlers -----------------------------
 // Each returns `true` once it has handled the event, short-circuiting
 // the chain in `handleClick`.
 
+// -- Touch/click guard ------------------------------------
+// Prevents double-fire on mobile and ignores long-press releases.
+
+let _pointerDownTime = 0;
+let _lastHandledClick = 0;
+const LONG_PRESS_MS = 400;
+const DEBOUNCE_MS = 80;
+
+document.addEventListener("pointerdown", () => {
+  _pointerDownTime = Date.now();
+}, true);
+
+/** Returns true if the click should be ignored (long-press or duplicate). */
+function shouldIgnoreClick() {
+  const now = Date.now();
+  if (now - _lastHandledClick < DEBOUNCE_MS) return true;
+  if (_pointerDownTime && now - _pointerDownTime > LONG_PRESS_MS) return true;
+  _lastHandledClick = now;
+  return false;
+}
+
+/** Update the player button avatar to reflect the active incarnation. */
+export function updatePlayerBtnAvatar(playerId) {
+  const page = document.getElementById(playerId);
+  if (!page) return;
+  const activeBtn = page.querySelector(".inc-btn.active, .inc-btn[aria-selected='true']");
+  const charId = activeBtn?.dataset.inc;
+  const avatarImg = document.querySelector(`.player-btn-avatar[data-player-avatar="${playerId}"]`);
+  if (!avatarImg) return;
+  if (charId && PORTRAITS[charId]) {
+    avatarImg.src = resolveImageUrl(PORTRAITS[charId]);
+    avatarImg.alt = activeBtn.querySelector("span")?.textContent || charId;
+  }
+}
+
+// -- Incarnation modal ------------------------------------
+
+function closeIncModal() {
+  const existing = document.querySelector(".inc-modal-backdrop");
+  if (existing) existing.remove();
+  document.querySelectorAll(".player-btn.caret-open").forEach((b) => b.classList.remove("caret-open"));
+}
+
+function showIncModal(playerId) {
+  closeIncModal();
+
+  const page = document.getElementById(playerId);
+  if (!page) return;
+
+  const activeInc = page.querySelector(".inc-btn.active")?.dataset.inc;
+  const buttons = Array.from(page.querySelectorAll(".inc-btn"))
+    .filter((btn) => btn.dataset.inc !== activeInc);
+
+  if (!buttons.length) return;
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "inc-modal-backdrop";
+
+  const modal = document.createElement("div");
+  modal.className = "inc-modal";
+
+  buttons.forEach((btn) => {
+    const clone = btn.cloneNode(true);
+    clone.classList.remove("active");
+    clone.setAttribute("aria-selected", "false");
+    modal.appendChild(clone);
+  });
+
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+
+  // Flip the caret to indicate open content
+  const playerBtn = document.querySelector(`.player-btn[data-player="${playerId}"]`);
+  if (playerBtn) playerBtn.classList.add("caret-open");
+
+  backdrop.addEventListener("click", (e) => {
+    const clickedBtn = e.target.closest(".inc-btn");
+    if (clickedBtn) {
+      const incId = clickedBtn.dataset.inc;
+      // Activate the incarnation on the actual page
+      const realBtn = page.querySelector(`.inc-btn[data-inc="${incId}"]`);
+      if (realBtn) realBtn.click();
+      updatePlayerBtnAvatar(playerId);
+      closeIncModal();
+      return;
+    }
+    if (e.target === backdrop) closeIncModal();
+  });
+}
+
+/** True when the viewport is at the mobile breakpoint. */
+function isMobile() {
+  return window.matchMedia("(max-width: 600px)").matches;
+}
+
 function handleIncarnationClick(e) {
   const incBtn = e.target.closest(".inc-btn");
   if (!incBtn) return false;
+  // Ignore clicks from the modal clone (handled in showIncModal)
+  if (incBtn.closest(".inc-modal")) return false;
   if (incBtn.classList.contains("inc-disabled")) return true; // swallow click
+  if (shouldIgnoreClick()) return true;
 
   saveActiveScroll();
 
@@ -38,13 +138,37 @@ function handleIncarnationClick(e) {
     target.classList.add("active");
     buildIncarnation(incBtn.dataset.inc);
   }
+  updatePlayerBtnAvatar(page.id);
   restoreActiveScroll();
   return true;
+}
+
+// -- Filter toggle ----------------------------------------
+
+function toggleFilters(tabBtn) {
+  const tabId = tabBtn.dataset.tab;
+  const panel = document.getElementById(tabId);
+  if (!panel) return;
+  const filterBar = panel.querySelector(".filter-bar");
+  if (!filterBar) return;
+
+  const isOpen = filterBar.classList.toggle("filter-visible");
+  tabBtn.classList.toggle("caret-open", isOpen);
 }
 
 function handleTabClick(e) {
   const tabBtn = e.target.closest(".tab-btn");
   if (!tabBtn) return false;
+  if (shouldIgnoreClick()) return true;
+
+  const isAlreadyActive = tabBtn.classList.contains("active");
+  const isSearchTab = tabBtn.dataset.tab?.endsWith("-search");
+
+  // If tapping the already-active non-search tab on mobile, toggle filters
+  if (isAlreadyActive && !isSearchTab && isMobile()) {
+    toggleFilters(tabBtn);
+    return true;
+  }
 
   saveActiveScroll();
 
@@ -472,7 +596,27 @@ export function installEventHandlers() {
     input.focus({ preventScroll: true });
   });
   document.querySelectorAll(".player-btn").forEach((btn) => {
-    btn.addEventListener("click", () => activatePlayer(btn));
+    btn.addEventListener("click", () => {
+      if (shouldIgnoreClick()) return;
+      if (btn.classList.contains("active") && isMobile()) {
+        // Toggle incarnation modal on active player button tap
+        if (document.querySelector(".inc-modal-backdrop")) {
+          closeIncModal();
+        } else {
+          showIncModal(btn.dataset.player);
+        }
+      } else if (!btn.classList.contains("active")) {
+        closeIncModal();
+        activatePlayer(btn);
+      }
+    });
+  });
+
+  // Close incarnation modal on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeIncModal();
+    }
   });
 
   window.addEventListener("resize", centerActiveIncarnationBar);

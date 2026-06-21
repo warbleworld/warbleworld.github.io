@@ -27,7 +27,8 @@ function updateStickyOffsets() {
 
   if (header) root.style.setProperty("--header-h", `${header.offsetHeight}px`);
   if (playerBar) root.style.setProperty("--player-bar-h", `${playerBar.offsetHeight}px`);
-  if (incBar) root.style.setProperty("--inc-bar-h", `${incBar.offsetHeight}px`);
+  // inc-bar is hidden on mobile; offsetHeight will be 0 in that case.
+  root.style.setProperty("--inc-bar-h", incBar ? `${incBar.offsetHeight}px` : "0px");
   if (tabBar) root.style.setProperty("--tab-bar-h", `${tabBar.offsetHeight}px`);
 }
 

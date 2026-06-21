@@ -7,7 +7,7 @@ import { PORTRAITS, DEFAULT_INCARNATIONS, DISABLED_INCARNATIONS } from "./config
 import { loadCards } from "./store.js";
 import { resolveImageUrl, installImageFallback } from "./core/images.js";
 import { buildIncarnation } from "./components/incarnation.js";
-import { installEventHandlers, centerActiveIncarnationBar } from "./events.js";
+import { installEventHandlers, centerActiveIncarnationBar, updatePlayerBtnAvatar } from "./events.js";
 import { installD20Egg } from "./components/d20.js";
 import { installScroll } from "./scroll.js";
 
@@ -114,6 +114,23 @@ function selectRandomPlayer() {
   if (activeInc) buildIncarnation(activeInc.id);
 }
 
+/** Populate the player-button avatars to show the active incarnation's portrait. */
+function populatePlayerBtnAvatars() {
+  ["p1", "p2", "p3"].forEach((pid) => updatePlayerBtnAvatar(pid));
+}
+
+/** Mark non-search tab buttons with data-has-filters so the CSS caret appears. */
+function markTabsWithFilters() {
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    if (btn.dataset.tab?.endsWith("-search")) return;
+    // Check if the corresponding panel has a filter bar
+    const panel = document.getElementById(btn.dataset.tab);
+    if (panel?.querySelector(".filter-bar")) {
+      btn.setAttribute("data-has-filters", "");
+    }
+  });
+}
+
 /** Prepare static markup and wire up the UI (runs after cards load). */
 function initApp() {
   populateAvatars();
@@ -123,6 +140,8 @@ function initApp() {
   installEventHandlers();
   installD20Egg();
   selectRandomPlayer();
+  populatePlayerBtnAvatars();
+  markTabsWithFilters();
   centerActiveIncarnationBar();
   installScroll();
 }

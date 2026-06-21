@@ -14,6 +14,31 @@
   transform: translateZ(0);
 }
 
+/* Mobile only: hide filter bars by default, show on toggle */
+@media (max-width: 600px) {
+  .tab-content > .filter-bar,
+  .tab-content .tab-scroll > .filter-bar {
+    display: none;
+  }
+
+  .tab-content > .filter-bar.filter-visible {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .tab-content > .filter-bar.filter-visible::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .filter-sep {
   width: 1px;
   align-self: stretch;

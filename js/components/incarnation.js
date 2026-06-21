@@ -130,4 +130,13 @@ export function buildIncarnation(id) {
       false,
     ) +
     buildTabPanel(`${id}-search`, searchContent, false);
+
+  // Mark non-search tabs that have a filter bar with data-has-filters for caret display
+  el.querySelectorAll(".tab-btn").forEach((btn) => {
+    if (btn.dataset.tab?.endsWith("-search")) return;
+    const panel = document.getElementById(btn.dataset.tab);
+    if (panel?.querySelector(".filter-bar")) {
+      btn.setAttribute("data-has-filters", "");
+    }
+  });
 }
