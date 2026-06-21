@@ -6,6 +6,7 @@
 
 let _pointerDownTime = 0;
 let _lastHandledClick = 0;
+let _suppressNextClick = false;
 const LONG_PRESS_MS = 400;
 const DEBOUNCE_MS = 80;
 
@@ -13,7 +14,13 @@ const DEBOUNCE_MS = 80;
 export function shouldIgnoreClick() {
   const now = Date.now();
   if (now - _lastHandledClick < DEBOUNCE_MS) return true;
-  if (_pointerDownTime && now - _pointerDownTime > LONG_PRESS_MS) return true;
+  // Long-press releases are flagged at pointerup so the decision is based on a
+  // live timestamp. Synthetic clicks (e.g. keyboard-driven `el.click()`) carry
+  // no pointer event, so they correctly fall through here.
+  if (_suppressNextClick) {
+    _suppressNextClick = false;
+    return true;
+  }
   _lastHandledClick = now;
   return false;
 }
@@ -27,5 +34,14 @@ export function isMobile() {
 export function installInteractionGuards() {
   document.addEventListener("pointerdown", () => {
     _pointerDownTime = Date.now();
+    _suppressNextClick = false;
   }, true);
+  const endPointer = () => {
+    if (_pointerDownTime && Date.now() - _pointerDownTime > LONG_PRESS_MS) {
+      _suppressNextClick = true;
+    }
+    _pointerDownTime = 0;
+  };
+  document.addEventListener("pointerup", endPointer, true);
+  document.addEventListener("pointercancel", endPointer, true);
 }
