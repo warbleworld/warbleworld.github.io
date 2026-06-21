@@ -90,7 +90,7 @@
   border-bottom: 3px solid transparent;
   color: var(--text-dim);
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,7 +141,7 @@
       0 8px
     );
     opacity: 0;
-    transition: opacity 0.25s, clip-path 0.2s ease;
+    transition: opacity 0.2s, clip-path 0.2s ease;
     pointer-events: none;
   }
 
@@ -310,7 +310,7 @@
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.2s;
   white-space: nowrap;
   line-height: 1;
 }
