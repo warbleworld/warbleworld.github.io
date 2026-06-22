@@ -1032,7 +1032,7 @@
 
   "heart_of_darkness": {
     "title": "Heart of Darkness",
-    "img": "images/farmer.svg",
+    "img": "https://cdn.5e.tools/2024/img/backgrounds/VRGR/Haunted%20One.webp",
     "desc": "Those who look into your eyes can see that you have faced unimaginable horror and that you are no stranger to darkness. Though they might fear you, commoners will extend you every courtesy and do their utmost to help you. Unless you have shown yourself to be a danger to them, they will even take up arms to fight alongside you, should you find yourself facing an enemy alone.",
     "tag": "Background"
   },
