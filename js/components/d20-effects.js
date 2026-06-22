@@ -58,26 +58,26 @@ export function createD20Effects(overlay, dieEl, opts = {}) {
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, cap);
-    W = overlay.clientWidth;
-    H = overlay.clientHeight;
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
     canvas.width = Math.max(1, Math.round(W * dpr));
     canvas.height = Math.max(1, Math.round(H * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     measure();
   }
 
-  /** Cache the die's untransformed bounds (used to anchor edge effects). */
+  /** Cache the die's bounds relative to the fx canvas, in layout coordinates. */
   function measure() {
-    const t = dieEl.style.transform;
-    dieEl.style.transform = "";
-    const r = dieEl.getBoundingClientRect();
-    dieEl.style.transform = t;
-    const oRect = overlay.getBoundingClientRect();
+    // offset* rather than getBoundingClientRect: the die and the promoted
+    // canvas layer must be read in the same frame, but on iOS Safari their
+    // client rects can sit in different ones, shifting every effect off the
+    // die by a constant amount. offset* is also transform-agnostic, so the
+    // recoil spring on the die never skews the measurement.
     dieRect = {
-      l: r.left - oRect.left,
-      t: r.top - oRect.top,
-      w: r.width,
-      h: r.height,
+      l: dieEl.offsetLeft - canvas.offsetLeft,
+      t: dieEl.offsetTop - canvas.offsetTop,
+      w: dieEl.offsetWidth,
+      h: dieEl.offsetHeight,
     };
   }
 
@@ -231,6 +231,7 @@ export function createD20Effects(overlay, dieEl, opts = {}) {
 
   /** Border pulse on settle; pass scale=true for the crit scale pop too. */
   function settlePop(color, scale) {
+    if (!dieRect) measure();
     if (scale) {
       scl = 1.14;
       sclv = 0;
