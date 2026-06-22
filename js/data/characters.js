@@ -110,7 +110,7 @@ export const CHARACTERS = {
     ],
     inv: ["shortsword", "common_clothes", "crystal", "studded_leather_armor", "ink", "pouch", "mysterious_letter", "small_knife", "spellbook", "writing_quill"],
     feat: ["arcane_recovery", "spellcasting_wizard", "training_in_war_and_song", "bladesong", "bladesinger_styles", "cantrip_formulas", "extra_attack", "age_elf", "darkvision_elf", "keen_senses", "fey_ancestry", "trance", "elf_weapon_training", "cantrip", "extra_language", "researcher", "elven_accuracy"],
-    spells: ["booming_blade", "fire_bolt", "green_flame_blade", "mage_hand", "absorb_elements", "find_familiar", "shield", "sleep", "mirror_image", "misty_step", "shadow_blade", "tashas_mind_whip", "counterspell", "fireball", "haste"],
+    spells: ["booming_blade", "fire_bolt", "green_flame_blade", "mage_hand", "absorb_elements", { id: "disguise_self", footerOverride: "Hat of Disguise" }, "find_familiar", "shield", "sleep", "mirror_image", "misty_step", "shadow_blade", "tashas_mind_whip", "counterspell", "fireball", "haste"],
     unprep: ["burning_hands", "comprehend_languages", "detect_magic", "identify", "summon_fey"],
   },
   rubic: {
