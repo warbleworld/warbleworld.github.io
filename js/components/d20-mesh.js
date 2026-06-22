@@ -5,7 +5,8 @@
 //   start()  - begin drawing
 //   stop()   - pause drawing
 //   reset()  - neutral pose
-//   roll(result, onSettle) - tumble and settle at a result face
+//   roll(onResult) - tumble freely; the physics decides which face lands
+//                    toward the camera, then onResult(value) is called
 //   resize() - update drawing buffer to CSS size
 //   isLowEnd() - low-end device heuristic
 //   dispose()
@@ -15,10 +16,19 @@ const CAMERA_DISTANCE = 3.4;
 const DIE_SCALE = 0.46;
 
 // Roll physics (world units, seconds).
-const BOUNCE_MS = 1400;
-const RETURN_MS = 520;
+// The die is launched with a random angular velocity and tumbles freely;
+// drag bleeds the spin off until it slows below SETTLE_ANG_SPEED, at which
+// point whichever face is toward the camera (+Z) becomes the result. Only
+// then is the die eased into that face's upright pose to show the number.
+const SPIN_MIN = 62;          // initial angular speed, rad/s (lower bound)
+const SPIN_MAX = 105;         // initial angular speed, rad/s (upper bound)
+const ANG_DRAG = 3.1;         // angular-velocity decay rate, per second
+const SETTLE_ANG_SPEED = 0.7; // rad/s below which the die counts as stopped
+const MIN_TUMBLE_MS = 900;    // minimum spin time before it may settle
+const MAX_TUMBLE_MS = 2600;   // hard cap on the free tumble
+const REORIENT_MS = 440;      // ease-to-upright after the die has stopped
 const GRAVITY = 6.6;
-const RESTITUTION = 0.82;
+const RESTITUTION = 0.78;
 const AIR_DRAG = 0.01;
 // Speed (world units/s) that maps to a full-strength collision.
 const MAX_HIT_SPEED = 12;
@@ -150,6 +160,47 @@ function matrixToQuat(m00, m01, m02, m10, m11, m12, m20, m21, m22) {
     z = 0.25 * s;
   }
   return new Float32Array([x, y, z, w]);
+}
+
+function qNormInto(out, q) {
+  const l = Math.hypot(q[0], q[1], q[2], q[3]) || 1;
+  out[0] = q[0] / l;
+  out[1] = q[1] / l;
+  out[2] = q[2] / l;
+  out[3] = q[3] / l;
+  return out;
+}
+// Spherical-linear interpolation between two unit quaternions.
+function qSlerpInto(out, a, b, t) {
+  let bx = b[0], by = b[1], bz = b[2], bw = b[3];
+  let cos = a[0] * bx + a[1] * by + a[2] * bz + a[3] * bw;
+  if (cos < 0) { bx = -bx; by = -by; bz = -bz; bw = -bw; cos = -cos; }
+  let s0, s1;
+  if (cos > 0.9995) {
+    s0 = 1 - t;
+    s1 = t;
+  } else {
+    const theta = Math.acos(cos);
+    const sin = Math.sin(theta);
+    s0 = Math.sin((1 - t) * theta) / sin;
+    s1 = Math.sin(t * theta) / sin;
+  }
+  out[0] = s0 * a[0] + s1 * bx;
+  out[1] = s0 * a[1] + s1 * by;
+  out[2] = s0 * a[2] + s1 * bz;
+  out[3] = s0 * a[3] + s1 * bw;
+  return qNormInto(out, out);
+}
+// Rotate vector v by unit quaternion q (out = q · v · q⁻¹).
+function rotateVecByQuat(out, q, v) {
+  const x = q[0], y = q[1], z = q[2], w = q[3];
+  const tx = 2 * (y * v[2] - z * v[1]);
+  const ty = 2 * (z * v[0] - x * v[2]);
+  const tz = 2 * (x * v[1] - y * v[0]);
+  out[0] = v[0] + w * tx + (y * tz - z * ty);
+  out[1] = v[1] + w * ty + (z * tx - x * tz);
+  out[2] = v[2] + w * tz + (x * ty - y * tx);
+  return out;
 }
 
 // Orientation that turns a face squarely toward the camera (+Z) with its
@@ -473,6 +524,9 @@ export function createD20Renderer(canvas) {
   let rafId = 0;
 
   const tmpSpin = new Float32Array(4);
+  const tmpQ = new Float32Array(4);
+  const settleQ = new Float32Array(4);
+  const tmpVec = new Float32Array(3);
   const modelMat = new Float32Array(16);
   const normalMat = new Float32Array(9);
 
@@ -585,11 +639,21 @@ export function createD20Renderer(canvas) {
     anim.last = now;
     const elapsed = now - anim.start;
 
-    const p = Math.min(1, elapsed / anim.duration);
-    qAxisAngleInto(tmpSpin, anim.axis, anim.totalSpin * (1 - easeOut(p)));
-    qMulInto(current, anim.target, tmpSpin);
+    if (anim.phase === "tumble") {
+      // Integrate the orientation from the current angular velocity, then
+      // bleed that velocity off with drag so the die naturally slows to a stop.
+      const speed = Math.hypot(anim.angVel[0], anim.angVel[1], anim.angVel[2]);
+      if (speed > 1e-5) {
+        qAxisAngleInto(tmpSpin, anim.angVel, speed * dt);
+        qMulInto(tmpQ, tmpSpin, anim.q);
+        qNormInto(anim.q, tmpQ);
+      }
+      const decay = Math.exp(-ANG_DRAG * dt);
+      anim.angVel[0] *= decay;
+      anim.angVel[1] *= decay;
+      anim.angVel[2] *= decay;
 
-    if (elapsed < BOUNCE_MS) {
+      // Position physics: gravity pulls the die down and it bounces off walls.
       anim.vel[1] -= GRAVITY * dt;
       anim.vel[0] *= 1 - AIR_DRAG;
       anim.vel[1] *= 1 - AIR_DRAG;
@@ -600,51 +664,90 @@ export function createD20Renderer(canvas) {
       else if (anim.pos[0] < -boundX) { anim.pos[0] = -boundX; emitCollision("left", -halfW, anim.pos[1], Math.abs(anim.vel[0])); anim.vel[0] = -anim.vel[0] * RESTITUTION; }
       if (anim.pos[1] > boundY) { anim.pos[1] = boundY; emitCollision("top", anim.pos[0], halfH, Math.abs(anim.vel[1])); anim.vel[1] = -anim.vel[1] * RESTITUTION; }
       else if (anim.pos[1] < -boundY) { anim.pos[1] = -boundY; emitCollision("bottom", anim.pos[0], -halfH, Math.abs(anim.vel[1])); anim.vel[1] = -anim.vel[1] * RESTITUTION; }
+
+      current = anim.q;
+
+      // Once the tumble has slowed below the stop threshold (after a minimum
+      // spin time), or the hard cap is reached, read the result and reorient.
+      if ((elapsed > MIN_TUMBLE_MS && speed < SETTLE_ANG_SPEED) || elapsed > MAX_TUMBLE_MS) {
+        beginReorient(now);
+      }
     } else {
-      if (!anim.returnFrom) anim.returnFrom = anim.pos.slice();
-      const rt = Math.min(1, (elapsed - BOUNCE_MS) / RETURN_MS);
+      // Reorient: ease the settled die into the perfectly-upright pose of the
+      // face it landed on, and glide back to centre.
+      const rt = Math.min(1, (now - anim.reorientStart) / REORIENT_MS);
       const k = easeOut(rt);
+      qSlerpInto(settleQ, anim.reorientFrom, anim.target, k);
+      current = settleQ;
       anim.pos[0] = anim.returnFrom[0] * (1 - k);
       anim.pos[1] = anim.returnFrom[1] * (1 - k);
+
+      if (rt >= 1) {
+        current = new Float32Array(anim.target);
+        const done = anim.onResult;
+        const result = anim.result;
+        anim = null;
+
+        resize();
+        draw(current, [0, 0]);
+        if (done) done(result);
+        return;
+      }
     }
 
     resize();
     draw(current, anim.pos);
 
-    if (elapsed >= BOUNCE_MS + RETURN_MS && p >= 1) {
-      current = new Float32Array(anim.target);
-      const done = anim.onSettle;
-      anim = null;
-
-      resize();
-      draw(current, [0, 0]);
-      if (done) done();
-      return;
-    }
-
     rafId = requestAnimationFrame(frame);
   }
 
-  function startRoll(result, onSettle) {
-    const faceIndex = Math.max(0, faceNumbers.indexOf(result));
-    const target = quatUprightFace(geo.faceNormals[faceIndex], geo.faceUps[faceIndex]);
+  // Read the result from the settled orientation: the face whose world-space
+  // normal points most toward the camera (+Z) is the one showing. Lock in that
+  // value and set up the ease toward its upright pose.
+  function beginReorient(now) {
+    let bestIdx = 0;
+    let bestZ = -Infinity;
+    for (let i = 0; i < geo.faceCount; i++) {
+      rotateVecByQuat(tmpVec, anim.q, geo.faceNormals[i]);
+      if (tmpVec[2] > bestZ) {
+        bestZ = tmpVec[2];
+        bestIdx = i;
+      }
+    }
+    anim.result = faceNumbers[bestIdx];
+    anim.target = quatUprightFace(geo.faceNormals[bestIdx], geo.faceUps[bestIdx]);
+    anim.reorientFrom = anim.q.slice();
+    anim.returnFrom = anim.pos.slice();
+    anim.reorientStart = now;
+    anim.phase = "reorient";
+  }
+
+  function startRoll(onResult) {
+    const now = performance.now();
+    // Random initial angular velocity (rad/s) about a random axis. This, plus
+    // drag and any wall bounces, is what decides which face ends up toward the
+    // camera — the result is read from the final orientation, not chosen here.
     const axis = norm3([
       Math.random() * 2 - 1,
       Math.random() * 2 - 1,
       Math.random() * 2 - 1,
     ]);
-    const now = performance.now();
+    const spinRate = SPIN_MIN + Math.random() * (SPIN_MAX - SPIN_MIN);
     anim = {
+      phase: "tumble",
       start: now,
       last: now,
-      duration: BOUNCE_MS + RETURN_MS,
-      axis,
-      totalSpin: Math.PI * (10 + Math.random() * 8),
-      target,
-      onSettle,
+      q: new Float32Array(current),
+      angVel: [axis[0] * spinRate, axis[1] * spinRate, axis[2] * spinRate],
       pos: [0, 0],
-      vel: [(Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 4), 5 + Math.random() * 3],
+      vel: [(Math.random() < 0.5 ? -1 : 1) * (11 + Math.random() * 5), 7 + Math.random() * 3],
+      onResult,
+      // Filled in once the die settles:
+      reorientStart: 0,
+      reorientFrom: null,
       returnFrom: null,
+      target: null,
+      result: 0,
     };
     running = true;
     cancelAnimationFrame(rafId);
@@ -673,8 +776,8 @@ export function createD20Renderer(canvas) {
         draw(current);
       }
     },
-    roll(result, onSettle) {
-      startRoll(result, onSettle);
+    roll(onResult) {
+      startRoll(onResult);
     },
     setOnCollide(fn) {
       collideCb = fn;

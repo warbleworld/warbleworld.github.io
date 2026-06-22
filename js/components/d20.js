@@ -138,16 +138,20 @@ function roll() {
   if (rolling) return;
   rolling = true;
 
-  const result = 1 + Math.floor(Math.random() * 20);
   resultEl.textContent = "";
   resultEl.className = "d20-result";
 
   if (renderer) {
-    renderer.roll(result, () => showResult(result));
+    // The physics of the tumble decides the outcome: the renderer lets the
+    // die settle to a stop, reads whichever face is toward the camera, then
+    // reorients to show it and reports that value back.
+    renderer.roll((result) => showResult(result));
     return;
   }
 
-  // Fallback: brief CSS tumble on the SVG, then reveal.
+  // Fallback (no WebGL): there's no physics sim, so pick a random face and
+  // play a brief CSS tumble before revealing it.
+  const result = 1 + Math.floor(Math.random() * 20);
   die.classList.remove("rolling");
   void die.offsetWidth;
   die.classList.add("rolling");
