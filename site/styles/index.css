@@ -1,0 +1,18 @@
+/*
+ * Single stylesheet entry point.
+ * Each @import below is inlined by Vite at build time (and resolved
+ * instantly by the dev server), so the browser downloads ONE minified
+ * CSS file instead of eleven. Order matters: this is the cascade order
+ * the individual <link> tags used to establish.
+ */
+@import "./base.css";
+@import "./layout.css";
+@import "./tabs.css";
+@import "./filters.css";
+@import "./cards.css";
+@import "./search.css";
+@import "./modal.css";
+@import "./card-categories.css";
+@import "./character-sheet.css";
+@import "./misc.css";
+@import "./d20.css";

@@ -1,0 +1,11 @@
+# Installed packages — recreated from package.json by `npm install`.
+node_modules/
+
+# Build output — recreated by `npm run build`, deployed by GitHub Actions.
+dist/
+
+# Vite's dependency pre-bundling cache — machine-generated.
+.vite/
+
+# macOS noise
+.DS_Store

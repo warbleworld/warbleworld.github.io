@@ -463,9 +463,11 @@ function readUniforms(gl, program) {
 }
 
 function isLowEndDevice() {
-  const hardwareConcurrency = navigator.hardwareConcurrency || 8;
-  const deviceMemoryGb = navigator.deviceMemory || 8;
-  return hardwareConcurrency <= 4 || deviceMemoryGb <= 4;
+  // eslint-disable-next-line compat/compat
+  const hardwareConcurrency = navigator.hardwareConcurrency || 2;
+  // eslint-disable-next-line compat/compat
+  const deviceMemoryGb = navigator.deviceMemory || 2;
+  return hardwareConcurrency <= 2 || deviceMemoryGb <= 2;
 }
 
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);

@@ -9,18 +9,9 @@
   <meta name="description" content="Quick reference for the Turn of Fortune's Wheel D&D campaign">
   <title>Turn of Fortune's Wheel</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <!-- Styles are split into cascade-ordered partials (see styles/). -->
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/tabs.css">
-  <link rel="stylesheet" href="styles/filters.css">
-  <link rel="stylesheet" href="styles/cards.css">
-  <link rel="stylesheet" href="styles/search.css">
-  <link rel="stylesheet" href="styles/modal.css">
-  <link rel="stylesheet" href="styles/card-categories.css">
-  <link rel="stylesheet" href="styles/character-sheet.css">
-  <link rel="stylesheet" href="styles/misc.css">
-  <link rel="stylesheet" href="styles/d20.css">
+  <!-- Single stylesheet entry; the cascade-ordered partials are pulled
+       in via @import (see styles/index.css) and bundled by Vite. -->
+  <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>

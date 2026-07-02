@@ -2,7 +2,7 @@
 // Hexagonal ability-score radar chart (inline SVG).
 // ---------------------------------------------------------
 
-import { ABILITIES } from "../core/dnd.js";
+import { ABILITIES } from "../../../shared/dnd.js";
 
 const CENTER = 105;
 const RADIUS = 85;

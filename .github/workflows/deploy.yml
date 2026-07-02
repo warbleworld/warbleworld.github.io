@@ -1,0 +1,69 @@
+# GitHub Actions workflow: build the site and publish it to GitHub Pages.
+#
+# GitHub Actions is GitHub's free automation service — on every push it
+# spins up a temporary Linux machine, runs the steps below, and throws the
+# machine away. You never build or upload by hand again.
+#
+# IMPORTANT one-time setup: in the repository settings on github.com, go to
+# Settings → Pages → "Build and deployment" → Source and change it from
+# "Deploy from a branch" to "GitHub Actions". Until you flip that switch,
+# Pages keeps serving the raw files from the main branch.
+
+name: Deploy to GitHub Pages
+
+on:
+  # Run whenever main is updated (i.e., when a phase branch is merged).
+  push:
+    branches: [main]
+  # Also allow triggering it manually from the Actions tab — handy for testing.
+  workflow_dispatch:
+
+# Least-privilege permissions: read the code, write only to Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two deploys overlap (rapid pushes), cancel the older one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Download the repository onto the build machine.
+      - uses: actions/checkout@v4
+
+      # Install Node. The version here only affects the BUILD machine —
+      # it has nothing to do with what browsers the site supports.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # "npm ci" = clean install: installs the exact versions recorded in
+      # package-lock.json. Reproducible, unlike plain "npm install".
+      - run: npm ci
+
+      # Fail the deploy if code uses a feature iOS 15 doesn't have.
+      - run: npm run lint
+
+      # Produce the optimized site in dist/.
+      - run: npm run build
+
+      # Hand dist/ to the Pages deployment below.
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

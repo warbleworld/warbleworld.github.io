@@ -1,0 +1,22 @@
+{
+  "name": "warbleworld",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Turn of Fortune's Wheel — D&D campaign reference site",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-plugin-compat": "^6.0.0",
+    "vite": "^7.0.0"
+  },
+  "browserslist": [
+    "ios_saf >= 15",
+    "safari >= 15"
+  ]
+}

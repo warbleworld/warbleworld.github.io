@@ -3,7 +3,7 @@
 // and resource counters.
 // ---------------------------------------------------------
 
-import { ABILITIES, SAVES, SKILLS, SKILL_ABILITY, modifier, signed, abilityMod } from "../core/dnd.js";
+import { ABILITIES, SAVES, SKILLS, SKILL_ABILITY, modifier, signed, abilityMod } from "../../../shared/dnd.js";
 import { imageHtml, isImageCached } from "../core/images.js";
 import { escapeAttr, escapeHtml } from "../core/html.js";
 import { PORTRAIT_SIZES } from "../config.js";
