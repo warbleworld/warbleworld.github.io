@@ -23,6 +23,14 @@
     "desc": "**__1d8__** Piercing (80/320 ft.)\n\n**Range**. A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.\n\n**Ammunition**. You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nIf you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.\n\n**Loading**. Because of the time required to load this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or reaction to fire it, regardless of the number of attacks you can normally make.\n\n**Two-Handed**. This weapon requires two hands to use. This property is relevant only when you attack with the weapon, not when you simply hold it.",
     "tag": "Weapon"
   },
+  "mace": {
+    "title": "Mace",
+    "subtitle": ["Simple Weapon", "Melee Weapon"],
+    "meta": ["simple", "melee"],
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Mace.webp",
+    "desc": "**__1d6__** Bludgeoning",
+    "tag": "Weapon"
+  },
   "pike": {
     "title": "Pike",
     "subtitle": ["Martial Weapon", "Melee Weapon"],
@@ -63,7 +71,6 @@
     "desc": "**__1d6__** Piercing\n\n**Finesse**. When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.\n\n**Light**. A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.",
     "tag": "Weapon"
   },
-
 
 
   "chain_mail": {
@@ -155,6 +162,14 @@
     "desc": "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A [Sorcerer](https://5e.tools/classes.html#sorcerer_phb), [Warlock](https://5e.tools/classes.html#warlock_phb), or [Wizard](https://5e.tools/classes.html#wizard_phb) can use such an item as a [Spellcasting Focus](https://5e.tools/variantrules.html#spellcasting%20focus_xphb).",
     "tag": "Equipment"
   },
+  "scale_mail": {
+    "title": "Scale Mail",
+    "subtitle": "Medium Armor",
+    "meta": ["medium armor"],
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Scale%20Mail.webp",
+    "desc": "AC 14 + Dex (max 2)\n\nThis armor consists of a coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. The suit includes gauntlets.\n\nThe wearer has [Disadvantage](https://5e.tools/variantrules.html#disadvantage_xphb) on Dexterity (Stealth) checks.",
+    "tag": "Equipment"
+  },
   "sensory_stone": {
     "title": "Sensory Stone",
     "subtitle": ["Wondrous Item", "Uncommon"],
@@ -162,6 +177,14 @@
     "img": "images/gem-rough-faceted-green.webp",
     "desc": "This small, smooth stone contains the essence of a single experience.\n\nAs an action, you or a willing creature you designate can touch the stone and experience the sensation as if it happened to the designated creature. The illusory experience is fleeting and harmless, however real it might feel in the moment.\n\n**Record Sensation**. You can use your reaction to record a short sensation lasting no longer than 6 seconds experienced by a creature of your choice within 30 feet of yourself, infusing the essence of that experience into the stone. This replaces any sensation already stored within the stone.\n\n**Siphon Sensation**. As a bonus action, you can draw on the stone's magic to end the charmed or frightened condition on yourself, destroying the stone in the process.",
     "footer": "Multiple",
+    "tag": "Equipment"
+  },
+  "shield_item": {
+    "title": "Shield",
+    "subtitle": "Armor ([Shield](https://5e.tools/items.html#shield_phb))",
+    "meta": ["armor", "shield"],
+    "img": "https://cdn.5e.tools/2024/img/items/XPHB/Shield.webp",
+    "desc": "AC +2\n\nA shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by 2. You can benefit from only one shield at a time.",
     "tag": "Equipment"
   },
   "studded_leather_armor": {
@@ -344,6 +367,12 @@
 
 
 
+  "alms_box": {
+    "title": "Alms Box",
+    "img": "images/chest-simple-box-brown.webp",
+    "desc": "",
+    "tag": "Tools and Containers"
+  }, 
   "backpack": {
     "title": "Backpack",
     "subtitle": "Adventuring Gear",
@@ -423,9 +452,31 @@
     "desc": "",
     "tag": "Loot"
   },
+  "blanket": {
+    "title": "Blanket",
+    "subtitle": "Adventuring Gear",
+    "meta": ["adventuring gear"],
+    "img": "images/cloth-bolt-gold-orange.webp",
+    "desc": "",
+    "tag": "Loot"
+  },
+  "block_of_incense": {
+    "title": "Block of Incense",
+    "subtitle": "Adventuring Gear",
+    "meta": ["adventuring gear"],
+    "img": "images/ingot-plain-gold.webp",
+    "desc": "When lit, it burns for 8 hours and repels normal insects within a 20-foot-radius centered on it.",
+    "tag": "Loot"
+  },
   "book": {
     "title": "Book",
     "img": "images/book-worn-brown.webp",
+    "desc": "",
+    "tag": "Loot"
+  },
+  "censer": {
+    "title": "Censer",
+    "img": "images/goblet-worn-clay-white.webp",
     "desc": "",
     "tag": "Loot"
   },
@@ -463,6 +514,14 @@
     "meta": ["adventuring gear"],
     "img": "images/hammer-sledge-steel-grey.webp",
     "desc": "",
+    "tag": "Loot"
+  },
+  "holy_symbol": {
+    "title": "Holy Symbol",
+    "subtitle": "Spellcasting Focus",
+    "meta": ["spellcasting focus"],
+    "img": "images/token-gold-cross.webp",
+    "desc": "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A [Cleric](https://5e.tools/classes.html#cleric_phb) or [Paladin](https://5e.tools/classes.html#paladin_phb) can use a Holy Symbol as a [Spellcasting Focus]([Spellcasting Focus](https://5e.tools/variantrules.html#spellcasting%20focus_xphb)).\n\nMultiple variations of this item exist, as listed below:\n* [Amulet](https://5e.tools/items.html#amulet_phb)\n* [Emblem](https://5e.tools/items.html#emblem_phb)\n* [Reliquary](https://5e.tools/items.html#reliquary_phb)",
     "tag": "Loot"
   },
   "mess_kit": {
@@ -541,6 +600,12 @@
     "desc": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.",
     "tag": "Loot"
   },
+  "stick_of_incense": {
+    "title": "Stick of Incense",
+    "img": "images/dried-bundle-tied-stems-sticks-brown.webp",
+    "desc": "",
+    "tag": "Loot"
+  },
   "stirge_needle": {
     "title": "Stirge Needle",
     "img": "images/antenna-blue.webp",
@@ -559,6 +624,12 @@
     "title": "Trinket Beads",
     "img": "images/necklace-simple-bead-dice.webp",
     "desc": "A gift from A'kin the Friendly Fiend. It looks to be a small charm or toy of sorts, but is strangely cold to the touch. Three round, white beads are connected by an unseen force in a row, with each bead being slightly larger than the next.\n\nHolding it, you feel the stirrings of memories you've never had.",
+    "tag": "Loot"
+  },
+  "vestments": {
+    "title": "Vestments",
+    "img": "images/mantle-collared-black.webp",
+    "desc": "",
     "tag": "Loot"
   },
   "wind_spore": {
@@ -609,6 +680,12 @@
     "img": "images/sword-twirl-orange.webp",
     "desc": "Starting at 2nd level, you can invoke a secret elven magic called the Bladesong, provided you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus.\n\nYou can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are [incapacitated](https://5e.tools/conditionsdiseases.html#incapacitated_phb), if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss Bladesong at any time you choose (no action required).\n\nWhile your bladesong is active, you gain the following benefits:\n* You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).\n* Your walking speed increases by 10 feet.\n* You have advantage on Dexterity (**__Acrobatics__**) checks.\n* You gain a bonus to any Constitution saving throws you make to maintain [concentration](https://5e.tools/conditionsdiseases.html#concentration_phb) on a spell. The bonus equals your Intelligence modifier (minimum of +1).\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses of it when you finish a long rest.",
     "footer": "Bonus Action",
+    "tag": "Class"
+  },
+  "bonus_cantrip": {
+    "title": "Bonus Cantrip",
+    "img": "images/document-symbol-eye.webp",
+    "desc": "When you choose this domain at 1st level, you gain the [light](https://5e.tools/spells.html#light_phb) cantrip if you don't already know it. This cantrip doesn't count against the number of cleric cantrips you know.",
     "tag": "Class"
   },
   "bonus_proficiencies": {
@@ -816,6 +893,12 @@
     "meta": ["long rest"],
     "img": "images/silhouette-hold-change-blue.webp",
     "desc": "You have 2 sorcery points, and you gain one additional point every time you level up, to a maximum of 20 at level 20. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest.",
+    "tag": "Class"
+  },
+  "spellcasting_cleric": {
+    "title": "Spellcasting",
+    "img": "images/beam-rays-yellow-blue-large.webp",
+    "desc": "As a conduit for divine power, you can cast cleric spells. See [chapter 10](https://5e.tools/book.html#phb,10) for the general rules of spellcasting and [chapter 11](https://5e.tools/book.html#phb,11) for a selection of [cleric spells](https://5e.tools/spells.html#blankhash,flstclass:cleric=1).\n\n**Cantrips**\nAt 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table.\n\n**Preparing and Casting Spells**\nThe Cleric table shows how many spell slots you have to cast your [cleric spells](https://5e.tools/spells.html#blankhash,flstclass:cleric=1) of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nYou prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots.\n\nFor example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell [cure wounds](https://5e.tools/spells.html#cure%20wounds_phb), you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.\n\nYou can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list.\n\n**Spellcasting Ability**\nWisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.\n\n::center:: **Spell save DC** = 8 + Wisdom modifier + Proficiency Bonus\n\n::center:: **Spell attack modifier** = Wisdom modifier + Proficiency Bonus\n\n**Ritual Casting**\nYou can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared.\n\n**Spellcasting Focus**\nYou can use a [holy symbol](https://5e.tools/items.html#holy%20symbol_phb) as a spellcasting focus for your cleric spells.",
     "tag": "Class"
   },
   "spellcasting_sorcerer": {
@@ -1052,6 +1135,12 @@
     "title": "Researcher",
     "img": "images/farmer.svg",
     "desc": "When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found. Unearthing the deepest secrets of the multiverse can require an adventure or even a whole campaign.",
+    "tag": "Background"
+  },
+  "shelter_of_the_faithful": {
+    "title": "Shelter of the Faithful",
+    "img": "images/necklace-runed-white-red.webp",
+    "desc": "As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.\n\nYou might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple.",
     "tag": "Background"
   },
 
